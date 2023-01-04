@@ -1,7 +1,10 @@
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import IncrementCounter from './incrementer';
 
 function App() {
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -15,8 +18,10 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React with Savva
         </a>
+        <IncrementCounter step={2}/>
+        <IncrementCounter/>
       </header>
     </div>
   );

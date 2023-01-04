@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "ScriptMTBold";
+  src: local("ScriptMTBold"),
+   url("./fonts/ScriptMTBold.ttf") format("truetype");
+  font-weight: bold;
+}
