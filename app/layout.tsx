@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import { Provider } from "@/components/ui/provider";
 import Navbar from "@/components/navbar";
-import { Martian_Mono } from "next/font/google";
+import { Martian_Mono, Cookie } from "next/font/google";
+import { Box } from "@chakra-ui/react";
 
 const martianMono = Martian_Mono({
   subsets: ["latin"],
+  variable: "--font-martian",
+});
+
+const cookie = Cookie({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-cookie",
 });
 
 export const metadata: Metadata = {
@@ -23,11 +31,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${cookie.variable} ${martianMono.variable}`}
+    >
       <body className={`${martianMono.className}`}>
         <Provider>
           <Navbar></Navbar>
-          {children}
+          <Box bg="brand.bg">{children}</Box>
         </Provider>
       </body>
     </html>

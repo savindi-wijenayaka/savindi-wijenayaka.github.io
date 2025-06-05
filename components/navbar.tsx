@@ -32,7 +32,7 @@ interface NavLinkProps {
 const NavLink = ({ index, link }: NavLinkProps) => {
   return (
     <Button as="a" variant="ghost" size="md" rounded="md" textStyle="navlink">
-      <Text>
+      <Text color="brand.fgEmph">
         0{index + 1}. <Span color="fg">{link}</Span>
       </Text>
     </Button>
@@ -44,7 +44,7 @@ export default function NavBar() {
 
   return (
     <>
-      <Box px={4} bg="cyan.subtle">
+      <Box px={4} bg="brand.subtle">
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Drawer.Root>
             <Drawer.Trigger asChild>
@@ -105,7 +105,16 @@ export default function NavBar() {
               </Drawer.Positioner>
             </Portal>
           </Drawer.Root>
-          <Link href="#" variant="plain" focusRing={"none"} _hover={{ textDecoration: "none" }}>Savindi Wijenayaka</Link>
+          <Link
+            href="#"
+            variant="plain"
+            focusRing={"none"}
+            _hover={{ textDecoration: "none" }}
+            fontFamily={"heading"}
+            fontSize={"4xl"}
+          >
+            Savindi
+          </Link>
           <HStack gap={8} alignItems={"center"}>
             <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}>
               {Links.map((link, index) => (
