@@ -8,8 +8,13 @@ import {
   Text,
   Button,
   Link,
+  HStack,
+  IconButton,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import { TbFileCv } from "react-icons/tb";
+import { BsMedium } from "react-icons/bs";
+import { FaGithubAlt, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -58,6 +63,40 @@ export default function Home() {
               <TbFileCv /> View CV
             </Button>
           </Link>
+          <HStack>
+              <IconButton variant="outline">
+                <LinkOverlay
+                  href="https://www.linkedin.com/in/savindi/"
+                  target="blank"
+                >
+                  <FaLinkedinIn />
+                </LinkOverlay>
+              </IconButton>
+              <IconButton variant="outline">
+                <LinkOverlay
+                  href="https://github.com/savindi-wijenayaka"
+                  target="blank"
+                >
+                  <FaGithubAlt />
+                </LinkOverlay>
+              </IconButton>
+              <IconButton variant="outline">
+                <LinkOverlay
+                  href="https://savindi-wijenayaka.medium.com"
+                  target="blank"
+                >
+                  <BsMedium />
+                </LinkOverlay>
+              </IconButton>
+              <IconButton variant="outline">
+                <LinkOverlay
+                  href="https://www.instagram.com/vindy_stories"
+                  target="blank"
+                >
+                  <FaInstagram />
+                </LinkOverlay>
+              </IconButton>
+            </HStack>
         </VStack>
       </Center>
     </Container>
