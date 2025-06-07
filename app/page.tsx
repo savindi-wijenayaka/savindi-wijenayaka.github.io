@@ -13,6 +13,7 @@ import {
 import { TbFileCv } from "react-icons/tb";
 import Socials from "@/constants/socials";
 import { SocialButton } from "@/components/socials";
+import { ImageAssets } from "@/constants/images";
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
       <Center p={4} h="100%">
         <VStack>
           <Image
-            src="../profile.jpg"
+            src={ImageAssets.ProfilePhoto.src}
             borderRadius="full"
             alt="Savindi Wijenayaka"
             width={{ md: "xs", sm: "2xs", base: "3xs" }}

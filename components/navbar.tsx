@@ -22,6 +22,7 @@ import { IoMdSunny } from "react-icons/io";
 import { BsMoonStarsFill } from "react-icons/bs";
 import Socials from "@/constants/socials";
 import { SocialButton } from "./socials";
+import { Logos } from "@/constants/logos";
 
 // const Links = ["About", "Experience", "Education", "Achievements"];
 
@@ -100,10 +101,10 @@ export default function NavBar() {
               <Image
                 src={
                   colorMode === "light"
-                    ? "../logo_light.png"
-                    : "../logo_dark.png"
+                    ? Logos.BrandLogo.src.light
+                    : Logos.BrandLogo.src.dark
                 }
-                alt="logo"
+                alt={Logos.BrandLogo.alt}
                 h={16}
               />
             </Link>
