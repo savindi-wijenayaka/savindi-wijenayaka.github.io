@@ -56,7 +56,7 @@ export default function Home() {
             computational analysis.
           </Text>
           <Link
-            href="https://docs.google.com/gview?url=https://github.com/savindi-wijenayaka/savindi-wijenayaka.github.io/raw/main/cv_savindi_wijenayaka.pdf&embedded=true"
+            href="https://docs.google.com/gview?url=https://github.com/savindi-wijenayaka/cv-savindi-wijenayaka/raw/main/cv_savindi_wijenayaka.pdf&embedded=true"
             target="blank"
           >
             <Button p={4}>
