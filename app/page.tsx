@@ -9,11 +9,10 @@ import {
   Button,
   Link,
   HStack,
-  IconButton,
-  LinkOverlay,
 } from "@chakra-ui/react";
 import { TbFileCv } from "react-icons/tb";
 import Socials from "@/constants/socials";
+import { SocialButton } from "@/components/socials";
 
 export default function Home() {
   return (
@@ -64,15 +63,7 @@ export default function Home() {
           </Link>
           <HStack>
             {Socials.map((social) => (
-              <IconButton variant="outline" key={social.link}>
-                <LinkOverlay
-                  key={social.link}
-                  href={social.link}
-                  target="blank"
-                >
-                  <social.icon />
-                </LinkOverlay>
-              </IconButton>
+              <SocialButton key={social.link} social={social}></SocialButton>
             ))}
           </HStack>
         </VStack>

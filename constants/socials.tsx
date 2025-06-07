@@ -1,7 +1,13 @@
+import { IconType } from "react-icons";
 import { BsMedium } from "react-icons/bs";
 import { FaGithubAlt, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
-const Socials = [
+export interface Social {
+  icon: IconType;
+  link: string;
+}
+
+const Socials: Social[] = [
   {
     icon: FaLinkedinIn,
     link: "https://www.linkedin.com/in/savindi",

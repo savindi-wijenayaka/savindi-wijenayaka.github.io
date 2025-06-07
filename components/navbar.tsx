@@ -14,7 +14,6 @@ import {
   Separator,
   // Span,
   Link,
-  LinkOverlay,
   Image,
 } from "@chakra-ui/react";
 import { useColorMode } from "./ui/color-mode";
@@ -22,6 +21,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdSunny } from "react-icons/io";
 import { BsMoonStarsFill } from "react-icons/bs";
 import Socials from "@/constants/socials";
+import { SocialButton } from "./socials";
 
 // const Links = ["About", "Experience", "Education", "Achievements"];
 
@@ -75,15 +75,10 @@ export default function NavBar() {
                   <Drawer.Footer>
                     <Separator />
                     {Socials.map((social) => (
-                      <IconButton variant="outline" key={social.link}>
-                        <LinkOverlay
-                          key={social.link}
-                          href={social.link}
-                          target="blank"
-                        >
-                          <social.icon />
-                        </LinkOverlay>
-                      </IconButton>
+                      <SocialButton
+                        key={social.link}
+                        social={social}
+                      ></SocialButton>
                     ))}
                   </Drawer.Footer>
                   <Drawer.CloseTrigger asChild>
