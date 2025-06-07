@@ -20,8 +20,8 @@ import {
 import { useColorMode } from "./ui/color-mode";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdSunny } from "react-icons/io";
-import { BsMoonStarsFill, BsMedium } from "react-icons/bs";
-import { FaGithubAlt, FaInstagram } from "react-icons/fa";
+import { BsMoonStarsFill } from "react-icons/bs";
+import Socials from "@/constants/socials";
 
 // const Links = ["About", "Experience", "Education", "Achievements"];
 
@@ -74,30 +74,17 @@ export default function NavBar() {
                   </Drawer.Body>
                   <Drawer.Footer>
                     <Separator />
-                    <IconButton variant="outline">
-                      <LinkOverlay
-                        href="https://github.com/savindi-wijenayaka"
-                        target="blank"
-                      >
-                        <FaGithubAlt />
-                      </LinkOverlay>
-                    </IconButton>
-                    <IconButton variant="outline">
-                      <LinkOverlay
-                        href="https://savindi-wijenayaka.medium.com"
-                        target="blank"
-                      >
-                        <BsMedium />
-                      </LinkOverlay>
-                    </IconButton>
-                    <IconButton variant="outline">
-                      <LinkOverlay
-                        href="https://www.instagram.com/vindy_stories"
-                        target="blank"
-                      >
-                        <FaInstagram />
-                      </LinkOverlay>
-                    </IconButton>
+                    {Socials.map((social) => (
+                      <IconButton variant="outline" key={social.link}>
+                        <LinkOverlay
+                          key={social.link}
+                          href={social.link}
+                          target="blank"
+                        >
+                          <social.icon />
+                        </LinkOverlay>
+                      </IconButton>
+                    ))}
                   </Drawer.Footer>
                   <Drawer.CloseTrigger asChild>
                     <CloseButton size="sm" />
