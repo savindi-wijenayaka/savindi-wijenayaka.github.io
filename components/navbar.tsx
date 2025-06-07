@@ -7,12 +7,12 @@ import {
   CloseButton,
   Drawer,
   IconButton,
-  Text,
+  // Text,
   VStack,
   Stack,
   Portal,
   Separator,
-  Span,
+  // Span,
   Link,
   LinkOverlay,
   Image,
@@ -23,22 +23,22 @@ import { IoMdSunny } from "react-icons/io";
 import { BsMoonStarsFill, BsMedium } from "react-icons/bs";
 import { FaGithubAlt, FaInstagram } from "react-icons/fa";
 
-const Links = ["About", "Experience", "Education", "Achievements"];
+// const Links = ["About", "Experience", "Education", "Achievements"];
 
-interface NavLinkProps {
-  index: number;
-  link: string;
-}
+// interface NavLinkProps {
+//   index: number;
+//   link: string;
+// }
 
-const NavLink = ({ index, link }: NavLinkProps) => {
-  return (
-    <Button as="a" variant="ghost" size="md" rounded="md" textStyle="navlink">
-      <Text color="brand.fgEmph">
-        0{index + 1}. <Span color="fg">{link}</Span>
-      </Text>
-    </Button>
-  );
-};
+// const NavLink = ({ index, link }: NavLinkProps) => {
+//   return (
+//     <Button as="a" variant="ghost" size="md" rounded="md" textStyle="navlink">
+//       <Text color="brand.fgEmph">
+//         0{index + 1}. <Span color="fg">{link}</Span>
+//       </Text>
+//     </Button>
+//   );
+// };
 
 export default function NavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -67,9 +67,9 @@ export default function NavBar() {
                   </Drawer.Header>
                   <Drawer.Body>
                     <VStack>
-                      {Links.map((link, index) => (
+                      {/* {Links.map((link, index) => (
                         <NavLink key={link} index={index} link={link} />
-                      ))}
+                      ))} */}
                     </VStack>
                   </Drawer.Body>
                   <Drawer.Footer>
@@ -128,9 +128,9 @@ export default function NavBar() {
           </Box>
           <HStack gap={8} alignItems={"center"}>
             <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}>
-              {Links.map((link, index) => (
+              {/* {Links.map((link, index) => (
                 <NavLink key={link} index={index} link={link} />
-              ))}
+              ))} */}
             </HStack>
             <Stack direction={"row"} gap={7}>
               <Button onClick={toggleColorMode} variant="surface">
