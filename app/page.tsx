@@ -18,7 +18,7 @@ import { FaGithubAlt, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <Container p={4} h="calc(100vh - 64px)">
+    <Container p={4} h="calc(100dvh - 64px)">
       <Center p={4} h="100%">
         <VStack>
           <Image
