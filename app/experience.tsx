@@ -45,37 +45,32 @@ export default function Experiences() {
               paddingTop={0}
             >
               <List.Item>
-                {" "}
-                WSO2 is one of the world's leading open-source integration
+                WSO2 is one of the world&apos;s leading open-source integration
                 vendors. Choreo is its latest product, providing an AI-enhanced
-                integrated platform as a service.{" "}
+                integrated platform as a service.
               </List.Item>
               <List.Item>
-                {" "}
                 Researched, engineered and deployed the initial phase of
-                Choreo's AI-assisted testing feature, using Python, Keras,
+                Choreo&apos;s AI-assisted testing feature, using Python, Keras,
                 Flask, Kubernetes and Azure DevOps pipelines.{" "}
               </List.Item>
               <List.Item>
-                {" "}
-                Architected, developed and deployed Choreo's AI-based anomaly
-                detector with two other engineers, using Azure solutions,
-                Ballerina, and Python, while adhering to security best
-                practices, scaling requirements, and optimised resource
-                usage.{" "}
+                Architected, developed and deployed Choreo&apos;s AI-based
+                anomaly detector with two other engineers, using Azure
+                solutions, Ballerina, and Python, while adhering to security
+                best practices, scaling requirements, and optimised resource
+                usage.
               </List.Item>
               <List.Item>
-                {" "}
                 Analysed Ballerina Language Server performance and identified
                 the cause of a memory leak using JMeter and Eclipse Memory
                 Analyser (MAT), which helped in the optimisation of resources in
-                Choreo.{" "}
+                Choreo.
               </List.Item>
               <List.Item>
-                {" "}
                 Contributed to automating the performance testing of Choreo by
                 creating a library and a pipeline for system metrics collection
-                using Python, Kusto, Seaborn, and Azure DevOps pipelines.{" "}
+                using Python, Kusto, Seaborn, and Azure DevOps pipelines.
               </List.Item>
             </List.Root>
             <Text p={4} paddingTop={0} fontSize={"sm"} font={"heading"}>
