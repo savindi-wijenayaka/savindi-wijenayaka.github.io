@@ -15,6 +15,7 @@ import {
   Span,
   Link,
   LinkOverlay,
+  Image,
 } from "@chakra-ui/react";
 import { useColorMode } from "./ui/color-mode";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -105,16 +106,26 @@ export default function NavBar() {
               </Drawer.Positioner>
             </Portal>
           </Drawer.Root>
-          <Link
-            href="#"
-            variant="plain"
-            focusRing={"none"}
-            _hover={{ textDecoration: "none" }}
-            fontFamily={"heading"}
-            fontSize={"4xl"}
-          >
-            Savindi
-          </Link>
+          <Box h={16}>
+            <Link
+              href="#"
+              variant="plain"
+              focusRing={"none"}
+              _hover={{ textDecoration: "none" }}
+              fontFamily={"heading"}
+              fontSize={"4xl"}
+            >
+              <Image
+                src={
+                  colorMode === "light"
+                    ? "../logo_light.png"
+                    : "../logo_dark.png"
+                }
+                alt="logo"
+                h={16}
+              />
+            </Link>
+          </Box>
           <HStack gap={8} alignItems={"center"}>
             <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}>
               {Links.map((link, index) => (

@@ -64,39 +64,39 @@ export default function Home() {
             </Button>
           </Link>
           <HStack>
-              <IconButton variant="outline">
-                <LinkOverlay
-                  href="https://www.linkedin.com/in/savindi/"
-                  target="blank"
-                >
-                  <FaLinkedinIn />
-                </LinkOverlay>
-              </IconButton>
-              <IconButton variant="outline">
-                <LinkOverlay
-                  href="https://github.com/savindi-wijenayaka"
-                  target="blank"
-                >
-                  <FaGithubAlt />
-                </LinkOverlay>
-              </IconButton>
-              <IconButton variant="outline">
-                <LinkOverlay
-                  href="https://savindi-wijenayaka.medium.com"
-                  target="blank"
-                >
-                  <BsMedium />
-                </LinkOverlay>
-              </IconButton>
-              <IconButton variant="outline">
-                <LinkOverlay
-                  href="https://www.instagram.com/vindy_stories"
-                  target="blank"
-                >
-                  <FaInstagram />
-                </LinkOverlay>
-              </IconButton>
-            </HStack>
+            <IconButton variant="outline">
+              <LinkOverlay
+                href="https://www.linkedin.com/in/savindi/"
+                target="blank"
+              >
+                <FaLinkedinIn />
+              </LinkOverlay>
+            </IconButton>
+            <IconButton variant="outline">
+              <LinkOverlay
+                href="https://github.com/savindi-wijenayaka"
+                target="blank"
+              >
+                <FaGithubAlt />
+              </LinkOverlay>
+            </IconButton>
+            <IconButton variant="outline">
+              <LinkOverlay
+                href="https://savindi-wijenayaka.medium.com"
+                target="blank"
+              >
+                <BsMedium />
+              </LinkOverlay>
+            </IconButton>
+            <IconButton variant="outline">
+              <LinkOverlay
+                href="https://www.instagram.com/vindy_stories"
+                target="blank"
+              >
+                <FaInstagram />
+              </LinkOverlay>
+            </IconButton>
+          </HStack>
         </VStack>
       </Center>
     </Container>
