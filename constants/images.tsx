@@ -4,8 +4,8 @@ export interface ImageAsset {
 }
 
 export const ImageAssets: Record<string, ImageAsset> = {
-    ProfilePhoto: {
-        src: "/assets/brand/profile.jpg",
-        alt: "Profile photo",
-    },
-}
+  ProfilePhoto: {
+    src: "/assets/brand/profile.jpg",
+    alt: "Profile photo",
+  },
+};

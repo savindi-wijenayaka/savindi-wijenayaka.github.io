@@ -54,14 +54,26 @@ export default function Home() {
             and hands-on research, with a focus on computer vision and
             computational analysis.
           </Text>
+          <HStack>
           <Link
-            href="https://savindi.com/cv_savindi_wijenayaka.pdf"
+            href="https://savindi.com/CV_SavindiWijenayaka_AI.pdf"
             target="blank"
           >
-            <Button p={4}>
-              <TbFileCv /> View CV
+            <Button p={2} margin={1}>
+              <TbFileCv /> CV (AI/ML)
             </Button>
           </Link>
+
+          <Link
+            href="https://savindi.com/CV_SavindiWijenayaka_SE.pdf"
+            target="blank"
+          >
+            <Button p={2} margin={1}>
+              <TbFileCv /> CV (SE)
+            </Button>
+          </Link>
+
+          </HStack>
           <HStack>
             {Socials.map((social) => (
               <SocialButton key={social.link} social={social}></SocialButton>
