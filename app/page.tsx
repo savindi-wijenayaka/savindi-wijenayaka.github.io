@@ -39,7 +39,7 @@ export default function Home() {
             fontFamily={"body"}
             textAlign="center"
           >
-            Software Engineer & Researcher
+            Machine Learning Engineer & Researcher
           </Heading>
           <Text
             w={{ lg: "1/2", sm: "full", base: "full" }}
@@ -56,22 +56,22 @@ export default function Home() {
           </Text>
           <HStack>
           <Link
-            href="https://savindi.com/CV_SavindiWijenayaka_AI.pdf"
+            href="https://savindi.com/CV_SavindiWijenayaka_ML.pdf"
             target="blank"
           >
             <Button p={2} margin={1}>
-              <TbFileCv /> CV (AI/ML)
+              <TbFileCv /> View CV
             </Button>
           </Link>
 
-          <Link
+          {/* <Link
             href="https://savindi.com/CV_SavindiWijenayaka_SE.pdf"
             target="blank"
           >
             <Button p={2} margin={1}>
               <TbFileCv /> CV (SE)
             </Button>
-          </Link>
+          </Link> */}
 
           </HStack>
           <HStack>
