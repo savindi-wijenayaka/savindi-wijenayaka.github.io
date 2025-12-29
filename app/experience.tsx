@@ -21,7 +21,7 @@ export default function Experiences() {
     <Container p={4} maxW="5xl">
       <Heading as="h1">Experience</Heading>
       <Tabs.Root
-        defaultValue="uoa"
+        defaultValue="wso2"
         variant="outline"
         orientation={isMobile ? "horizontal" : "vertical"}
         fitted={true}
@@ -32,15 +32,44 @@ export default function Experiences() {
           <Tabs.Trigger value="wso2">WSO2</Tabs.Trigger>
           <Tabs.Trigger value="pearson">Pearson</Tabs.Trigger>
         </Tabs.List>
+
         <Tabs.Content value="uoa">
+          <Box p={4}>
+            <Heading p={3}>PhD Researcher / ML Engineer</Heading>
+            <Separator p={3}></Separator>
+            <List.Root
+              lineHeight={2}
+              fontWeight="light"
+              fontSize={"sm"}
+              color="brand.fgMuted"
+              p={4}
+              paddingTop={0}
+            >
+              <List.Item>
+                PhD in Bioengineering, focusing on interdisciplinary research
+                combining medical imaging, computational quantification, and
+                deep learning-based analysis.
+              </List.Item>
+              <List.Item>
+                Developed deep learning models for medical image analysis and
+                computational quantification of physiological parameters.
+              </List.Item>
+            </List.Root>
+            <Text p={4} paddingTop={0} fontSize={"sm"} fontFamily={"heading"}>
+              Tech stack: Python, Deep Learning, Medical Imaging
+            </Text>
+          </Box>
+        </Tabs.Content>
+
+        <Tabs.Content value="wso2">
           <Box p={4}>
             <Heading p={3}>Machine Learning Engineer</Heading>
             <Separator p={3}></Separator>
             <List.Root
               lineHeight={2}
-              fontWeight={300}
+              fontWeight="light"
               fontSize={"sm"}
-              color={"gray.300"}
+              color="brand.fgMuted"
               p={4}
               paddingTop={0}
             >
@@ -52,7 +81,7 @@ export default function Experiences() {
               <List.Item>
                 Researched, engineered and deployed the initial phase of
                 Choreo&apos;s AI-assisted testing feature, using Python, Keras,
-                Flask, Kubernetes and Azure DevOps pipelines.{" "}
+                Flask, Kubernetes and Azure DevOps pipelines.
               </List.Item>
               <List.Item>
                 Architected, developed and deployed Choreo&apos;s AI-based
@@ -73,14 +102,33 @@ export default function Experiences() {
                 using Python, Kusto, Seaborn, and Azure DevOps pipelines.
               </List.Item>
             </List.Root>
-            <Text p={4} paddingTop={0} fontSize={"sm"} font={"heading"}>
-              Tech stack: Python, Azure, Kubernetes
+            <Text p={4} paddingTop={0} fontSize={"sm"} fontFamily={"heading"}>
+              Tech stack: Python, Azure, Kubernetes, Ballerina
             </Text>
           </Box>
         </Tabs.Content>
-        <Tabs.Content value="projects">Manage your projects</Tabs.Content>
-        <Tabs.Content value="tasks">
-          Manage your tasks for freelancers
+
+        <Tabs.Content value="pearson">
+          <Box p={4}>
+            <Heading p={3}>Software Engineer Intern</Heading>
+            <Separator p={3}></Separator>
+            <List.Root
+              lineHeight={2}
+              fontWeight="light"
+              fontSize={"sm"}
+              color="brand.fgMuted"
+              p={4}
+              paddingTop={0}
+            >
+              <List.Item>
+                Contributed to the development of educational software solutions
+                at Pearson.
+              </List.Item>
+            </List.Root>
+            <Text p={4} paddingTop={0} fontSize={"sm"} fontFamily={"heading"}>
+              Tech stack: Java, Spring Boot, React
+            </Text>
+          </Box>
         </Tabs.Content>
       </Tabs.Root>
     </Container>

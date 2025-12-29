@@ -55,24 +55,14 @@ export default function Home() {
             computational analysis.
           </Text>
           <HStack>
-          <Link
-            href="https://savindi.com/CV_SavindiWijenayaka_ML.pdf"
-            target="blank"
-          >
-            <Button p={2} margin={1}>
-              <TbFileCv /> View CV
-            </Button>
-          </Link>
-
-          {/* <Link
-            href="https://savindi.com/CV_SavindiWijenayaka_SE.pdf"
-            target="blank"
-          >
-            <Button p={2} margin={1}>
-              <TbFileCv /> CV (SE)
-            </Button>
-          </Link> */}
-
+            <Link
+              href="https://savindi.com/CV_SavindiWijenayaka_ML.pdf"
+              target="blank"
+            >
+              <Button p={2} margin={1}>
+                <TbFileCv /> View CV
+              </Button>
+            </Link>
           </HStack>
           <HStack>
             {Socials.map((social) => (

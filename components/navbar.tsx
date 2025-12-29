@@ -7,12 +7,10 @@ import {
   CloseButton,
   Drawer,
   IconButton,
-  // Text,
   VStack,
   Stack,
   Portal,
   Separator,
-  // Span,
   Link,
   Image,
 } from "@chakra-ui/react";
@@ -23,23 +21,6 @@ import { BsMoonStarsFill } from "react-icons/bs";
 import Socials from "@/constants/socials";
 import { SocialButton } from "./socials";
 import { Logos } from "@/constants/logos";
-
-// const Links = ["About", "Experience", "Education", "Achievements"];
-
-// interface NavLinkProps {
-//   index: number;
-//   link: string;
-// }
-
-// const NavLink = ({ index, link }: NavLinkProps) => {
-//   return (
-//     <Button as="a" variant="ghost" size="md" rounded="md" textStyle="navlink">
-//       <Text color="brand.fgEmph">
-//         0{index + 1}. <Span color="fg">{link}</Span>
-//       </Text>
-//     </Button>
-//   );
-// };
 
 export default function NavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -67,11 +48,7 @@ export default function NavBar() {
                     <Drawer.Title></Drawer.Title>
                   </Drawer.Header>
                   <Drawer.Body>
-                    <VStack>
-                      {/* {Links.map((link, index) => (
-                        <NavLink key={link} index={index} link={link} />
-                      ))} */}
-                    </VStack>
+                    <VStack></VStack>
                   </Drawer.Body>
                   <Drawer.Footer>
                     <Separator />
@@ -110,11 +87,7 @@ export default function NavBar() {
             </Link>
           </Box>
           <HStack gap={8} alignItems={"center"}>
-            <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}>
-              {/* {Links.map((link, index) => (
-                <NavLink key={link} index={index} link={link} />
-              ))} */}
-            </HStack>
+            <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}></HStack>
             <Stack direction={"row"} gap={7}>
               <Button onClick={toggleColorMode} variant="surface">
                 {colorMode === "light" ? <BsMoonStarsFill /> : <IoMdSunny />}

@@ -10,7 +10,6 @@ const config = defineConfig({
     tokens: {
       colors: {
         brand: {
-          // 50: { value: "#FFFFFF" },
           50: { value: "#EDEDF7" },
           100: { value: "#DFDEF2" },
           200: { value: "#CBB4E2" },
@@ -26,7 +25,7 @@ const config = defineConfig({
       },
       fonts: {
         heading: { value: "var(--font-cookie)" },
-        body: { value: "var(--font-martianMono)" },
+        body: { value: "var(--font-martian)" },
       },
     },
     semanticTokens: {
@@ -69,7 +68,3 @@ const config = defineConfig({
 });
 
 export const system = createSystem(defaultConfig, config);
-
-// Custom color palette (if defined in your theme)
-// colorPalette: "brand"
-// https://chakra-ui.com/docs/theming/customization/colors
