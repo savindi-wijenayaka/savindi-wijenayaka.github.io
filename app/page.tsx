@@ -24,8 +24,8 @@ export default function Home() {
           <Box
             borderRadius="full"
             overflow="hidden"
-            width={{ md: "200px", sm: "150px", base: "120px" }}
-            height={{ md: "200px", sm: "150px", base: "120px" }}
+            width={{ md: "300px", sm: "225px", base: "180px" }}
+            height={{ md: "300px", sm: "225px", base: "180px" }}
             position="relative"
           >
             <Image

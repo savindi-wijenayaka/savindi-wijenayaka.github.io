@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-image.jpg", // We should ensure this image exists or use a default
+        url: "/assets/brand/og_image.png",
         width: 1200,
         height: 630,
         alt: "Savindi Wijenayaka Portfolio",

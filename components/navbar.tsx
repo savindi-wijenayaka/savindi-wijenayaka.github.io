@@ -22,10 +22,7 @@ import Socials from "@/constants/socials";
 import { SocialButton } from "./socials";
 import { Logos } from "@/constants/logos";
 
-const NavLinks = [
-  { name: "Home", href: "/" },
-  { name: "CV", href: "https://savindi.com/CV_SavindiWijenayaka_ML.pdf", external: true },
-];
+
 
 export default function NavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -54,18 +51,6 @@ export default function NavBar() {
                   </Drawer.Header>
                   <Drawer.Body>
                     <VStack gap={4} alignItems="start">
-                      {NavLinks.map((link) => (
-                        <Link
-                          key={link.name}
-                          href={link.href}
-                          target={link.external ? "_blank" : undefined}
-                          rel={link.external ? "noopener noreferrer" : undefined}
-                          fontSize="lg"
-                          fontWeight="medium"
-                        >
-                          {link.name}
-                        </Link>
-                      ))}
                     </VStack>
                   </Drawer.Body>
                   <Drawer.Footer>
@@ -106,17 +91,6 @@ export default function NavBar() {
           </Box>
           <HStack gap={8} alignItems={"center"}>
             <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}>
-              {NavLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  target={link.external ? "_blank" : undefined}
-                  rel={link.external ? "noopener noreferrer" : undefined}
-                  fontWeight="medium"
-                >
-                  {link.name}
-                </Link>
-              ))}
             </HStack>
             <Stack direction={"row"} gap={7}>
               <Button onClick={toggleColorMode} variant="surface">
