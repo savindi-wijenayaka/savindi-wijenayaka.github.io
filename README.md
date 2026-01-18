@@ -1,4 +1,5 @@
 # Savindi Wijenayaka - Portfolio
+[![Site deployment](https://github.com/savindi-wijenayaka/savindi-wijenayaka.github.io/actions/workflows/deploy.yaml/badge.svg)](https://github.com/savindi-wijenayaka/savindi-wijenayaka.github.io/actions/workflows/deploy.yaml)
 
 Welcome to my little corner of the internet 👩🏽‍💻✨
 
