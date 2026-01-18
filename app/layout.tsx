@@ -16,13 +16,60 @@ const cookie = Cookie({
 });
 
 export const metadata: Metadata = {
-  title: "Savindi Wijenayaka Portfolio",
+  metadataBase: new URL("https://savindi-wijenayaka.github.io"),
+  title: {
+    default: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
+    template: "%s | Savindi Wijenayaka",
+  },
   description:
-    "Machine Learning Engineer and Researcher with over two years of experience in applied deep learning \
-    and developing scalable, production-grade cloud-native applications. PhD in Bioengineering, currently \
-    under examination, with over three years of interdisciplinary research combining medical imaging, \
-    computational quantification, and deep learning-based analysis. Driven by a passion for building AI \
-    solutions with real-world impact and committed to bridging the gap between research and application.",
+    "Portfolio of Savindi Wijenayaka, a Machine Learning Engineer and Bioengineering Researcher specializing in deep learning, computer vision, and cloud-native development.",
+  keywords: [
+    "Savindi Wijenayaka",
+    "Machine Learning Engineer",
+    "Deep Learning",
+    "Computer Vision",
+    "Bioengineering",
+    "Sri Lanka",
+    "New Zealand",
+    "Portfolio",
+    "AI Researcher",
+  ],
+  authors: [{ name: "Savindi Wijenayaka" }],
+  openGraph: {
+    title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
+    description:
+      "Portfolio of Savindi Wijenayaka, a Machine Learning Engineer and Bioengineering Researcher specializing in deep learning, computer vision, and cloud-native development.",
+    url: "https://savindi-wijenayaka.github.io",
+    siteName: "Savindi Wijenayaka Portfolio",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg", // We should ensure this image exists or use a default
+        width: 1200,
+        height: 630,
+        alt: "Savindi Wijenayaka Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
+    description:
+      "Machine Learning Engineer and Researcher in deep learning and cloud-native applications.",
+    // images: ["/images/og-image.jpg"], // Uncomment when image is available
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

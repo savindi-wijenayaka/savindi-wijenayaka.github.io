@@ -2,32 +2,42 @@ import {
   Center,
   Container,
   Heading,
-  Image,
   VStack,
   Span,
   Text,
   Button,
   Link,
   HStack,
+  Box,
 } from "@chakra-ui/react";
 import { TbFileCv } from "react-icons/tb";
 import Socials from "@/constants/socials";
 import { SocialButton } from "@/components/socials";
 import { ImageAssets } from "@/constants/images";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <Container p={4} h="calc(100dvh - 64px)">
       <Center p={4} h="100%">
         <VStack>
-          <Image
-            src={ImageAssets.ProfilePhoto.src}
+          <Box
             borderRadius="full"
-            alt="Savindi Wijenayaka"
-            width={{ md: "xs", sm: "2xs", base: "3xs" }}
-            aspectRatio={1 / 1}
-          />
+            overflow="hidden"
+            width={{ md: "200px", sm: "150px", base: "120px" }}
+            height={{ md: "200px", sm: "150px", base: "120px" }}
+            position="relative"
+          >
+            <Image
+              src={ImageAssets.ProfilePhoto.src}
+              alt="Savindi Wijenayaka"
+              fill
+              style={{ objectFit: "cover" }}
+              priority
+            />
+          </Box>
           <Heading
+            as="h1"
             size={{ lg: "7xl", sm: "5xl", base: "3xl" }}
             fontWeight="light"
             textAlign="center"
@@ -35,6 +45,7 @@ export default function Home() {
             <Span color="brand.fgEmph">Savindi</Span> Wijenayaka
           </Heading>
           <Heading
+            as="h2"
             size={{ lg: "lg", sm: "md", base: "xs" }}
             fontFamily={"body"}
             textAlign="center"

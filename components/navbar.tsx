@@ -22,6 +22,11 @@ import Socials from "@/constants/socials";
 import { SocialButton } from "./socials";
 import { Logos } from "@/constants/logos";
 
+const NavLinks = [
+  { name: "Home", href: "/" },
+  { name: "CV", href: "https://savindi.com/CV_SavindiWijenayaka_ML.pdf", external: true },
+];
+
 export default function NavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -48,7 +53,20 @@ export default function NavBar() {
                     <Drawer.Title></Drawer.Title>
                   </Drawer.Header>
                   <Drawer.Body>
-                    <VStack></VStack>
+                    <VStack gap={4} alignItems="start">
+                      {NavLinks.map((link) => (
+                        <Link
+                          key={link.name}
+                          href={link.href}
+                          target={link.external ? "_blank" : undefined}
+                          rel={link.external ? "noopener noreferrer" : undefined}
+                          fontSize="lg"
+                          fontWeight="medium"
+                        >
+                          {link.name}
+                        </Link>
+                      ))}
+                    </VStack>
                   </Drawer.Body>
                   <Drawer.Footer>
                     <Separator />
@@ -68,7 +86,7 @@ export default function NavBar() {
           </Drawer.Root>
           <Box h={16}>
             <Link
-              href="#"
+              href="/"
               variant="plain"
               focusRing={"none"}
               _hover={{ textDecoration: "none" }}
@@ -87,7 +105,19 @@ export default function NavBar() {
             </Link>
           </Box>
           <HStack gap={8} alignItems={"center"}>
-            <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}></HStack>
+            <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}>
+              {NavLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  fontWeight="medium"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </HStack>
             <Stack direction={"row"} gap={7}>
               <Button onClick={toggleColorMode} variant="surface">
                 {colorMode === "light" ? <BsMoonStarsFill /> : <IoMdSunny />}
