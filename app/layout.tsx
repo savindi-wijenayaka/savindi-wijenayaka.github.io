@@ -22,12 +22,14 @@ export const metadata: Metadata = {
     template: "%s | Savindi Wijenayaka",
   },
   description:
-    "Machine Learning Engineer and Researcher specializing in Computer Vision, deep learning, and scalable cloud-native applications (Azure/Kubernetes). PhD in Bioengineering with expertise in Medical Imaging and computational quantification. Dedicated to building production-grade AI solutions that bridge the gap between research and impact.",
+    "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
   keywords: [
     "Savindi Wijenayaka",
     "Machine Learning Engineer",
     "Deep Learning",
     "Computer Vision",
+    "NLP",
+    "Natural Language Processing",
     "Bioengineering",
     "Medical Imaging",
     "Cloud Native",
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
     description:
-      "Machine Learning Engineer and Researcher specializing in Computer Vision, deep learning, and scalable cloud-native applications (Azure/Kubernetes). PhD in Bioengineering with expertise in Medical Imaging and computational quantification. Dedicated to building production-grade AI solutions that bridge the gap between research and impact.",
+      "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
     url: "https://savindi.com",
     siteName: "Savindi Wijenayaka Portfolio",
     locale: "en_US",
@@ -63,8 +65,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
     description:
-      "Machine Learning Engineer and Researcher in deep learning and cloud-native applications.",
-    // images: ["/images/og-image.jpg"], // Uncomment when image is available
+      "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
+    images: ["/assets/brand/og_image.png"],
   },
   robots: {
     index: true,
