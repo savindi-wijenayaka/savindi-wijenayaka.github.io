@@ -16,7 +16,7 @@ const cookie = Cookie({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://savindi-wijenayaka.github.io"),
+  metadataBase: new URL("https://savindi.com"),
   title: {
     default: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
     template: "%s | Savindi Wijenayaka",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
     description:
       "Machine Learning Engineer and Researcher specializing in Computer Vision, deep learning, and scalable cloud-native applications (Azure/Kubernetes). PhD in Bioengineering with expertise in Medical Imaging and computational quantification. Dedicated to building production-grade AI solutions that bridge the gap between research and impact.",
-    url: "https://savindi-wijenayaka.github.io",
+    url: "https://savindi.com",
     siteName: "Savindi Wijenayaka Portfolio",
     locale: "en_US",
     type: "website",
