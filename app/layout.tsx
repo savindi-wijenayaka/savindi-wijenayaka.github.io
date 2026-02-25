@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Provider } from "@/components/ui/provider";
-import Navbar from "@/components/navbar";
-import { Martian_Mono, Cookie } from "next/font/google";
+import Navbar from "@/components/layout/navbar";
+import { Martian_Mono, Tektur } from "next/font/google";
 import { Box } from "@chakra-ui/react";
 
 const martianMono = Martian_Mono({
@@ -9,10 +9,10 @@ const martianMono = Martian_Mono({
   variable: "--font-martian",
 });
 
-const cookie = Cookie({
+const tektur = Tektur({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-cookie",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-tektur",
 });
 
 export const metadata: Metadata = {
@@ -90,7 +90,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${cookie.variable} ${martianMono.variable}`}
+      className={`${tektur.variable} ${martianMono.variable}`}
     >
       <body className={`${martianMono.className}`}>
         <Provider>

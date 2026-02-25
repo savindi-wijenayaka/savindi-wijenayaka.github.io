@@ -14,13 +14,13 @@ import {
   Link,
   Image,
 } from "@chakra-ui/react";
-import { useColorMode } from "./ui/color-mode";
+import { useColorMode } from "../ui/color-mode";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdSunny } from "react-icons/io";
 import { BsMoonStarsFill } from "react-icons/bs";
-import Socials from "@/constants/socials";
-import { SocialButton } from "./socials";
-import { Logos } from "@/constants/logos";
+import Socials from "@/data/socials";
+import { SocialButton } from "../shared/social-button";
+import { Logos } from "@/data/logos";
 
 
 
