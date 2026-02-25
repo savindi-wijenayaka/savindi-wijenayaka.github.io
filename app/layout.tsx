@@ -95,7 +95,9 @@ export default function RootLayout({
       <body className={`${martianMono.className}`}>
         <Provider>
           <Navbar></Navbar>
-          <Box bg="brand.bg">{children}</Box>
+          <Box bg="bg.canvas" color="fg.default">
+            {children}
+          </Box>
         </Provider>
       </body>
     </html>
