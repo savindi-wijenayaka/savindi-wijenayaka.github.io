@@ -11,9 +11,9 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { TbFileCv } from "react-icons/tb";
-import Socials from "@/constants/socials";
-import { SocialButton } from "@/components/socials";
-import { ImageAssets } from "@/constants/images";
+import Socials from "@/data/socials";
+import { SocialButton } from "@/components/shared/social-button";
+import { ImageAssets } from "@/data/images";
 import Image from "next/image";
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
           <Heading
             as="h1"
             size={{ lg: "7xl", sm: "5xl", base: "3xl" }}
-            fontWeight="light"
+            fontWeight="medium"
             textAlign="center"
           >
             <Span color="fg.accent">Savindi</Span> Wijenayaka

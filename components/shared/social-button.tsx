@@ -1,4 +1,4 @@
-import { type Social } from "@/constants/socials";
+import { type Social } from "@/data/socials";
 import { IconButton, LinkOverlay } from "@chakra-ui/react";
 
 export const SocialButton = ({ social }: { social: Social }) => {

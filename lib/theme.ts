@@ -44,7 +44,7 @@ const config = defineConfig({
         },
       },
       fonts: {
-        heading: { value: "var(--font-cookie)" },
+        heading: { value: "var(--font-tektur)" },
         body: { value: "var(--font-martian)" },
       },
     },
