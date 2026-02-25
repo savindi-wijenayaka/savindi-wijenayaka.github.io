@@ -42,7 +42,7 @@ export default function Home() {
             fontWeight="light"
             textAlign="center"
           >
-            <Span color="brand.fgEmph">Savindi</Span> Wijenayaka
+            <Span color="fg.accent">Savindi</Span> Wijenayaka
           </Heading>
           <Heading
             as="h2"
@@ -54,7 +54,7 @@ export default function Home() {
           </Heading>
           <Text
             w={{ lg: "1/2", sm: "full", base: "full" }}
-            color="brand.fgMuted"
+            color="fg.muted"
             textAlign="center"
             p={4}
             fontSize={{ sm: "md", base: "xs" }}
@@ -70,7 +70,19 @@ export default function Home() {
               href="https://savindi.com/CV_SavindiWijenayaka_ML.pdf"
               target="blank"
             >
-              <Button p={2} margin={1}>
+              <Button
+                p={2}
+                margin={1}
+                bg="accent.solid"
+                color="accent.fg"
+                _hover={{ bg: "accent.solid" }}
+                _active={{ bg: "accent.solid" }}
+                _focusVisible={{
+                  outline: "2px solid",
+                  outlineColor: "focus.ring",
+                  outlineOffset: "2px",
+                }}
+              >
                 <TbFileCv /> View CV
               </Button>
             </Link>

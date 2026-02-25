@@ -29,7 +29,7 @@ export default function NavBar() {
 
   return (
     <>
-      <Box px={4} bg="brand.subtle">
+      <Box px={4} bg="bg.surface" borderBottomWidth="1px" borderColor="border.subtle">
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Drawer.Root>
             <Drawer.Trigger asChild>
@@ -93,7 +93,20 @@ export default function NavBar() {
             <HStack as={"nav"} gap={4} display={{ base: "none", md: "flex" }}>
             </HStack>
             <Stack direction={"row"} gap={7}>
-              <Button onClick={toggleColorMode} variant="surface">
+              <Button
+                onClick={toggleColorMode}
+                variant="ghost"
+                color="fg.muted"
+                _hover={{
+                  bg: "bg.subtle",
+                  color: "fg.default",
+                }}
+                _focusVisible={{
+                  outline: "2px solid",
+                  outlineColor: "focus.ring",
+                  outlineOffset: "2px",
+                }}
+              >
                 {colorMode === "light" ? <BsMoonStarsFill /> : <IoMdSunny />}
               </Button>
             </Stack>

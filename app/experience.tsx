@@ -41,7 +41,7 @@ export default function Experiences() {
               lineHeight={2}
               fontWeight="light"
               fontSize={"sm"}
-              color="brand.fgMuted"
+              color="fg.muted"
               p={4}
               paddingTop={0}
             >
@@ -69,7 +69,7 @@ export default function Experiences() {
               lineHeight={2}
               fontWeight="light"
               fontSize={"sm"}
-              color="brand.fgMuted"
+              color="fg.muted"
               p={4}
               paddingTop={0}
             >
@@ -116,7 +116,7 @@ export default function Experiences() {
               lineHeight={2}
               fontWeight="light"
               fontSize={"sm"}
-              color="brand.fgMuted"
+              color="fg.muted"
               p={4}
               paddingTop={0}
             >
