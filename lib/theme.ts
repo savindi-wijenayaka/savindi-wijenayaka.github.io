@@ -52,7 +52,7 @@ const config = defineConfig({
       colors: {
         bg: {
           canvas: { value: { _light: "colors.neutral.50", _dark: "colors.neutral.950" } },
-          surface: { value: { _light: "#FFFFFF", _dark: "colors.neutral.900" } },
+          surface: { value: { _light: "colors.neutral.100", _dark: "colors.neutral.900" } },
           subtle: { value: { _light: "colors.neutral.100", _dark: "colors.neutral.800" } },
           emphasized: { value: { _light: "colors.accent.50", _dark: "colors.brand.900" } },
         },
@@ -61,7 +61,7 @@ const config = defineConfig({
           muted: { value: { _light: "colors.neutral.600", _dark: "colors.neutral.200" } },
           subtle: { value: { _light: "colors.neutral.500", _dark: "colors.neutral.300" } },
           inverse: { value: { _light: "colors.neutral.50", _dark: "colors.neutral.950" } },
-          accent: { value: { _light: "colors.accent.600", _dark: "colors.accent.200" } },
+          accent: { value: { _light: "colors.brand.500", _dark: "colors.accent.200" } },
         },
         accent: {
           solid: { value: { _light: "colors.accent.600", _dark: "colors.accent.300" } },

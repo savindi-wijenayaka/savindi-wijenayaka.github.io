@@ -92,6 +92,26 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${tektur.variable} ${martianMono.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Savindi Wijenayaka",
+              url: "https://savindi.com",
+              jobTitle: "Machine Learning Engineer",
+              sameAs: [
+                "https://www.linkedin.com/in/savindi",
+                "https://github.com/savindi-wijenayaka",
+                "https://savindi-wijenayaka.medium.com",
+                "https://www.instagram.com/vindy_stories",
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className={`${martianMono.className}`}>
         <Provider>
           <Navbar></Navbar>
