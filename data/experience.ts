@@ -5,74 +5,57 @@ export interface ExperienceEntry {
   companyShort: string;
   dateRange: string;
   location: string;
-  highlights: string[];
-  fullDescription: string[];
+  description: string[];
   techStack: string[];
   companyUrl?: string;
 }
 
 const Experience: ExperienceEntry[] = [
   {
-    id: "uoa",
-    role: "PhD Researcher / Machine Learning Engineer",
-    company: "University of Auckland",
-    companyShort: "University of Auckland",
-    dateRange: "2022 – Present",
+    id: "auror",
+    role: "Intermediate Machine Learning Engineer",
+    company: "Auror",
+    companyShort: "Auror",
+    dateRange: "Sept 2025 - Present",
     location: "Auckland, New Zealand",
-    highlights: [
-      "Pursuing a PhD in Bioengineering with a focus on deep learning-based analysis of medical images and computational quantification of physiological parameters.",
-      "Developing novel deep learning architectures for medical image segmentation and analysis, contributing to improved clinical decision-making tools.",
-      "Publishing research in peer-reviewed journals and presenting at international conferences.",
+    description: [
+      "Drove technical stewardship of a legacy production ML system through dependency mapping, infrastructure migration, and model readiness criteria definition, successfully deploying a new model to production via staged rollout.",
+      "Recognised a critical deployment pipeline risk and addressed it by designing and implementing a staged CI/CD release process, establishing a controlled and deliberate release workflow for the team.",
+      "Proactively established team-wide engineering and governance standards, introducing agentic coding guidelines across ML repositories and initiating a data licensing analysis to prevent compliance risks, which the team later expanded into a broader data governance framework.",
+      "Architected a modular ML evaluation and fairness reporting framework, accelerating the prospect trial phase and reducing report turnaround by 80%, shortening the path to technical win.",
     ],
-    fullDescription: [
-      "PhD in Bioengineering, focusing on interdisciplinary research combining medical imaging, computational quantification, and deep learning-based analysis.",
-      "Developed deep learning models for medical image analysis and computational quantification of physiological parameters.",
-      "Designed and validated novel neural network architectures for segmentation and classification of biomedical imaging data.",
-      "Collaborated with clinical researchers to translate computational methods into practical tools for medical research.",
-      "Conducted systematic literature reviews and contributed to open-source research tooling.",
-    ],
-    techStack: ["Python", "PyTorch", "MONAI", "Medical Imaging", "Deep Learning", "NumPy"],
-    companyUrl: "https://www.auckland.ac.nz",
+    techStack: ["Python", "Azure", "Kubernetes", "CI/CD", "ML Evaluation", "LightGBM"],
+    companyUrl: "https://www.auror.co",
   },
   {
     id: "wso2",
     role: "Machine Learning Engineer",
     company: "WSO2",
     companyShort: "WSO2",
-    dateRange: "2021 – 2022",
+    dateRange: "Sept 2020 - Nov 2021",
     location: "Colombo, Sri Lanka",
-    highlights: [
-      "Researched, engineered and deployed the AI-assisted testing feature for WSO2 Choreo — an AI-enhanced integrated platform as a service.",
-      "Architected and deployed Choreo's AI-based anomaly detection system on Azure using Kubernetes, Python, and Ballerina.",
-      "Identified and resolved a memory leak in the Ballerina Language Server using JMeter and Eclipse Memory Analyser, optimising resource usage across the platform.",
+    description: [
+      "Researched and delivered a GPT-based model for automated API test case generation, deployed on Azure Kubernetes Service, reducing testing effort for customers and enabling an AI-assisted developer workflow.",
+      "Co-architected a time series-based AI Anomaly Detection system using an event-driven microservices architecture across Azure Stream Analytics, Event Hubs, and Function Apps, enabling customers to detect abnormal application behaviours in real time.",
+      "Implemented a regression testing pipeline for the Ballerina Language Server, systematically surfacing performance degradations and resource utilisation issues to ensure production reliability for users.",
+      "Diagnosed and resolved a critical memory leak in the Ballerina Language Server, applying systematic profiling with JMeter and Eclipse Memory Analyser, to eliminate server crashes and restore resource efficiency.",
     ],
-    fullDescription: [
-      "WSO2 is one of the world's leading open-source integration vendors. Choreo is its latest product, providing an AI-enhanced integrated platform as a service.",
-      "Researched, engineered and deployed the initial phase of Choreo's AI-assisted testing feature, using Python, Keras, Flask, Kubernetes and Azure DevOps pipelines.",
-      "Architected, developed and deployed Choreo's AI-based anomaly detector with two other engineers, using Azure solutions, Ballerina, and Python, while adhering to security best practices, scaling requirements, and optimised resource usage.",
-      "Analysed Ballerina Language Server performance and identified the cause of a memory leak using JMeter and Eclipse Memory Analyser (MAT), which helped in the optimisation of resources in Choreo.",
-      "Contributed to automating the performance testing of Choreo by creating a library and a pipeline for system metrics collection using Python, Kusto, Seaborn, and Azure DevOps pipelines.",
-    ],
-    techStack: ["Python", "Azure", "Kubernetes", "Ballerina", "Keras", "Flask"],
+    techStack: ["Python", "Azure", "Kubernetes", "GPT", "Flask", "Ballerina"],
     companyUrl: "https://wso2.com",
   },
   {
     id: "pearson",
-    role: "Software Engineer Intern",
+    role: "Software Research Engineer",
     company: "Pearson",
     companyShort: "Pearson",
-    dateRange: "2020",
-    location: "Remote",
-    highlights: [
-      "Contributed to the development of educational software solutions at Pearson, one of the world's largest education companies.",
-      "Worked across the full stack using Java, Spring Boot, and React to build and improve features for digital learning products.",
+    dateRange: "Sept 2018 - Sept 2019",
+    location: "Colombo, Sri Lanka",
+    description: [
+      "Researched and implemented deep learning modules for emotion detection and speech analysis, integrating models into scalable RESTful microservices for a real-time AI Public Speaking Evaluator.",
+      "Researched and built a Q&A chatbot for Pearson's educational content, iterating from BiDAF to fine-tuned BERT and GPT-2 models to improve answer quality and enable conversational querying of learning material.",
+      "Investigated and developed a flashcard classification service using ULMFiT, LSTM, and GRU to automatically categorise flashcards, reducing manual tagging effort and improving content discoverability for students.",
     ],
-    fullDescription: [
-      "Contributed to the development of educational software solutions at Pearson, one of the world's largest education companies.",
-      "Developed full-stack features using Java and Spring Boot on the backend and React on the frontend.",
-      "Participated in agile development processes including sprint planning, code reviews, and daily stand-ups.",
-    ],
-    techStack: ["Java", "Spring Boot", "React", "JavaScript"],
+    techStack: ["Python", "Keras", "BERT", "GPT-2", "Flask", "Django"],
     companyUrl: "https://www.pearson.com",
   },
 ];
