@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./globals.css";
 import { Provider } from "@/components/ui/provider";
 import Navbar from "@/components/layout/navbar";
 import { Martian_Mono, Tektur } from "next/font/google";
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Savindi Wijenayaka",
   },
   description:
-    "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
+    "Savindi Wijenayaka is a Machine Learning Engineer and PhD Researcher specialising in deep learning, computer vision, medical imaging, and cloud-native AI systems on Azure and Kubernetes.",
   keywords: [
     "Savindi Wijenayaka",
     "Machine Learning Engineer",
@@ -32,24 +33,30 @@ export const metadata: Metadata = {
     "Natural Language Processing",
     "Bioengineering",
     "Medical Imaging",
-    "Cloud Native",
-    "Azure",
+    "Cloud Native AI",
+    "Azure ML",
     "Kubernetes",
     "Python",
-    "Keras",
     "PyTorch",
+    "Keras",
+    "TensorFlow",
+    "MONAI",
     "Java",
     "Spring Boot",
+    "PhD Researcher",
     "New Zealand",
+    "University of Auckland",
     "Portfolio",
+    "WSO2",
   ],
-  authors: [{ name: "Savindi Wijenayaka" }],
+  authors: [{ name: "Savindi Wijenayaka", url: "https://savindi.com" }],
+  creator: "Savindi Wijenayaka",
   openGraph: {
     title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
     description:
-      "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
+      "Savindi Wijenayaka is a Machine Learning Engineer and PhD Researcher specialising in deep learning, computer vision, medical imaging, and cloud-native AI systems on Azure and Kubernetes.",
     url: "https://savindi.com",
-    siteName: "Savindi Wijenayaka Portfolio",
+    siteName: "Savindi Wijenayaka",
     locale: "en_US",
     type: "website",
     images: [
@@ -57,7 +64,7 @@ export const metadata: Metadata = {
         url: "/assets/brand/og_image.png",
         width: 1200,
         height: 630,
-        alt: "Savindi Wijenayaka Portfolio",
+        alt: "Savindi Wijenayaka — Machine Learning Engineer & Researcher",
       },
     ],
   },
@@ -65,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
     description:
-      "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
+      "Savindi Wijenayaka is a Machine Learning Engineer and PhD Researcher specialising in deep learning, computer vision, medical imaging, and cloud-native AI systems.",
     images: ["/assets/brand/og_image.png"],
   },
   robots: {
@@ -78,6 +85,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  alternates: {
+    canonical: "https://savindi.com",
   },
 };
 
@@ -102,6 +112,24 @@ export default function RootLayout({
               name: "Savindi Wijenayaka",
               url: "https://savindi.com",
               jobTitle: "Machine Learning Engineer",
+              description:
+                "Machine Learning Engineer and PhD Researcher specialising in deep learning, computer vision, medical imaging, and cloud-native AI systems.",
+              knowsAbout: [
+                "Machine Learning",
+                "Deep Learning",
+                "Computer Vision",
+                "Medical Imaging",
+                "Python",
+                "PyTorch",
+                "Azure",
+                "Kubernetes",
+                "Bioengineering",
+              ],
+              alumniOf: {
+                "@type": "CollegeOrUniversity",
+                name: "University of Auckland",
+                url: "https://www.auckland.ac.nz",
+              },
               sameAs: [
                 "https://www.linkedin.com/in/savindi",
                 "https://github.com/savindi-wijenayaka",
@@ -114,8 +142,8 @@ export default function RootLayout({
       </head>
       <body className={`${martianMono.className}`}>
         <Provider>
-          <Navbar></Navbar>
-          <Box bg="bg.canvas" color="fg.default">
+          <Navbar />
+          <Box as="main" bg="bg.canvas" color="fg.default">
             {children}
           </Box>
         </Provider>
