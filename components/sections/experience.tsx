@@ -1,136 +1,180 @@
 "use client";
+
+import { useState } from "react";
 import {
   Box,
   Container,
   Heading,
-  List,
-  Separator,
-  Tabs,
   Text,
-  useBreakpointValue,
+  VStack,
+  HStack,
+  Flex,
+  Badge,
+  IconButton,
 } from "@chakra-ui/react";
+import { SectionTitle } from "@/components/shared/section-title";
+import { AnimateIn } from "@/components/shared/animate-in";
+import Experience from "@/data/experience";
+import { TbChevronDown, TbChevronRight } from "react-icons/tb";
 
-export default function Experiences() {
-  const isMobile = useBreakpointValue({
-    lg: false,
-    md: true,
-    sm: true,
-    base: true,
-  });
+export default function ExperienceSection() {
+  const preview = Experience;
+  const DISABLED_IDS = ["auror"];
+  const [openId, setOpenId] = useState<string | null>("wso2");
+
+  function toggle(id: string) {
+    if (DISABLED_IDS.includes(id)) return;
+    setOpenId((prev) => (prev === id ? null : id));
+  }
+
   return (
-    <Container p={4} maxW="5xl">
-      <Heading as="h1">Experience</Heading>
-      <Tabs.Root
-        defaultValue="wso2"
-        variant="outline"
-        orientation={isMobile ? "horizontal" : "vertical"}
-        fitted={true}
-        size="sm"
-      >
-        <Tabs.List>
-          <Tabs.Trigger value="uoa">University of Auckland</Tabs.Trigger>
-          <Tabs.Trigger value="wso2">WSO2</Tabs.Trigger>
-          <Tabs.Trigger value="pearson">Pearson</Tabs.Trigger>
-        </Tabs.List>
+    <Box as="section" id="experience" py={{ base: 16, md: 24 }}>
+      <Container maxW="4xl" px={{ base: 6, md: 10 }}>
+        <SectionTitle
+          title="Experience"
+          subtitle="A selection of roles across research and industry"
+        />
 
-        <Tabs.Content value="uoa">
-          <Box p={4}>
-            <Heading p={3}>PhD Researcher / ML Engineer</Heading>
-            <Separator p={3}></Separator>
-            <List.Root
-              lineHeight={2}
-              fontWeight="light"
-              fontSize={"sm"}
-              color="fg.muted"
-              p={4}
-              paddingTop={0}
-            >
-              <List.Item>
-                PhD in Bioengineering, focusing on interdisciplinary research
-                combining medical imaging, computational quantification, and
-                deep learning-based analysis.
-              </List.Item>
-              <List.Item>
-                Developed deep learning models for medical image analysis and
-                computational quantification of physiological parameters.
-              </List.Item>
-            </List.Root>
-            <Text p={4} paddingTop={0} fontSize={"sm"} fontFamily={"heading"}>
-              Tech stack: Python, Deep Learning, Medical Imaging
-            </Text>
-          </Box>
-        </Tabs.Content>
+        {/* Timeline */}
+        <VStack gap={0} align="stretch" position="relative">
+          {/* Vertical line */}
+          <Box
+            position="absolute"
+            left={{ base: "11px", md: "15px" }}
+            top="8px"
+            bottom="8px"
+            width="1px"
+            bg="border.default"
+          />
 
-        <Tabs.Content value="wso2">
-          <Box p={4}>
-            <Heading p={3}>Machine Learning Engineer</Heading>
-            <Separator p={3}></Separator>
-            <List.Root
-              lineHeight={2}
-              fontWeight="light"
-              fontSize={"sm"}
-              color="fg.muted"
-              p={4}
-              paddingTop={0}
-            >
-              <List.Item>
-                WSO2 is one of the world&apos;s leading open-source integration
-                vendors. Choreo is its latest product, providing an AI-enhanced
-                integrated platform as a service.
-              </List.Item>
-              <List.Item>
-                Researched, engineered and deployed the initial phase of
-                Choreo&apos;s AI-assisted testing feature, using Python, Keras,
-                Flask, Kubernetes and Azure DevOps pipelines.
-              </List.Item>
-              <List.Item>
-                Architected, developed and deployed Choreo&apos;s AI-based
-                anomaly detector with two other engineers, using Azure
-                solutions, Ballerina, and Python, while adhering to security
-                best practices, scaling requirements, and optimised resource
-                usage.
-              </List.Item>
-              <List.Item>
-                Analysed Ballerina Language Server performance and identified
-                the cause of a memory leak using JMeter and Eclipse Memory
-                Analyser (MAT), which helped in the optimisation of resources in
-                Choreo.
-              </List.Item>
-              <List.Item>
-                Contributed to automating the performance testing of Choreo by
-                creating a library and a pipeline for system metrics collection
-                using Python, Kusto, Seaborn, and Azure DevOps pipelines.
-              </List.Item>
-            </List.Root>
-            <Text p={4} paddingTop={0} fontSize={"sm"} fontFamily={"heading"}>
-              Tech stack: Python, Azure, Kubernetes, Ballerina
-            </Text>
-          </Box>
-        </Tabs.Content>
+          {preview.map((entry, i) => {
+            const isOpen = openId === entry.id;
+            return (
+              <AnimateIn key={entry.id} delay={i * 120}>
+                <Flex gap={{ base: 5, md: 8 }} mb={i < preview.length - 1 ? 10 : 0}>
+                  {/* Diamond node */}
+                  <Box flexShrink={0} pt="3px">
+                    <Box
+                      w={{ base: "22px", md: "30px" }}
+                      h={{ base: "22px", md: "30px" }}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      position="relative"
+                      zIndex={1}
+                    >
+                      <Text
+                        color="fg.rune"
+                        fontSize={{ base: "lg", md: "xl" }}
+                        lineHeight="1"
+                        className="glow-pulse"
+                      >
+                        ◈
+                      </Text>
+                    </Box>
+                  </Box>
 
-        <Tabs.Content value="pearson">
-          <Box p={4}>
-            <Heading p={3}>Software Engineer Intern</Heading>
-            <Separator p={3}></Separator>
-            <List.Root
-              lineHeight={2}
-              fontWeight="light"
-              fontSize={"sm"}
-              color="fg.muted"
-              p={4}
-              paddingTop={0}
-            >
-              <List.Item>
-                Contributed to the development of educational software solutions
-                at Pearson.
-              </List.Item>
-            </List.Root>
-            <Text p={4} paddingTop={0} fontSize={"sm"} fontFamily={"heading"}>
-              Tech stack: Java, Spring Boot, React
-            </Text>
-          </Box>
-        </Tabs.Content>
-      </Tabs.Root>
-    </Container>
+                  {/* Content */}
+                  <Box
+                    flex={1}
+                    pb={2}
+                    onClick={() => toggle(entry.id)}
+                    cursor={DISABLED_IDS.includes(entry.id) ? "default" : "pointer"}
+                  >
+                    {/* Header row: date + chevron */}
+                    <Flex justify="space-between" align="start">
+                      <Text
+                        fontFamily="body"
+                        fontSize="xs"
+                        color="fg.subtle"
+                        letterSpacing="wider"
+                        mb={1}
+                      >
+                        {entry.dateRange}
+                      </Text>
+                      {!DISABLED_IDS.includes(entry.id) && (
+                        <IconButton
+                          aria-label={isOpen ? "Collapse" : "Expand"}
+                          variant="ghost"
+                          size="xs"
+                          color="fg.subtle"
+                          pointerEvents="none"
+                          mt="-2px"
+                        >
+                          {isOpen ? <TbChevronDown /> : <TbChevronRight />}
+                        </IconButton>
+                      )}
+                    </Flex>
+
+                    {/* Role + Company */}
+                    <Heading
+                      as="h3"
+                      size={{ base: "md", md: "lg" }}
+                      fontFamily="heading"
+                      mb={0.5}
+                    >
+                      {entry.role}
+                    </Heading>
+                    <Text
+                      fontFamily="body"
+                      fontSize="sm"
+                      color="accent.solid"
+                      fontWeight="medium"
+                      mb={3}
+                    >
+                      {entry.company}
+                    </Text>
+
+                    {/* Description — only when open */}
+                    {isOpen && (
+                      <VStack align="start" gap={2} mb={4}>
+                        {entry.description.map((highlight, j) => (
+                          <Flex key={j} gap={2} align="start">
+                            <Text color="fg.subtle" mt="2px" flexShrink={0} fontSize="xs">
+                              ▸
+                            </Text>
+                            <Text
+                              fontFamily="body"
+                              fontSize="sm"
+                              color="fg.muted"
+                              lineHeight="1.7"
+                            >
+                              {highlight}
+                            </Text>
+                          </Flex>
+                        ))}
+                      </VStack>
+                    )}
+
+                    {/* Tech stack badges — always visible */}
+                    <HStack gap={2} flexWrap="wrap">
+                      {entry.techStack.slice(0, 5).map((tech) => (
+                        <Badge
+                          key={tech}
+                          bg="bg.tag"
+                          color="fg.accent"
+                          fontFamily="body"
+                          fontSize="2xs"
+                          letterSpacing="wider"
+                          px={2}
+                          py={0.5}
+                          borderRadius="none"
+                          border="1px solid"
+                          borderColor="border.rune"
+                          textTransform="uppercase"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </HStack>
+                  </Box>
+                </Flex>
+              </AnimateIn>
+            );
+          })}
+        </VStack>
+
+      </Container>
+    </Box>
   );
 }

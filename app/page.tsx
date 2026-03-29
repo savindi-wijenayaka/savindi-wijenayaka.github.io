@@ -1,6 +1,6 @@
 import { Box, Separator } from "@chakra-ui/react";
 import Hero from "@/components/sections/hero";
-import ExperiencePreview from "@/components/sections/experience-preview";
+import ExperienceSection from "@/components/sections/experience";
 import SkillsSection from "@/components/sections/skills";
 import AchievementsSection from "@/components/sections/achievements";
 import ProjectsPreview from "@/components/sections/projects-preview";
@@ -12,7 +12,7 @@ export default function Home() {
     <Box bg="bg.canvas" color="fg.default">
       <Hero />
       <Separator borderColor="border.subtle" />
-      <ExperiencePreview />
+      <ExperienceSection />
       <Separator borderColor="border.subtle" />
       <SkillsSection />
       <Separator borderColor="border.subtle" />
