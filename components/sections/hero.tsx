@@ -54,8 +54,8 @@ export default function Hero() {
           <Box flexShrink={0}>
             <Box
               position="relative"
-              width={{ base: "180px", sm: "220px", md: "260px" }}
-              height={{ base: "180px", sm: "220px", md: "260px" }}
+              width={{ base: "130px", sm: "220px", md: "260px" }}
+              height={{ base: "130px", sm: "220px", md: "260px" }}
             >
               {/* Rune corner decorations on photo */}
               <Box
@@ -135,28 +135,32 @@ export default function Hero() {
               letterSpacing="widest"
               textTransform="uppercase"
             >
-              ▸ Machine Learning Engineer & Researcher
+              ▸ Machine Learning Engineer
             </Text>
 
             {/* Main name heading */}
             <Heading
               as="h1"
-              size={{ base: "4xl", sm: "5xl", md: "6xl" }}
+              size={{ base: "5xl", sm: "5xl", md: "7xl" }}
               fontWeight="700"
               lineHeight="1.1"
               letterSpacing="tight"
               textAlign={{ base: "center", md: "left" }}
-              css={{
-                "&::after": {
-                  content: '"_"',
-                  color: "var(--chakra-colors-accent-solid)",
-                  animation: "cursor-blink 1.2s ease-in-out infinite",
-                  marginLeft: "2px",
-                  fontWeight: "300",
-                },
-              }}
             >
-              <Span color="fg.accent">Savindi</Span> Wijenayaka
+              <Span display="block" color="fg.accent">Savindi</Span>
+              <Span
+                display="block"
+                fontSize={{ base: "4xl", sm: "4xl", md: "6xl" }}
+                css={{
+                  "&::after": {
+                    content: '"_"',
+                    color: "var(--chakra-colors-accent-solid)",
+                    animation: "cursor-blink 1.2s ease-in-out infinite",
+                    marginLeft: "2px",
+                    fontWeight: "300",
+                  },
+                }}
+              >Wijenayaka,<Span fontSize={{ base: "2xl", sm: "2xl", md: "4xl" }} fontWeight="500" fontStyle="italic" color="fg.muted"> PhD</Span></Span>
             </Heading>
 
             {/* Bio */}
@@ -168,10 +172,11 @@ export default function Hero() {
               textAlign={{ base: "center", md: "left" }}
               maxW="lg"
             >
-              I build production-grade AI systems that solve real problems — from
-              deep learning models for medical image analysis to cloud-native
-              anomaly detection at scale. Currently pursuing a PhD in
-              Bioengineering at the University of Auckland.
+              I&apos;m an ML Engineer with 6+ years of applied machine learning
+              experience across industry and research. I have been accountable for 
+              the full ML lifecycle, from problem framing and data construction to
+              architecture, deployment, and maintenance, with a focus on
+              real-world impact and engineering rigour.
             </Text>
 
             {/* CTAs */}
