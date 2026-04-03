@@ -1,26 +1,239 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN SYSTEM — Cyberpunk Lofi
+   Source: design-system/MASTER.md
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Dark Theme (default) ──────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  /* Backgrounds — midnight blue, deep navy */
+  --bg-void:        #050B18;
+  --bg-base:        #080F1E;
+  --bg-elevated:    #0D1828;
+  --bg-overlay:     #122033;
+
+  /* Text */
+  --text-primary:   #E4ECFF;
+  --text-secondary: #8AADAD;  /* teal-gray, 6.18:1 on bg-void */
+  --text-muted:     #6E9999;  /* teal-muted, 4.71:1 on bg-void */
+
+  /* Accent: Emerald — Identity / Primary (ocean-mist #63C4AD, 7.07:1) */
+  --emerald:        #63C4AD;
+  --emerald-dim:    #0D8373;  /* blue-spruce — borders & dim */
+  --emerald-glow:   rgba(99, 196, 173, 0.14);
+
+  /* Accent: Blue — Technical / Secondary (brightened ocean-deep, 5.18:1) */
+  --blue:           #4FA0D8;
+  --blue-dim:       #0C68B1;  /* ocean-deep — borders & dim */
+  --blue-glow:      rgba(79, 160, 216, 0.14);
+
+  /* Accent: Lavender — Research / Tertiary (brightened amethyst, 4.64:1) */
+  --lavender:       #A880C8;
+  --lavender-soft:  #C4A0D8;  /* 6.61:1 — headings accent */
+  --lavender-dim:   #42224C;  /* dark-amethyst — backgrounds only */
+  --lavender-glow:  rgba(168, 128, 200, 0.14);
+
+  /* Borders */
+  --border:           rgba(99, 196, 173, 0.08);
+  --border-emerald:   rgba(99, 196, 173, 0.22);
+  --border-blue:      rgba(79, 160, 216, 0.22);
+  --border-lavender:  rgba(168, 128, 200, 0.22);
+
+  /* Neon glows */
+  --glow-emerald:  0 0 10px rgba(99,196,173,0.60),  0 0 24px rgba(99,196,173,0.28);
+  --glow-blue:     0 0 10px rgba(79,160,216,0.60),  0 0 24px rgba(79,160,216,0.28);
+  --glow-lavender: 0 0 10px rgba(168,128,200,0.60), 0 0 24px rgba(168,128,200,0.28);
+
+  /* Semantic */
+  --error:   #FF6B6B;
+  --success: #63C4AD;
+
+  /* Radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-full: 9999px;
+
+  /* Timing */
+  --duration-micro:  150ms;
+  --duration-enter:  350ms;
+  --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ── Light Theme — pale midnight: cool blue-tinted, no pure white/black ── */
+[data-theme="light"] {
+  /* Elevation ladder mirrors dark theme — same blue family, inverted lightness */
+  --bg-void:        #E8EEFF;  /* outermost sections — periwinkle blue mist     */
+  --bg-base:        #EFF2FF;  /* page canvas — slightly lighter                */
+  --bg-elevated:    #F6F8FF;  /* cards / panels — off-white with blue cast      */
+  --bg-overlay:     #E0E8FF;  /* hover states / overlays — deeper periwinkle   */
+
+  /* Text — deep navy family, no pure black */
+  --text-primary:   #0C1130;  /* midnight navy, 16.4:1 on bg-void              */
+  --text-secondary: #2C3A6A;  /* medium navy,   7.1:1                          */
+  --text-muted:     #4E5E8A;  /* blue-gray,     4.52:1                         */
+
+  /* Emerald — deep teal, 5.35:1 on bg-void */
+  --emerald:        #0A7060;
+  --emerald-dim:    #065F4A;
+  --emerald-glow:   rgba(10, 112, 96, 0.12);
+
+  /* Blue — deep navy, 7.22:1 on bg-void */
+  --blue:           #0A4F98;
+  --blue-dim:       #083A78;
+  --blue-glow:      rgba(10, 79, 152, 0.12);
+
+  /* Lavender — deep violet, 8.54:1 on bg-void */
+  --lavender:       #5E20A0;
+  --lavender-soft:  #7535C0;
+  --lavender-dim:   #421878;
+  --lavender-glow:  rgba(94, 32, 160, 0.12);
+
+  --border:           rgba(10, 79, 152, 0.10);
+  --border-emerald:   rgba(10, 112, 96, 0.22);
+  --border-blue:      rgba(10, 79, 152, 0.22);
+  --border-lavender:  rgba(94, 32, 160, 0.22);
+
+  --glow-emerald:  0 0 8px rgba(10,112,96,0.18),  0 0 16px rgba(10,112,96,0.09);
+  --glow-blue:     0 0 8px rgba(10,79,152,0.18),  0 0 16px rgba(10,79,152,0.09);
+  --glow-lavender: 0 0 8px rgba(94,32,160,0.18),  0 0 16px rgba(94,32,160,0.09);
+
+  --error:   #B91C1C;
+  --success: #0A7060;
+}
+
+/* ── Font variables ─────────────────────────────────────────────── */
+/* Heading font is JetBrains Mono — terminal/hacker aesthetic.
+   --font-serif alias kept so all components need no changes. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-jetbrains-mono);
+  --font-sans:  var(--font-space-grotesk);
+  --font-mono:  var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ───────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+/* ── Typography utilities ───────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.section-label::before {
+  content: '//';
+  color: var(--text-muted);
+}
+
+.section-title {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+/* Italic JetBrains Mono for accent word — subtle hacker inflection */
+.heading-accent {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--lavender-soft);
+}
+
+.section-desc {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  max-width: 500px;
+  margin-bottom: 3rem;
+}
+
+/* ── Scroll reveal ──────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--duration-enter) var(--ease-out),
+              transform var(--duration-enter) var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Skill tag ──────────────────────────────────────────────────── */
+.skill-tag {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  padding: 4px 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: border-color var(--duration-micro), box-shadow var(--duration-micro),
+              color var(--duration-micro);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: default;
+}
+.skill-tag:hover {
+  border-color: var(--border-blue);
+  box-shadow: var(--glow-blue);
+  color: var(--blue);
+}
+
+/* ── Keyframes ──────────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes emeraldBreathe {
+  0%, 100% { box-shadow: var(--glow-emerald); }
+  50%       { box-shadow: 0 0 20px rgba(99,196,173,0.9), 0 0 44px rgba(99,196,173,0.4); }
+}
+@keyframes blueBreathe {
+  0%, 100% { box-shadow: var(--glow-blue); }
+  50%       { box-shadow: 0 0 20px rgba(79,160,216,0.9), 0 0 44px rgba(79,160,216,0.4); }
+}
+@keyframes lavenderBreathe {
+  0%, 100% { box-shadow: var(--glow-lavender); }
+  50%       { box-shadow: 0 0 20px rgba(168,128,200,0.9), 0 0 44px rgba(168,128,200,0.4); }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

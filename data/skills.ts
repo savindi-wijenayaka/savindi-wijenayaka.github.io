@@ -10,11 +10,11 @@ import {
   SiKubernetes,
   SiGit,
   SiGithubactions,
-  SiAmazonwebservices,
   SiSnowflake,
 } from "react-icons/si";
 import {
   TbBrain,
+  TbBrandAws,
   TbBrandAzure,
   TbEye,
   TbMessageCode,
@@ -82,7 +82,7 @@ const Skills: Skill[] = [
 
   // Data & Cloud Infrastructure
   { name: "Azure", icon: TbBrandAzure, category: "Data & Cloud Infrastructure" },
-  { name: "AWS", icon: SiAmazonwebservices, category: "Data & Cloud Infrastructure" },
+  { name: "AWS", icon: TbBrandAws, category: "Data & Cloud Infrastructure" },
   { name: "Docker", icon: SiDocker, category: "Data & Cloud Infrastructure" },
   { name: "Kubernetes", icon: SiKubernetes, category: "Data & Cloud Infrastructure" },
   { name: "Snowflake", icon: SiSnowflake, category: "Data & Cloud Infrastructure" },
