@@ -50,6 +50,11 @@
   --error:   #FF6B6B;
   --success: #63C4AD;
 
+  /* Neural canvas accent (integer RGB for canvas rgba()) */
+  --nn-r: 99;
+  --nn-g: 196;
+  --nn-b: 173;
+
   /* Radius */
   --radius-sm:   4px;
   --radius-md:   8px;
@@ -102,6 +107,11 @@
 
   --error:   #B91C1C;
   --success: #0A7060;
+
+  /* Neural canvas accent — deep teal on periwinkle light bg */
+  --nn-r: 10;
+  --nn-g: 112;
+  --nn-b: 96;
 }
 
 /* ── Font variables ─────────────────────────────────────────────── */
@@ -116,6 +126,12 @@
 /* ── Base ───────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+}
+
+/* Ensure all sections stack above the fixed neural canvas (z-index: 0) */
+section, nav, footer {
+  position: relative;
+  z-index: 1;
 }
 
 body {
