@@ -14,18 +14,16 @@ export default function Hero() {
         paddingTop: 62,
         position: "relative",
         overflow: "hidden",
-        background: "var(--bg-void)",
       }}
     >
-      {/* Ambient background gradient */}
+      {/* Frosted vignette — keeps hero text readable over the neural canvas */}
       <div
         aria-hidden
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse 80% 60% at 10% 50%, rgba(99,196,173,0.07) 0%, transparent 70%), " +
-            "radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168,128,200,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 75% 90% at 20% 50%, var(--bg-void) 38%, transparent 75%)",
           pointerEvents: "none",
         }}
       />
