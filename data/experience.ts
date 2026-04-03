@@ -1,5 +1,8 @@
+export type EntryType = "industry" | "academic";
+
 export interface ExperienceEntry {
   id: string;
+  type: EntryType;
   role: string;
   company: string;
   companyShort: string;
@@ -11,12 +14,14 @@ export interface ExperienceEntry {
 }
 
 const Experience: ExperienceEntry[] = [
+  // ── Industry ───────────────────────────────────────────────────────────
   {
     id: "auror",
+    type: "industry",
     role: "Intermediate Machine Learning Engineer",
     company: "Auror",
     companyShort: "Auror",
-    dateRange: "Sept 2025 - Present",
+    dateRange: "Sept 2025 – Present",
     location: "Auckland, New Zealand",
     description: [
       "Drove technical stewardship of a legacy production ML system through dependency mapping, infrastructure migration, and model readiness criteria definition, successfully deploying a new model to production via staged rollout.",
@@ -29,10 +34,11 @@ const Experience: ExperienceEntry[] = [
   },
   {
     id: "wso2",
+    type: "industry",
     role: "Machine Learning Engineer",
     company: "WSO2",
     companyShort: "WSO2",
-    dateRange: "Sept 2020 - Nov 2021",
+    dateRange: "Sept 2020 – Nov 2021",
     location: "Colombo, Sri Lanka",
     description: [
       "Researched and delivered a GPT-based model for automated API test case generation, deployed on Azure Kubernetes Service, reducing testing effort for customers and enabling an AI-assisted developer workflow.",
@@ -45,10 +51,11 @@ const Experience: ExperienceEntry[] = [
   },
   {
     id: "pearson",
+    type: "industry",
     role: "Software Research Engineer",
     company: "Pearson",
     companyShort: "Pearson",
-    dateRange: "Sept 2018 - Sept 2019",
+    dateRange: "Sept 2018 – Sept 2019",
     location: "Colombo, Sri Lanka",
     description: [
       "Researched and implemented deep learning modules for emotion detection and speech analysis, integrating models into scalable RESTful microservices for a real-time AI Public Speaking Evaluator.",
@@ -57,6 +64,38 @@ const Experience: ExperienceEntry[] = [
     ],
     techStack: ["Python", "Keras", "BERT", "GPT-2", "Flask", "Django"],
     companyUrl: "https://www.pearson.com",
+  },
+
+  // ── Academic ────────────────────────────────────────────────────────────
+  {
+    id: "uoa-phd",
+    type: "academic",
+    role: "PhD in Bioengineering",
+    company: "University of Auckland",
+    companyShort: "UoA",
+    dateRange: "2021 – 2025",
+    location: "Auckland, New Zealand",
+    description: [
+      "Developed deep learning models for medical image segmentation and physiological parameter quantification, combining bioengineering domain knowledge with state-of-the-art computer vision techniques.",
+      "Contributed to the SPARC FAIR Codeathon (2022 Winners, 2024 1st Runners Up), building open-source Python tooling for standardised biomedical dataset access and 3D anatomical visualisation.",
+    ],
+    techStack: ["Python", "PyTorch", "MONAI", "Medical Imaging", "NumPy"],
+    companyUrl: "https://www.auckland.ac.nz",
+  },
+  {
+    id: "uok-bsc",
+    type: "academic",
+    role: "BSc (Hons) in Computer Science",
+    company: "University of Kelaniya",
+    companyShort: "UoK",
+    dateRange: "2015 – 2019",
+    location: "Kelaniya, Sri Lanka",
+    description: [
+      "Graduated with First Class Honours. Specialised in software engineering, machine learning, and data science.",
+      "Led the Women's Karate Team as Captain and served as Vice President of Marketing & Communications at AIESEC Colombo North LC.",
+    ],
+    techStack: ["Java", "Python", "Machine Learning", "Data Science"],
+    companyUrl: "https://www.kln.ac.lk",
   },
 ];
 

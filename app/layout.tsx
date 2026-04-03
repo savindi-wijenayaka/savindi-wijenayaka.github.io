@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,24 +24,19 @@ export const metadata: Metadata = {
     template: "%s | Savindi Wijenayaka",
   },
   description:
-    "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
+    "Machine Learning Engineer (PhD) specialising in production-grade AI systems, deep learning, and computer vision. Building intelligent systems from research to deployment.",
   keywords: [
     "Savindi Wijenayaka",
     "Machine Learning Engineer",
     "Deep Learning",
     "Computer Vision",
     "NLP",
-    "Natural Language Processing",
     "Bioengineering",
     "Medical Imaging",
-    "Cloud Native",
     "Azure",
     "Kubernetes",
     "Python",
-    "Keras",
     "PyTorch",
-    "Java",
-    "Spring Boot",
     "New Zealand",
     "Portfolio",
   ],
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
     description:
-      "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
+      "Machine Learning Engineer (PhD) specialising in production-grade AI systems, deep learning, and computer vision.",
     url: "https://savindi.com",
     siteName: "Savindi Wijenayaka Portfolio",
     locale: "en_US",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
     description:
-      "Machine Learning Engineer (PhD) experienced in production-grade scalable cloud-native AI solutions (Azure/K8s), especially in deep learning and computer vision. Delivering robust solutions across diverse domains.",
+      "Machine Learning Engineer (PhD) specialising in production-grade AI systems, deep learning, and computer vision.",
     images: ["/assets/brand/og_image.png"],
   },
   robots: {
@@ -78,6 +78,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Inline script prevents flash of unstyled theme (FOUC)
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',d?'dark':'light');}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -86,9 +89,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme="dark"
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        {/* eslint-disable-next-line react/no-danger */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-screen flex flex-col antialiased">
+        {children}
+      </body>
     </html>
   );
 }
