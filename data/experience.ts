@@ -21,7 +21,7 @@ const Experience: ExperienceEntry[] = [
     role: "Intermediate Machine Learning Engineer",
     company: "Auror",
     companyShort: "Auror",
-    dateRange: "Sept 2025 – Present",
+    dateRange: "Sept 2025 - Present",
     location: "Auckland, New Zealand",
     description: [
       "Drove technical stewardship of a legacy production ML system through dependency mapping, infrastructure migration, and model readiness criteria definition, successfully deploying a new model to production via staged rollout.",
@@ -38,7 +38,7 @@ const Experience: ExperienceEntry[] = [
     role: "Machine Learning Engineer",
     company: "WSO2",
     companyShort: "WSO2",
-    dateRange: "Sept 2020 – Nov 2021",
+    dateRange: "Sept 2020 - Nov 2021",
     location: "Colombo, Sri Lanka",
     description: [
       "Researched and delivered a GPT-based model for automated API test case generation, deployed on Azure Kubernetes Service, reducing testing effort for customers and enabling an AI-assisted developer workflow.",
@@ -55,7 +55,7 @@ const Experience: ExperienceEntry[] = [
     role: "Software Research Engineer",
     company: "Pearson",
     companyShort: "Pearson",
-    dateRange: "Sept 2018 – Sept 2019",
+    dateRange: "Sept 2018 - Sept 2019",
     location: "Colombo, Sri Lanka",
     description: [
       "Researched and implemented deep learning modules for emotion detection and speech analysis, integrating models into scalable RESTful microservices for a real-time AI Public Speaking Evaluator.",
@@ -73,7 +73,7 @@ const Experience: ExperienceEntry[] = [
     role: "PhD in Bioengineering",
     company: "University of Auckland",
     companyShort: "UoA",
-    dateRange: "2021 – 2025",
+    dateRange: "Nov 2021 - May 2025",
     location: "Auckland, New Zealand",
     description: [
       "Developed deep learning models for medical image segmentation and physiological parameter quantification, combining bioengineering domain knowledge with state-of-the-art computer vision techniques.",
@@ -85,10 +85,10 @@ const Experience: ExperienceEntry[] = [
   {
     id: "uok-bsc",
     type: "academic",
-    role: "BSc (Hons) in Computer Science",
+    role: "BSc (Hons) in Software Engineering",
     company: "University of Kelaniya",
     companyShort: "UoK",
-    dateRange: "2015 – 2019",
+    dateRange: "Feb 2016 - March 2020",
     location: "Kelaniya, Sri Lanka",
     description: [
       "Graduated with First Class Honours. Specialised in software engineering, machine learning, and data science.",
