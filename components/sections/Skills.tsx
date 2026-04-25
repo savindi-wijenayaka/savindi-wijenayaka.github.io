@@ -27,14 +27,15 @@ export default function SkillsSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gridTemplateColumns: "repeat(3, 1fr)",
             gap: "1.5rem",
+            alignItems: "stretch",
           }}
         >
           {SkillCategories.map((category, catIdx) => {
             const categorySkills = Skills.filter((s) => s.category === category);
             return (
-              <RevealOnScroll key={category} delay={catIdx * 60}>
+              <RevealOnScroll key={category} delay={catIdx * 60} style={{ height: "100%" }}>
                 <div
                   style={{
                     background: "var(--bg-elevated)",
@@ -42,6 +43,8 @@ export default function SkillsSection() {
                     borderRadius: "var(--radius-md)",
                     padding: "1.5rem",
                     transition: "border-color 200ms",
+                    height: "100%",
+                    boxSizing: "border-box",
                   }}
                   onMouseEnter={(e) =>
                     ((e.currentTarget as HTMLDivElement).style.borderColor =

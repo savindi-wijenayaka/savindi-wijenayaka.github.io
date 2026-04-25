@@ -6,12 +6,14 @@ interface RevealOnScrollProps {
   children: ReactNode;
   delay?: number; // ms delay for staggered reveals
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export default function RevealOnScroll({
   children,
   delay = 0,
   className = "",
+  style,
 }: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -34,7 +36,7 @@ export default function RevealOnScroll({
   }, [delay]);
 
   return (
-    <div ref={ref} className={`reveal ${className}`}>
+    <div ref={ref} className={`reveal ${className}`} style={style}>
       {children}
     </div>
   );

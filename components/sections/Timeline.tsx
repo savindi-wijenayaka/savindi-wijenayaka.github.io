@@ -1,17 +1,107 @@
 "use client";
 
+import { useState } from "react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
-import Experience from "@/data/experience";
+import Experience, { ExperienceEntry } from "@/data/experience";
 
+// ── Tile card (shown above or below the spine) ───────────────────────
+function TileCard({
+  entry,
+  isSelected,
+  accent,
+  borderAccent,
+  glow,
+  year,
+}: {
+  entry: ExperienceEntry;
+  isSelected: boolean;
+  accent: string;
+  borderAccent: string;
+  glow: string;
+  year: string;
+}) {
+  return (
+    <div
+      style={{
+        width: "100%",
+        background: isSelected ? "var(--bg-elevated)" : "var(--bg-base)",
+        border: `1px solid ${isSelected ? borderAccent : "var(--border)"}`,
+        borderRadius: "var(--radius-md)",
+        padding: "0.75rem 0.875rem",
+        textAlign: "center",
+        boxShadow: isSelected ? glow : "none",
+        transition: "background 200ms, border-color 200ms, box-shadow 200ms",
+      }}
+    >
+      {/* Role / Title */}
+      <div
+        style={{
+          fontFamily: "var(--font-mono), monospace",
+          fontSize: 13,
+          fontWeight: 500,
+          color: isSelected ? "var(--text-primary)" : "var(--text-secondary)",
+          lineHeight: 1.45,
+          marginBottom: 6,
+          transition: "color 200ms",
+        }}
+      >
+        {entry.role}
+      </div>
+      {/* Company — full name always */}
+      <div
+        style={{
+          fontFamily: "var(--font-mono), monospace",
+          fontSize: 12,
+          color: isSelected ? accent : "var(--text-muted)",
+          letterSpacing: "0.03em",
+          marginBottom: 5,
+          transition: "color 200ms",
+          lineHeight: 1.4,
+        }}
+      >
+        {entry.company}
+      </div>
+      {/* Date range */}
+      <div
+        style={{
+          fontFamily: "var(--font-mono), monospace",
+          fontSize: 11,
+          color: "var(--text-muted)",
+          letterSpacing: "0.06em",
+          opacity: 0.7,
+        }}
+      >
+        {year}
+      </div>
+    </div>
+  );
+}
+
+// ── Section ───────────────────────────────────────────────────────────
 export default function Timeline() {
-  // Sort: newest first, with industry interleaved with academic
+  // Sort oldest → newest (left to right)
   const entries = [...Experience].sort((a, b) => {
-    // Extract start year
-    const yearA = parseInt(a.dateRange.replace(/\D.*/, ""), 10) || 0;
-    const yearB = parseInt(b.dateRange.replace(/\D.*/, ""), 10) || 0;
-    return yearB - yearA;
+    const yearA = parseInt(a.dateRange.match(/\d{4}/)?.[0] ?? "0", 10);
+    const yearB = parseInt(b.dateRange.match(/\d{4}/)?.[0] ?? "0", 10);
+    return yearA - yearB;
   });
+
+  const [selectedId, setSelectedId] = useState(entries[entries.length - 1].id);
+  const selected = entries.find((e) => e.id === selectedId)!;
+  const selectedIndex = entries.findIndex((e) => e.id === selectedId);
+
+  // Spine runs from center of first tile to center of last tile
+  const tileHalf = 100 / (2 * entries.length);
+
+  // Stem — vertical connector from rail bottom to panel top
+  const stemLeft = `${((2 * selectedIndex + 1) / (2 * entries.length)) * 100}%`;
+  const stemAccent =
+    selected.type === "industry" ? "var(--emerald)" : "var(--lavender)";
+  const stemGlow =
+    selected.type === "industry"
+      ? "rgba(99,196,173,0.55)"
+      : "rgba(168,128,200,0.55)";
 
   return (
     <section
@@ -32,171 +122,225 @@ export default function Timeline() {
           />
         </RevealOnScroll>
 
-        {/* Legend */}
+        {/* ── Timeline Rail ─────────────────────────────────────── */}
         <RevealOnScroll>
-          <div
-            style={{
-              display: "flex",
-              gap: "1.5rem",
-              marginBottom: "2.5rem",
-              fontFamily: "var(--font-mono), monospace",
-              fontSize: 11,
-              letterSpacing: "0.08em",
-            }}
-          >
-            <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-muted)" }}>
-              <span
+          <div className="timeline-scroll" style={{ overflowX: "auto" }}>
+            <div style={{ position: "relative", minWidth: 860 }}>
+
+              {/* Horizontal spine — top: 50% aligns with dot centers because
+                  each column uses gridTemplateRows: "1fr auto 1fr", making
+                  the dot (auto row) land exactly at the vertical midpoint. */}
+              <div
+                aria-hidden
                 style={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  background: "var(--emerald)",
-                  flexShrink: 0,
+                  position: "absolute",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  left: `${tileHalf}%`,
+                  right: `${tileHalf}%`,
+                  height: 1,
+                  background:
+                    "linear-gradient(to right, var(--emerald), var(--lavender))",
+                  opacity: 0.3,
+                  zIndex: 0,
                 }}
               />
-              Industry
-            </span>
-            <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-muted)" }}>
-              <span
-                style={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  background: "var(--lavender)",
-                  flexShrink: 0,
-                }}
-              />
-              Academia
-            </span>
+
+              {/* Tile columns */}
+              <div style={{ display: "flex", alignItems: "stretch" }}>
+                {entries.map((entry) => {
+                  const isSelected = entry.id === selectedId;
+                  const isIndustry = entry.type === "industry";
+                  const accent = isIndustry ? "var(--emerald)" : "var(--lavender)";
+                  const borderAccent = isIndustry
+                    ? "var(--border-emerald)"
+                    : "var(--border-lavender)";
+                  const breathe = isIndustry ? "emeraldBreathe" : "lavenderBreathe";
+                  const glow = isIndustry
+                    ? "0 0 0 1px var(--border-emerald), 0 0 20px var(--emerald-glow)"
+                    : "0 0 0 1px var(--border-lavender), 0 0 20px var(--lavender-glow)";
+
+                  return (
+                    <div
+                      key={entry.id}
+                      style={{
+                        flex: 1,
+                        display: "grid",
+                        gridTemplateRows: "1fr auto 1fr",
+                        alignItems: "center",
+                        cursor: "pointer",
+                        padding: "0 0.4rem",
+                        position: "relative",
+                      }}
+                      onClick={() => setSelectedId(entry.id)}
+                    >
+                      {/* Row 1 — industry tile sits here, academic row is empty */}
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-end",
+                          paddingBottom: "0.6rem",
+                        }}
+                      >
+                        {isIndustry && (
+                          <TileCard
+                            entry={entry}
+                            isSelected={isSelected}
+                            accent={accent}
+                            borderAccent={borderAccent}
+                            glow={glow}
+                            year={entry.dateRange}
+                          />
+                        )}
+                      </div>
+
+                      {/* Row 2 — dot (always centered on the spine) */}
+                      <div
+                        aria-hidden
+                        style={{
+                          width: 12,
+                          height: 12,
+                          borderRadius: "50%",
+                          background: accent,
+                          border: "2.5px solid var(--bg-void)",
+                          zIndex: 1,
+                          justifySelf: "center",
+                          flexShrink: 0,
+                          transition: "box-shadow 200ms",
+                          animation: isSelected
+                            ? `${breathe} 2s ease-in-out infinite`
+                            : "none",
+                        }}
+                      />
+
+                      {/* Row 3 — academic tile sits here, industry row is empty */}
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          paddingTop: "0.6rem",
+                        }}
+                      >
+                        {!isIndustry && (
+                          <TileCard
+                            entry={entry}
+                            isSelected={isSelected}
+                            accent={accent}
+                            borderAccent={borderAccent}
+                            glow={glow}
+                            year={entry.dateRange}
+                          />
+                        )}
+                      </div>
+
+                      {/* In-rail connector — industry only, selected only.
+                          Runs from the dot center (top: 50% of column) to the
+                          column bottom, where the gap stem picks it up. */}
+                      {isSelected && isIndustry && (
+                        <div
+                          aria-hidden
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            bottom: 0,
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            width: 1,
+                            background: accent,
+                            opacity: 0.75,
+                            boxShadow: "0 0 6px rgba(99,196,173,0.55)",
+                            zIndex: 0,
+                          }}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </RevealOnScroll>
 
-        {/* Timeline */}
-        <div
-          style={{
-            position: "relative",
-            paddingLeft: "2.5rem",
-          }}
-        >
-          {/* Vertical spine */}
+        {/* ── Stem + Description Panel ──────────────────────────── */}
+        <RevealOnScroll>
+          {/* paddingTop creates the gap the stem lives in */}
+          <div style={{ position: "relative", paddingTop: 28 }}>
+
+            {/* Vertical stem — connects selected tile to panel */}
+            <div
+              aria-hidden
+              style={{
+                position: "absolute",
+                top: 0,
+                height: 28,
+                left: stemLeft,
+                transform: "translateX(-50%)",
+                width: 1,
+                background: stemAccent,
+                opacity: 0.75,
+                boxShadow: `0 0 6px ${stemGlow}`,
+                transition: "left 200ms var(--ease-out)",
+              }}
+            >
+              <div className="stem-dot" style={{ background: stemAccent }} />
+            </div>
+
+          {/* key forces remount → triggers panelFadeIn animation on every tab switch */}
           <div
+            key={selectedId}
+            className="timeline-panel"
             style={{
-              position: "absolute",
-              left: 0,
-              top: 6,
-              bottom: 0,
-              width: 1,
-              background: "linear-gradient(to bottom, var(--emerald) 0%, var(--lavender) 60%, transparent 100%)",
-              opacity: 0.4,
+              background: "var(--bg-elevated)",
+              border: "1px solid var(--border)",
+              borderTop: `2px solid ${
+                selected.type === "industry"
+                  ? "var(--emerald)"
+                  : "var(--lavender)"
+              }`,
+              borderRadius: "var(--radius-md)",
+              padding: "1.5rem 2rem",
             }}
-          />
-
-          {entries.map((entry, idx) => {
-            const isIndustry = entry.type === "industry";
-            const accent = isIndustry ? "var(--emerald)" : "var(--lavender)";
-            const breathe = isIndustry ? "emeraldBreathe" : "lavenderBreathe";
-            const borderAccent = isIndustry ? "var(--border-emerald)" : "var(--border-lavender)";
-
-            return (
-              <RevealOnScroll key={entry.id} delay={idx * 80}>
-                <div
-                  style={{
-                    position: "relative",
-                    marginBottom: idx < entries.length - 1 ? "2.5rem" : 0,
-                  }}
-                >
-                  {/* Node dot */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      left: "-2.6rem",
-                      top: 5,
-                      width: 12,
-                      height: 12,
-                      borderRadius: "50%",
-                      background: accent,
-                      border: "2.5px solid var(--bg-void)",
-                      animation: `${breathe} 2s ease-in-out infinite`,
-                    }}
-                  />
-
-                  {/* Card */}
-                  <div
-                    style={{
-                      background: "var(--bg-elevated)",
-                      border: "1px solid var(--border)",
-                      borderLeft: `2px solid ${accent}`,
-                      borderRadius: "var(--radius-md)",
-                      padding: "1.25rem 1.5rem",
-                      transition: "border-color 200ms",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.borderColor = borderAccent;
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border)";
-                      (e.currentTarget as HTMLDivElement).style.borderLeftColor = accent;
-                    }}
-                  >
-                    {/* Date + location */}
+          >
+            {(() => {
+              const isIndustry = selected.type === "industry";
+              const accent = isIndustry ? "var(--emerald)" : "var(--lavender)";
+              return (
+                <>
+                  {/* Header */}
+                  <div style={{ marginBottom: "1.25rem" }}>
                     <div
                       style={{
-                        display: "flex",
-                        gap: "1rem",
-                        alignItems: "center",
-                        flexWrap: "wrap",
-                        marginBottom: "0.4rem",
+                        fontFamily: "var(--font-mono), monospace",
+                        fontSize: "10.5px",
+                        color: accent,
+                        letterSpacing: "0.08em",
+                        marginBottom: 5,
                       }}
                     >
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono), monospace",
-                          fontSize: "10.5px",
-                          color: accent,
-                          letterSpacing: "0.08em",
-                        }}
-                      >
-                        {entry.dateRange}
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono), monospace",
-                          fontSize: "10px",
-                          color: "var(--text-muted)",
-                          letterSpacing: "0.06em",
-                        }}
-                      >
-                        {entry.location}
-                      </span>
+                      {selected.dateRange} · {selected.location}
                     </div>
-
-                    {/* Role */}
                     <h3
                       style={{
                         fontFamily: "var(--font-mono), monospace",
-                        fontSize: 17,
+                        fontSize: 18,
                         fontWeight: 500,
                         color: "var(--text-primary)",
-                        marginBottom: 3,
+                        marginBottom: 4,
                         letterSpacing: "-0.3px",
                       }}
                     >
-                      {entry.role}
+                      {selected.role}
                     </h3>
-
-                    {/* Company */}
                     <div
                       style={{
                         fontFamily: "var(--font-mono), monospace",
                         fontSize: 12,
                         color: "var(--text-muted)",
-                        marginBottom: "0.75rem",
-                        letterSpacing: "0.04em",
                       }}
                     >
-                      {entry.companyUrl ? (
+                      {selected.companyUrl ? (
                         <a
-                          href={entry.companyUrl}
+                          href={selected.companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
@@ -205,93 +349,90 @@ export default function Timeline() {
                             transition: "color 150ms",
                           }}
                           onMouseEnter={(e) =>
-                            ((e.currentTarget as HTMLAnchorElement).style.color = accent)
+                            ((e.currentTarget as HTMLAnchorElement).style.color =
+                              accent)
                           }
                           onMouseLeave={(e) =>
-                            ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-muted)")
+                            ((e.currentTarget as HTMLAnchorElement).style.color =
+                              "var(--text-muted)")
                           }
                         >
-                          {entry.company} ↗
+                          {selected.company} ↗
                         </a>
                       ) : (
-                        entry.company
+                        selected.company
                       )}
                     </div>
+                  </div>
 
-                    {/* Description */}
-                    <ul
-                      style={{
-                        listStyle: "none",
-                        margin: 0,
-                        padding: 0,
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "0.5rem",
-                      }}
-                    >
-                      {entry.description.map((point, i) => (
-                        <li
-                          key={i}
-                          style={{
-                            fontSize: 14,
-                            color: "var(--text-secondary)",
-                            lineHeight: 1.75,
-                            paddingLeft: "1rem",
-                            position: "relative",
-                          }}
-                        >
-                          <span
-                            style={{
-                              position: "absolute",
-                              left: 0,
-                              top: "0.6em",
-                              width: 4,
-                              height: 4,
-                              borderRadius: "50%",
-                              background: accent,
-                              opacity: 0.6,
-                            }}
-                          />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Tech stack */}
-                    {entry.techStack.length > 0 && (
-                      <div
+                  {/* Description bullets */}
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      margin: 0,
+                      padding: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.5rem",
+                      marginBottom: "1.25rem",
+                    }}
+                  >
+                    {selected.description.map((point, i) => (
+                      <li
+                        key={i}
                         style={{
-                          marginTop: "1rem",
-                          display: "flex",
-                          flexWrap: "wrap",
-                          gap: 6,
+                          fontSize: 14,
+                          color: "var(--text-secondary)",
+                          lineHeight: 1.75,
+                          paddingLeft: "1rem",
+                          position: "relative",
                         }}
                       >
-                        {entry.techStack.map((tech) => (
-                          <span
-                            key={tech}
-                            style={{
-                              fontFamily: "var(--font-mono), monospace",
-                              fontSize: 11,
-                              padding: "2px 8px",
-                              borderRadius: "var(--radius-sm)",
-                              background: "var(--bg-overlay)",
-                              border: "1px solid var(--border)",
-                              color: "var(--text-muted)",
-                              letterSpacing: "0.03em",
-                            }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </RevealOnScroll>
-            );
-          })}
-        </div>
+                        <span
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            top: "0.65em",
+                            width: 4,
+                            height: 4,
+                            borderRadius: "50%",
+                            background: accent,
+                            opacity: 0.6,
+                          }}
+                        />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Tech stack */}
+                  {selected.techStack.length > 0 && (
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {selected.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          style={{
+                            fontFamily: "var(--font-mono), monospace",
+                            fontSize: 11,
+                            padding: "2px 8px",
+                            borderRadius: "var(--radius-sm)",
+                            background: "var(--bg-overlay)",
+                            border: "1px solid var(--border)",
+                            color: "var(--text-muted)",
+                            letterSpacing: "0.03em",
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </>
+              );
+            })()}
+          </div>
+          </div>{/* end paddingTop wrapper */}
+        </RevealOnScroll>
       </div>
     </section>
   );
