@@ -82,7 +82,7 @@ const Achievements: Achievement[] = [
   },
   {
     id: "aiesec-2018",
-    title: "Vice President — Marketing & Comms",
+    title: "VP - Marketing & Communication",
     award: "AIESEC - Colombo North LC",
     issuer: "University of Kelaniya",
     year: "2018",
