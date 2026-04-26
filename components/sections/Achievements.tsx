@@ -39,9 +39,26 @@ export default function AchievementsSection() {
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "2.5rem" }}>
             {categories.map((cat) => {
               const isActive = activeCategory === cat;
+              const tabAccentKey = cat === "Engineering" ? "emerald" : cat === "Extra Curriculum" ? "lavender" : "blue";
+              const tabColor = cat === "Engineering"
+                ? "var(--emerald)"
+                : cat === "Extra Curriculum"
+                ? "var(--lavender)"
+                : "var(--blue)";
+              const tabBorder = cat === "Engineering"
+                ? "var(--border-emerald)"
+                : cat === "Extra Curriculum"
+                ? "var(--border-lavender)"
+                : "var(--border-blue)";
+              const tabGlow = cat === "Engineering"
+                ? "var(--emerald-glow)"
+                : cat === "Extra Curriculum"
+                ? "var(--lavender-glow)"
+                : "var(--blue-glow)";
               return (
                 <button
                   key={cat}
+                  data-accent={tabAccentKey}
                   onClick={() => setActiveCategory(cat)}
                   style={{
                     fontFamily: "var(--font-mono), monospace",
@@ -50,11 +67,35 @@ export default function AchievementsSection() {
                     textTransform: "uppercase",
                     padding: "5px 14px",
                     borderRadius: "var(--radius-sm)",
-                    border: `1px solid ${isActive ? "var(--border-lavender)" : "var(--border)"}`,
-                    background: isActive ? "var(--lavender-glow)" : "transparent",
-                    color: isActive ? "var(--lavender)" : "var(--text-muted)",
+                    border: `1px solid ${isActive ? tabBorder : "var(--border)"}`,
+                    background: isActive ? tabGlow : "transparent",
+                    color: isActive ? tabColor : "var(--text-muted)",
                     cursor: "pointer",
                     transition: "all 150ms",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (isActive) return;
+                    const el = e.currentTarget;
+                    el.style.borderColor = tabBorder;
+                    el.style.color = tabColor;
+                    el.style.background = tabGlow;
+                  }}
+                  onMouseLeave={(e) => {
+                    if (isActive) return;
+                    const el = e.currentTarget;
+                    el.style.borderColor = "var(--border)";
+                    el.style.color = "var(--text-muted)";
+                    el.style.background = "transparent";
+                  }}
+                  onMouseDown={(e) => {
+                    const el = e.currentTarget;
+                    el.style.opacity = "0.7";
+                    el.style.transform = "scale(0.97)";
+                  }}
+                  onMouseUp={(e) => {
+                    const el = e.currentTarget;
+                    el.style.opacity = "1";
+                    el.style.transform = "scale(1)";
                   }}
                 >
                   {cat}
@@ -67,15 +108,15 @@ export default function AchievementsSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
             gap: "1.25rem",
           }}
         >
           {filtered.map((ach, idx) => {
             const isEngineering = ach.category === "Engineering";
-            const accent = isEngineering ? "var(--blue)" : "var(--lavender)";
+            const accent = isEngineering ? "var(--emerald)" : "var(--lavender)";
             const borderAccent = isEngineering
-              ? "var(--border-blue)"
+              ? "var(--border-emerald)"
               : "var(--border-lavender)";
 
             return (
@@ -84,133 +125,146 @@ export default function AchievementsSection() {
                   style={{
                     background: "var(--bg-elevated)",
                     border: "1px solid var(--border)",
-                    borderLeft: `2px solid ${accent}`,
+                    borderBottom: `2px solid ${accent}`,
                     borderRadius: "var(--radius-md)",
                     overflow: "hidden",
                     position: "relative",
-                    transition: "transform 220ms, border-color 220ms",
+                    transition: "transform 220ms, border-color 220ms, box-shadow 220ms",
                     cursor: "default",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLDivElement;
-                    el.style.transform = "translateY(-3px)";
+                    el.style.transform = "translateY(-4px)";
                     el.style.borderColor = borderAccent;
+                    el.style.borderBottomColor = accent;
+                    el.style.boxShadow = `0 8px 32px rgba(0,0,0,0.35)`;
                     const overlay = el.querySelector(".ach-overlay") as HTMLElement;
+                    if (overlay) overlay.style.opacity = "1";
                     if (overlay) overlay.style.transform = "translateY(0)";
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLDivElement;
                     el.style.transform = "translateY(0)";
                     el.style.borderColor = "var(--border)";
-                    el.style.borderLeftColor = accent;
+                    el.style.borderBottomColor = accent;
+                    el.style.boxShadow = "none";
                     const overlay = el.querySelector(".ach-overlay") as HTMLElement;
-                    if (overlay) overlay.style.transform = "translateY(100%)";
+                    if (overlay) overlay.style.opacity = "0";
+                    if (overlay) overlay.style.transform = "translateY(8px)";
                   }}
                 >
-                  {/* Card content */}
+                  {/* Photo — full width, tall */}
                   <div
                     style={{
-                      display: "flex",
-                      gap: "1rem",
-                      alignItems: "flex-start",
-                      padding: "1.25rem 1.5rem",
+                      width: "100%",
+                      height: 220,
+                      position: "relative",
+                      flexShrink: 0,
                     }}
                   >
-                    {/* Photo */}
+                    <Image
+                      src={ach.photo}
+                      alt={ach.award}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 340px"
+                      style={{ objectFit: "cover" }}
+                    />
+                    {/* Gradient fade into card body */}
                     <div
                       style={{
-                        width: 72,
-                        height: 72,
-                        borderRadius: "var(--radius-md)",
-                        overflow: "hidden",
-                        flexShrink: 0,
-                        border: "1px solid var(--border)",
-                        position: "relative",
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: 48,
+                        background: "linear-gradient(to bottom, transparent, var(--bg-elevated))",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  </div>
+
+                  {/* Meta info below photo */}
+                  <div
+                    style={{
+                      padding: "1rem 1.25rem 1.25rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.35rem",
+                      flex: 1,
+                    }}
+                  >
+                    {/* Position / title */}
+                    <div
+                      style={{
+                        fontFamily: "var(--font-sans), system-ui, sans-serif",
+                        fontSize: 15,
+                        fontWeight: 600,
+                        color: "var(--text-primary)",
+                        lineHeight: 1.3,
                       }}
                     >
-                      <Image
-                        src={ach.photo}
-                        alt={ach.award}
-                        fill
-                        sizes="72px"
-                        style={{ objectFit: "cover" }}
-                      />
+                      {ach.title}
                     </div>
 
-                    {/* Info */}
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      {/* Award title */}
-                      <div
-                        style={{
-                          fontFamily: "var(--font-sans), system-ui, sans-serif",
-                          fontSize: 15,
-                          fontWeight: 600,
-                          color: "var(--text-primary)",
-                          marginBottom: 3,
-                          lineHeight: 1.3,
-                        }}
-                      >
-                        {ach.title}
-                      </div>
+                    {/* Competition / award */}
+                    <div
+                      style={{
+                        fontSize: 13,
+                        color: "var(--text-secondary)",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {ach.award}
+                    </div>
 
-                      {/* Competition */}
-                      <div
+                    {/* Year + level */}
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "0.6rem",
+                        flexWrap: "wrap",
+                        alignItems: "center",
+                        marginTop: "0.2rem",
+                      }}
+                    >
+                      <span
                         style={{
-                          fontSize: 13,
-                          color: "var(--text-secondary)",
-                          marginBottom: 4,
+                          fontFamily: "var(--font-mono), monospace",
+                          fontSize: 11,
+                          color: accent,
+                          letterSpacing: "0.04em",
                         }}
                       >
-                        {ach.award}
-                      </div>
-
-                      {/* Meta */}
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "0.75rem",
-                          flexWrap: "wrap",
-                          alignItems: "center",
-                        }}
-                      >
-                        {ach.level && (
-                          <span
-                            style={{
-                              fontFamily: "var(--font-mono), monospace",
-                              fontSize: 10,
-                              color: "var(--text-muted)",
-                              letterSpacing: "0.06em",
-                            }}
-                          >
-                            {ach.level}
-                          </span>
-                        )}
+                        {ach.year}
+                      </span>
+                      {ach.level && (
                         <span
-                          style={{
-                            fontFamily: "var(--font-mono), monospace",
-                            fontSize: 11,
-                            color: accent,
-                            letterSpacing: "0.04em",
-                          }}
-                        >
-                          {ach.year}
-                        </span>
-                      </div>
-
-                      {ach.representing && (
-                        <div
                           style={{
                             fontFamily: "var(--font-mono), monospace",
                             fontSize: 10,
                             color: "var(--text-muted)",
-                            marginTop: 3,
-                            letterSpacing: "0.04em",
+                            letterSpacing: "0.06em",
                           }}
                         >
-                          {ach.representing}
-                        </div>
+                          {ach.level}
+                        </span>
                       )}
                     </div>
+
+                    {ach.representing && (
+                      <div
+                        style={{
+                          fontFamily: "var(--font-mono), monospace",
+                          fontSize: 10,
+                          color: "var(--text-muted)",
+                          letterSpacing: "0.04em",
+                        }}
+                      >
+                        {ach.representing}
+                      </div>
+                    )}
                   </div>
 
                   {/* Hover overlay with description */}
@@ -219,21 +273,35 @@ export default function AchievementsSection() {
                     style={{
                       position: "absolute",
                       inset: 0,
-                      background: "rgba(7, 12, 24, 0.93)",
-                      backdropFilter: "blur(8px)",
-                      transform: "translateY(100%)",
-                      transition: "transform 250ms var(--ease-out)",
+                      background: "rgba(7, 12, 24, 0.92)",
+                      backdropFilter: "blur(10px)",
+                      opacity: 0,
+                      transform: "translateY(8px)",
+                      transition: "opacity 250ms var(--ease-out), transform 250ms var(--ease-out)",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "flex-end",
-                      padding: "1.25rem 1.5rem",
+                      padding: "1.5rem",
                     }}
                   >
+                    {/* Title echo at top */}
                     <div
                       style={{
-                        height: 2,
+                        fontFamily: "var(--font-mono), monospace",
+                        fontSize: 10,
+                        color: accent,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      {ach.title} — {ach.year}
+                    </div>
+                    <div
+                      style={{
+                        height: 1,
                         background: accent,
-                        borderRadius: 1,
+                        opacity: 0.5,
                         marginBottom: "0.75rem",
                       }}
                     />
