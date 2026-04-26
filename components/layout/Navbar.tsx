@@ -45,6 +45,7 @@ export default function Navbar() {
       {/* Logo */}
       <a
         href="#hero"
+        data-accent="emerald"
         style={{
           fontFamily: "var(--font-mono), monospace",
           fontSize: 13,
@@ -85,6 +86,7 @@ export default function Navbar() {
           <li key={link.href}>
             <a
               href={link.href}
+              data-accent="blue"
               style={{
                 fontFamily: "var(--font-mono), monospace",
                 fontSize: "11.5px",
@@ -149,6 +151,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              data-accent="blue"
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily: "var(--font-mono), monospace",

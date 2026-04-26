@@ -25,8 +25,13 @@ function TileCard({
     <div
       style={{
         width: "100%",
+        height: "100%",
+        boxSizing: "border-box" as const,
+        display: "flex",
+        flexDirection: "column" as const,
+        justifyContent: "center",
         background: isSelected ? "var(--bg-elevated)" : "var(--bg-base)",
-        border: `1px solid ${isSelected ? borderAccent : "var(--border)"}`,
+        border: `1px solid ${borderAccent}`,
         borderRadius: "var(--radius-md)",
         padding: "0.75rem 0.875rem",
         textAlign: "center",
@@ -163,6 +168,9 @@ export default function Timeline() {
                   return (
                     <div
                       key={entry.id}
+                      role="button"
+                      tabIndex={0}
+                      data-accent={isIndustry ? "emerald" : "lavender"}
                       style={{
                         flex: 1,
                         display: "grid",
@@ -173,6 +181,7 @@ export default function Timeline() {
                         position: "relative",
                       }}
                       onClick={() => setSelectedId(entry.id)}
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedId(entry.id); }}
                     >
                       {/* Row 1 — industry tile sits here, academic row is empty */}
                       <div
@@ -180,6 +189,7 @@ export default function Timeline() {
                           display: "flex",
                           alignItems: "flex-end",
                           paddingBottom: "0.6rem",
+                          height: 110,
                         }}
                       >
                         {isIndustry && (
@@ -219,6 +229,7 @@ export default function Timeline() {
                           display: "flex",
                           alignItems: "flex-start",
                           paddingTop: "0.6rem",
+                          height: 110,
                         }}
                       >
                         {!isIndustry && (

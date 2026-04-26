@@ -2,6 +2,7 @@
 
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import Socials from "@/data/socials";
+import ResearchConstellation from "@/components/ui/ResearchConstellation";
 
 export default function Hero() {
   return (
@@ -28,6 +29,15 @@ export default function Hero() {
         }}
       />
 
+      {/* Floating research fragments — purely atmospheric, right half of hero */}
+      <div
+        className="hero-research-tags"
+        aria-hidden
+        style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2 }}
+      >
+        <ResearchConstellation />
+      </div>
+
       <div
         style={{
           maxWidth: 1200,
@@ -38,6 +48,7 @@ export default function Hero() {
           width: "100%",
         }}
       >
+
         {/* Role tag */}
         <RevealOnScroll>
           <div
@@ -158,6 +169,7 @@ export default function Hero() {
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "3rem" }}>
             <a
               href="#projects"
+              data-accent="emerald"
               style={{
                 display: "inline-block",
                 padding: "11px 26px",
@@ -192,6 +204,7 @@ export default function Hero() {
               href="/CV_SavindiWijenayaka_ML.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              data-accent="blue"
               style={{
                 display: "inline-block",
                 padding: "11px 26px",
@@ -237,6 +250,7 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.link}
+                  data-accent="emerald"
                   style={{
                     color: "var(--text-muted)",
                     fontSize: 18,
@@ -256,6 +270,7 @@ export default function Hero() {
             })}
           </div>
         </RevealOnScroll>
+
       </div>
     </section>
   );
