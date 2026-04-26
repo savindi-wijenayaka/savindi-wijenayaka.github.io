@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import NeuralCanvas from "@/components/ui/NeuralCanvas";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -99,6 +100,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <NeuralCanvas />
+        <CustomCursor />
         {children}
       </body>
     </html>
