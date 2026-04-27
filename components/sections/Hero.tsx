@@ -1,6 +1,7 @@
 "use client";
 
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import ParallaxLayer from "@/components/ui/ParallaxLayer";
 import Socials from "@/data/socials";
 import ResearchConstellation from "@/components/ui/ResearchConstellation";
 
@@ -38,14 +39,12 @@ export default function Hero() {
         <ResearchConstellation />
       </div>
 
+      <ParallaxLayer speed={0.12} style={{ position: "relative", zIndex: 1, width: "100%" }}>
       <div
         style={{
           maxWidth: 1200,
           margin: "0 auto",
           padding: "clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 4rem)",
-          position: "relative",
-          zIndex: 1,
-          width: "100%",
         }}
       >
 
@@ -272,6 +271,7 @@ export default function Hero() {
         </RevealOnScroll>
 
       </div>
+      </ParallaxLayer>
     </section>
   );
 }
