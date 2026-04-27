@@ -4,23 +4,33 @@ import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const navLinks = [
-  { href: "#skills",       label: "skills" },
-  { href: "#timeline",     label: "experience" },
-  { href: "#projects",     label: "projects" },
-  { href: "#achievements", label: "achievements" },
-  { href: "#blog",         label: "blog" },
-  { href: "#contact",      label: "contact" },
+  { label: "skills",       index: 1 },
+  { label: "experience",   index: 2 },
+  { label: "projects",     index: 3 },
+  { label: "achievements", index: 4 },
+  { label: "blog",         index: 5 },
+  { label: "contact",      index: 6 },
 ];
 
+function goToSlide(index: number) {
+  window.dispatchEvent(
+    new CustomEvent("fullpage:goto", { detail: { index } })
+  );
+}
+
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handle = (e: Event) => {
+      setCurrentSlide((e as CustomEvent<{ index: number }>).detail.index);
+    };
+    window.addEventListener("fullpage:change", handle);
+    return () => window.removeEventListener("fullpage:change", handle);
   }, []);
+
+  const scrolled = currentSlide > 0;
 
   return (
     <nav
@@ -36,26 +46,26 @@ export default function Navbar() {
         justifyContent: "space-between",
         padding: "0 clamp(1.25rem, 5vw, 3rem)",
         borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-        background: scrolled
-          ? "rgba(7, 12, 24, 0.88)"
-          : "transparent",
+        background: scrolled ? "rgba(7, 12, 24, 0.88)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         transition: "background 0.4s, border-color 0.4s, backdrop-filter 0.4s",
       }}
     >
-      {/* Logo */}
-      <a
-        href="/"
-        data-accent="emerald"
+      {/* Logo — click returns to hero */}
+      <button
+        onClick={() => goToSlide(0)}
         style={{
           fontFamily: "var(--font-mono), monospace",
           fontSize: 13,
           color: "var(--emerald)",
-          textDecoration: "none",
           letterSpacing: "0.08em",
           display: "flex",
           alignItems: "center",
           gap: 2,
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          padding: 0,
         }}
       >
         sw.ml
@@ -70,49 +80,50 @@ export default function Navbar() {
             animation: "blink 1.1s step-end infinite",
           }}
         />
-      </a>
+      </button>
 
       {/* Desktop links */}
       <ul
-        style={{
-          display: "flex",
-          gap: "2rem",
-          listStyle: "none",
-          margin: 0,
-          padding: 0,
-        }}
+        style={{ display: "flex", gap: "2rem", listStyle: "none", margin: 0, padding: 0 }}
         className="hidden sm:flex"
       >
-        {navLinks.map((link) => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              data-accent="blue"
-              style={{
-                fontFamily: "var(--font-mono), monospace",
-                fontSize: "11.5px",
-                color: "var(--text-secondary)",
-                textDecoration: "none",
-                letterSpacing: "0.07em",
-                transition: "color 200ms",
-              }}
-              onMouseEnter={(e) =>
-                ((e.target as HTMLAnchorElement).style.color = "var(--blue)")
-              }
-              onMouseLeave={(e) =>
-                ((e.target as HTMLAnchorElement).style.color = "var(--text-secondary)")
-              }
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
+        {navLinks.map((link) => {
+          const isActive = currentSlide === link.index;
+          return (
+            <li key={link.label}>
+              <button
+                onClick={() => goToSlide(link.index)}
+                style={{
+                  fontFamily: "var(--font-mono), monospace",
+                  fontSize: "11.5px",
+                  color: isActive ? "var(--blue)" : "var(--text-secondary)",
+                  letterSpacing: "0.07em",
+                  transition: "color 200ms",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 0,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.color = "var(--blue)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.color = isActive
+                    ? "var(--blue)"
+                    : "var(--text-secondary)";
+                }}
+              >
+                {link.label}
+              </button>
+            </li>
+          );
+        })}
       </ul>
 
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
         <ThemeToggle />
 
-        {/* Hamburger for mobile */}
+        {/* Hamburger — mobile */}
         <button
           className="sm:hidden"
           onClick={() => setMenuOpen((o) => !o)}
@@ -130,7 +141,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile dropdown */}
       {menuOpen && (
         <div
           className="sm:hidden"
@@ -149,21 +160,26 @@ export default function Navbar() {
           }}
         >
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              data-accent="blue"
-              onClick={() => setMenuOpen(false)}
+            <button
+              key={link.label}
+              onClick={() => {
+                setMenuOpen(false);
+                goToSlide(link.index);
+              }}
               style={{
                 fontFamily: "var(--font-mono), monospace",
                 fontSize: 13,
                 color: "var(--text-secondary)",
-                textDecoration: "none",
                 letterSpacing: "0.07em",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+                textAlign: "left",
               }}
             >
               {link.label}
-            </a>
+            </button>
           ))}
         </div>
       )}
