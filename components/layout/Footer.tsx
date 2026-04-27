@@ -29,11 +29,11 @@ export default function Footer() {
       </p>
 
       <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-        {Socials.map((s, i) => {
+        {Socials.map((s) => {
           const Icon = s.icon;
           return (
             <a
-              key={i}
+              key={s.label}
               href={s.link}
               target="_blank"
               rel="noopener noreferrer"

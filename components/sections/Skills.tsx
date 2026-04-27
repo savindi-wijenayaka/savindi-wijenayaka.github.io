@@ -1,19 +1,13 @@
 "use client";
 
 import SectionHeader from "@/components/ui/SectionHeader";
+import SectionShell from "@/components/ui/SectionShell";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import Skills, { SkillCategories } from "@/data/skills";
 
 export default function SkillsSection() {
   return (
-    <section
-      id="skills"
-      style={{
-        background: "var(--bg-base)",
-        padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem)",
-      }}
-    >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <SectionShell id="skills" bg="var(--bg-base)">
         <RevealOnScroll>
           <SectionHeader
             label="Technical Skills"
@@ -83,7 +77,6 @@ export default function SkillsSection() {
             );
           })}
         </div>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

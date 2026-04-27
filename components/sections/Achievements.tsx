@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SectionHeader from "@/components/ui/SectionHeader";
+import SectionShell from "@/components/ui/SectionShell";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import Achievements, { AchievementCategories } from "@/data/achievements";
 import { useState } from "react";
@@ -16,14 +17,7 @@ export default function AchievementsSection() {
       : Achievements.filter((a) => a.category === activeCategory);
 
   return (
-    <section
-      id="achievements"
-      style={{
-        background: "var(--bg-void)",
-        padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem)",
-      }}
-    >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <SectionShell id="achievements" bg="var(--bg-void)">
         <RevealOnScroll>
           <SectionHeader
             label="Achievements"
@@ -108,7 +102,7 @@ export default function AchievementsSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gridTemplateColumns: "repeat(4, 1fr)",
             gap: "1.25rem",
           }}
         >
@@ -120,7 +114,7 @@ export default function AchievementsSection() {
               : "var(--border-lavender)";
 
             return (
-              <RevealOnScroll key={ach.id} delay={idx * 60}>
+              <RevealOnScroll key={ach.id} delay={idx * 60} style={{ height: "100%" }}>
                 <div
                   style={{
                     background: "var(--bg-elevated)",
@@ -133,6 +127,7 @@ export default function AchievementsSection() {
                     cursor: "default",
                     display: "flex",
                     flexDirection: "column",
+                    height: "100%",
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLDivElement;
@@ -195,7 +190,7 @@ export default function AchievementsSection() {
                       flex: 1,
                     }}
                   >
-                    {/* Position / title */}
+                    {/* Position / title — minHeight locks all cards to the same title height */}
                     <div
                       style={{
                         fontFamily: "var(--font-sans), system-ui, sans-serif",
@@ -203,6 +198,7 @@ export default function AchievementsSection() {
                         fontWeight: 600,
                         color: "var(--text-primary)",
                         lineHeight: 1.3,
+                        minHeight: "2.6rem",
                       }}
                     >
                       {ach.title}
@@ -339,7 +335,6 @@ export default function AchievementsSection() {
             );
           })}
         </div>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

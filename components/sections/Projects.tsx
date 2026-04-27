@@ -1,22 +1,38 @@
 "use client";
 
 import SectionHeader from "@/components/ui/SectionHeader";
+import SectionShell from "@/components/ui/SectionShell";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import TechTag from "@/components/ui/TechTag";
 import Projects from "@/data/projects";
+
+function ProjectLink({ href, label }: { href: string; label: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        fontFamily: "var(--font-mono), monospace",
+        fontSize: 11,
+        color: "var(--blue)",
+        textDecoration: "none",
+        letterSpacing: "0.06em",
+        borderBottom: "1px solid var(--border-blue)",
+        paddingBottom: 1,
+        transition: "color 150ms",
+      }}
+    >
+      {label} ↗
+    </a>
+  );
+}
 
 export default function ProjectsSection() {
   const featured = Projects.filter((p) => p.featured);
 
   return (
-    <section
-      id="projects"
-      style={{
-        background: "var(--bg-base)",
-        padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem)",
-      }}
-    >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <SectionShell id="projects" bg="var(--bg-base)">
         <RevealOnScroll>
           <SectionHeader
             label="Projects"
@@ -143,50 +159,13 @@ export default function ProjectsSection() {
 
                 {/* Links */}
                 <div style={{ display: "flex", gap: "1rem" }}>
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        fontFamily: "var(--font-mono), monospace",
-                        fontSize: 11,
-                        color: "var(--blue)",
-                        textDecoration: "none",
-                        letterSpacing: "0.06em",
-                        borderBottom: "1px solid var(--border-blue)",
-                        paddingBottom: 1,
-                        transition: "color 150ms",
-                      }}
-                    >
-                      GitHub ↗
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        fontFamily: "var(--font-mono), monospace",
-                        fontSize: 11,
-                        color: "var(--blue)",
-                        textDecoration: "none",
-                        letterSpacing: "0.06em",
-                        borderBottom: "1px solid var(--border-blue)",
-                        paddingBottom: 1,
-                        transition: "color 150ms",
-                      }}
-                    >
-                      Live ↗
-                    </a>
-                  )}
+                  {project.githubUrl && <ProjectLink href={project.githubUrl} label="GitHub" />}
+                  {project.liveUrl && <ProjectLink href={project.liveUrl} label="Live" />}
                 </div>
               </div>
             </RevealOnScroll>
           ))}
         </div>
-      </div>
-    </section>
+    </SectionShell>
   );
 }
