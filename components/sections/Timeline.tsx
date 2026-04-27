@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import SectionShell from "@/components/ui/SectionShell";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import TechTag from "@/components/ui/TechTag";
 import Experience, { ExperienceEntry } from "@/data/experience";
@@ -110,14 +111,7 @@ export default function Timeline() {
       : "rgba(168,128,200,0.55)";
 
   return (
-    <section
-      id="timeline"
-      style={{
-        background: "var(--bg-void)",
-        padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem)",
-      }}
-    >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <SectionShell id="timeline" bg="var(--bg-void)">
         <RevealOnScroll>
           <SectionHeader
             label="Experience & Education"
@@ -431,7 +425,6 @@ export default function Timeline() {
           </div>
           </div>{/* end paddingTop wrapper */}
         </RevealOnScroll>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

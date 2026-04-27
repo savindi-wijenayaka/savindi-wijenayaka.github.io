@@ -241,11 +241,11 @@ export default function Hero() {
         {/* Social links */}
         <RevealOnScroll delay={380}>
           <div style={{ display: "flex", gap: "1.25rem", alignItems: "center" }}>
-            {Socials.map((s, i) => {
+            {Socials.map((s) => {
               const Icon = s.icon;
               return (
                 <a
-                  key={i}
+                  key={s.label}
                   href={s.link}
                   target="_blank"
                   rel="noopener noreferrer"

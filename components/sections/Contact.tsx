@@ -77,15 +77,15 @@ export default function Contact() {
               flexWrap: "wrap",
             }}
           >
-            {Socials.map((s, i) => {
+            {Socials.map((s) => {
               const Icon = s.icon;
-              const label = s.link.replace("https://", "").split("/")[0];
               return (
                 <a
-                  key={i}
+                  key={s.label}
                   href={s.link}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={s.label}
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -114,7 +114,7 @@ export default function Contact() {
                   }}
                 >
                   <Icon size={14} />
-                  {label}
+                  {s.label}
                 </a>
               );
             })}

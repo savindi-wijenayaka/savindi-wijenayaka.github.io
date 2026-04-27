@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionHeader from "@/components/ui/SectionHeader";
+import SectionShell from "@/components/ui/SectionShell";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import TagChip from "@/components/ui/TagChip";
 import { formatDate } from "@/lib/format";
@@ -321,14 +322,7 @@ export default function BlogSection({ posts }: { posts: BlogLink[] }) {
   const [featured, ...rest] = posts;
 
   return (
-    <section
-      id="blog"
-      style={{
-        background: "var(--bg-base)",
-        padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem)",
-      }}
-    >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <SectionShell id="blog" bg="var(--bg-base)">
         <RevealOnScroll>
           <SectionHeader
             label="Writing"
@@ -397,7 +391,6 @@ export default function BlogSection({ posts }: { posts: BlogLink[] }) {
             </a>
           </div>
         </RevealOnScroll>
-      </div>
-    </section>
+    </SectionShell>
   );
 }
