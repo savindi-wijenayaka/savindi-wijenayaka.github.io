@@ -30,10 +30,12 @@ export default function NeuralCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const maybeCanvas = canvasRef.current;
+    if (!maybeCanvas) return;
+    const canvas = maybeCanvas;
+    const maybeCtx = canvas.getContext("2d");
+    if (!maybeCtx) return;
+    const ctx = maybeCtx;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -186,7 +188,16 @@ export default function NeuralCanvas() {
       for (let i = 0; i < PULSE_COUNT; i++) spawnPulse();
     }
 
+    const onVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafId);
+      } else if (!reduced) {
+        animate();
+      }
+    };
+
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", onVisibility);
     resize();
 
     if (reduced) {
@@ -198,6 +209,7 @@ export default function NeuralCanvas() {
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 

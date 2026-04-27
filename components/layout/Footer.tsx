@@ -37,7 +37,7 @@ export default function Footer() {
               href={s.link}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={s.link}
+              aria-label={s.label}
               style={{
                 color: "var(--text-muted)",
                 fontSize: 16,

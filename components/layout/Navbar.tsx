@@ -8,6 +8,7 @@ const navLinks = [
   { href: "#timeline",     label: "experience" },
   { href: "#projects",     label: "projects" },
   { href: "#achievements", label: "achievements" },
+  { href: "#blog",         label: "blog" },
   { href: "#contact",      label: "contact" },
 ];
 
@@ -44,7 +45,7 @@ export default function Navbar() {
     >
       {/* Logo */}
       <a
-        href="#hero"
+        href="/"
         data-accent="emerald"
         style={{
           fontFamily: "var(--font-mono), monospace",
