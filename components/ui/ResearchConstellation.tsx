@@ -76,6 +76,16 @@ export default function ResearchConstellation() {
     let lastTime = performance.now();
     let rafId: number;
 
+    const onVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafId);
+      } else {
+        lastTime = performance.now();
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
     function tick(now: number) {
       const dt = Math.min(now - lastTime, 50); // cap to avoid large jumps after tab switch
       lastTime = now;
@@ -107,7 +117,10 @@ export default function ResearchConstellation() {
     }
 
     rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
+    return () => {
+      cancelAnimationFrame(rafId);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, []);
 
   return (

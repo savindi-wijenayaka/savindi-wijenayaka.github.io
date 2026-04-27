@@ -292,6 +292,101 @@ body {
   }
 }
 
+/* ── Blog post list styles — Option C: Glowing Diamond ─────────── */
+
+/* Unordered — ◆ emerald glow, nested ◇ muted */
+.blog-ul {
+  list-style: none;
+  padding-left: 1.75rem;
+  margin: 0 0 1.25rem;
+}
+.blog-ul li {
+  position: relative;
+  padding-left: 0.25rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 0.3rem;
+}
+.blog-ul li::before {
+  content: '◆';
+  position: absolute;
+  left: -1.4rem;
+  top: 0.48em;
+  font-size: 0.55em;
+  color: var(--emerald);
+  text-shadow: 0 0 6px rgba(99, 196, 173, 0.8), 0 0 14px rgba(99, 196, 173, 0.4);
+}
+/* Nested ul — hollow diamond, no glow */
+.blog-ul .blog-ul li::before {
+  content: '◇';
+  color: var(--text-muted);
+  text-shadow: none;
+}
+
+/* Ordered — circled lavender counter */
+.blog-ol {
+  list-style: none;
+  padding-left: 2.4rem;
+  margin: 0 0 1.25rem;
+  counter-reset: blog-ol-counter;
+}
+.blog-ol li {
+  position: relative;
+  padding-left: 0.25rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 0.3rem;
+  counter-increment: blog-ol-counter;
+}
+.blog-ol li::before {
+  content: counter(blog-ol-counter);
+  position: absolute;
+  left: -2.25rem;
+  top: 0.22em;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 1px solid var(--lavender);
+  border-radius: 50%;
+  color: var(--lavender);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.35rem;
+  box-shadow: 0 0 6px rgba(168, 128, 200, 0.35);
+}
+
+/* ── Blog post code block scrollbars ───────────────────────────── */
+.blog-pre::-webkit-scrollbar        { height: 4px; width: 4px; }
+.blog-pre::-webkit-scrollbar-track  { background: var(--bg-base); border-radius: 2px; }
+.blog-pre::-webkit-scrollbar-thumb  {
+  background: var(--emerald-dim);
+  border-radius: 2px;
+  transition: background var(--duration-micro);
+}
+.blog-pre::-webkit-scrollbar-thumb:hover {
+  background: var(--emerald);
+  box-shadow: var(--glow-emerald);
+}
+
+/* Firefox */
+.blog-pre { scrollbar-width: thin; scrollbar-color: var(--emerald-dim) var(--bg-base); }
+
+/* ── Blog section ───────────────────────────────────────────────── */
+.blog-featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .blog-featured-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 /* ── Custom cursor — hides native cursor site-wide when active ──── */
 body.custom-cursor,
 body.custom-cursor * {

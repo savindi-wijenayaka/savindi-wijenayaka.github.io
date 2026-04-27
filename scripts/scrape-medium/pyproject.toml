@@ -1,0 +1,22 @@
+[project]
+name = "scrape-medium"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "requests>=2.32",
+  "beautifulsoup4>=4.12",
+  "lxml>=5.2",
+  "markdownify>=0.13",
+  "python-slugify>=8.0",
+  "rich>=13.0",
+]
+
+[project.scripts]
+medium-to-md = "scraper.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scraper"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

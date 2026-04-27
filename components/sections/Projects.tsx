@@ -2,6 +2,7 @@
 
 import SectionHeader from "@/components/ui/SectionHeader";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import TechTag from "@/components/ui/TechTag";
 import Projects from "@/data/projects";
 
 export default function ProjectsSection() {
@@ -136,21 +137,7 @@ export default function ProjectsSection() {
                   }}
                 >
                   {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      style={{
-                        fontFamily: "var(--font-mono), monospace",
-                        fontSize: 11,
-                        padding: "2px 8px",
-                        borderRadius: "var(--radius-sm)",
-                        background: "var(--bg-overlay)",
-                        border: "1px solid var(--border)",
-                        color: "var(--text-muted)",
-                        letterSpacing: "0.03em",
-                      }}
-                    >
-                      {tech}
-                    </span>
+                    <TechTag key={tech} label={tech} />
                   ))}
                 </div>
 

@@ -249,7 +249,7 @@ export default function Hero() {
                   href={s.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={s.link}
+                  aria-label={s.label}
                   data-accent="emerald"
                   style={{
                     color: "var(--text-muted)",
