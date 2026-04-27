@@ -24,7 +24,6 @@ export default function AchievementsSection() {
             accent="lavender"
             plain="Highlights & "
             italic="honours"
-            description="Competitions, awards, and milestones across engineering and leadership."
           />
         </RevealOnScroll>
 
@@ -150,11 +149,11 @@ export default function AchievementsSection() {
                     if (overlay) overlay.style.transform = "translateY(8px)";
                   }}
                 >
-                  {/* Photo — full width, tall */}
+                  {/* Photo */}
                   <div
                     style={{
                       width: "100%",
-                      height: 220,
+                      height: 140,
                       position: "relative",
                       flexShrink: 0,
                     }}

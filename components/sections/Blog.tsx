@@ -109,7 +109,7 @@ function FeaturedPost({ post }: { post: BlogLink }) {
             position: "relative",
             overflow: "hidden",
             borderRadius: "var(--radius-md)",
-            aspectRatio: "16 / 10",
+            aspectRatio: "16 / 6",
           }}
         >
           {post.coverImage ? (
@@ -204,8 +204,8 @@ function SecondaryPost({ post, delay }: { post: BlogLink; delay: number }) {
           display: "flex",
           gap: "1.5rem",
           alignItems: "flex-start",
-          paddingTop: "1.5rem",
-          paddingBottom: "1.5rem",
+          paddingTop: "1rem",
+          paddingBottom: "1rem",
           borderTop: "1px solid var(--border)",
         }}
         onMouseEnter={(e) => {
@@ -329,13 +329,12 @@ export default function BlogSection({ posts }: { posts: BlogLink[] }) {
             accent="lavender"
             plain="From the "
             italic="notebook"
-            description="Thoughts on machine learning, open science, and building things that matter."
           />
         </RevealOnScroll>
 
         {/* Featured post */}
         <RevealOnScroll>
-          <div style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem", paddingBottom: "2rem" }}>
+          <div style={{ borderTop: "1px solid var(--border)", paddingTop: "1.25rem", paddingBottom: "1.25rem" }}>
             <FeaturedPost post={featured} />
           </div>
         </RevealOnScroll>

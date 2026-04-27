@@ -39,7 +39,6 @@ export default function ProjectsSection() {
             accent="blue"
             plain="Things I've "
             italic="built"
-            description="Production systems and research projects that solve real problems."
           />
         </RevealOnScroll>
 
