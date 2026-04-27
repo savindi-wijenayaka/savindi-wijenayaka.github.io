@@ -118,7 +118,6 @@ export default function Timeline() {
             accent="emerald"
             plain="The journey "
             italic="so far"
-            description="Industry roles and academic chapters that shaped how I build and think."
           />
         </RevealOnScroll>
 

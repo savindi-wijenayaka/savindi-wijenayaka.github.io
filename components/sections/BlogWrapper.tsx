@@ -9,8 +9,8 @@ export default function BlogWrapper() {
 
   if (scraped.length > 0) {
     // Only show featured posts (up to 5) on the home page
-    const featured = scraped.filter((p) => p.featured).slice(0, 5);
-    const source = featured.length > 0 ? featured : scraped.slice(0, 5);
+    const featured = scraped.filter((p) => p.featured).slice(0, 4);
+    const source = featured.length > 0 ? featured : scraped.slice(0, 4);
 
     posts = source.map((p) => ({
       title: p.title,

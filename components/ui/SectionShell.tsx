@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 /**
  * Standard section wrapper used by every full-width portfolio section.
- * Provides consistent vertical padding and the centred 1200px content column.
+ * Fills exactly one viewport height and centres content vertically.
  *
  * Used by: Skills, Timeline, Projects, Achievements, Blog
  */
@@ -23,11 +23,15 @@ export default function SectionShell({
       id={id}
       style={{
         background: bg,
-        padding: "clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem)",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem)",
         ...style,
       }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%" }}>
         {children}
       </div>
     </section>

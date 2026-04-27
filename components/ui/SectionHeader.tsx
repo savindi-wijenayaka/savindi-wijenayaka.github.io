@@ -24,7 +24,7 @@ export default function SectionHeader({
   description,
 }: SectionHeaderProps) {
   return (
-    <div className="mb-10">
+    <div className="mb-6">
       <div className="section-label" style={{ color: accentVar[accent] }}>
         {label}
       </div>

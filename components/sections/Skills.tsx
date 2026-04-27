@@ -14,7 +14,6 @@ export default function SkillsSection() {
             accent="blue"
             plain="Tools of "
             italic="the trade"
-            description="From research models to production systems — across modalities, stacks, and disciplines."
           />
         </RevealOnScroll>
 

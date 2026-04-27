@@ -11,7 +11,10 @@ export default function Contact() {
       style={{
         background: "var(--bg-base)",
         borderTop: "1px solid var(--border)",
-        padding: "clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem)",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        padding: "clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem)",
         textAlign: "center",
       }}
     >
