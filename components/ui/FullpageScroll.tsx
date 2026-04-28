@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, ReactNode, useCallback } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, ReactNode, useCallback } from "react";
 
 const TRANSITION_MS = 980;
 // Opacity settles slightly before position — slide arrives, then sharpens
@@ -19,6 +19,7 @@ export const SECTION_IDS = [
 
 export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
   const [current, setCurrent] = useState(0);
+  const [animated, setAnimated] = useState(false);
   const locked = useRef(false);
   const touchStartY = useRef(0);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -39,18 +40,23 @@ export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
     [slides.length]
   );
 
-  // Jump to hashed section on first load (e.g. direct link to /#projects)
-  useEffect(() => {
+  // Resolve initial slide before first paint — no hero flash, no slide animation.
+  // Priority 1: sessionStorage set by Navbar cross-page nav (router.push('/'))
+  // Priority 2: URL hash for direct deep links (e.g. /#projects)
+  useLayoutEffect(() => {
+    const stored = sessionStorage.getItem("goto-section");
     const hash = window.location.hash.slice(1);
-    const idx = (SECTION_IDS as readonly string[]).indexOf(hash);
+    const target = stored ?? hash;
+    sessionStorage.removeItem("goto-section");
+
+    const idx = (SECTION_IDS as readonly string[]).indexOf(target);
     if (idx > 0) {
       locked.current = true;
       setCurrent(idx);
-      setTimeout(() => {
-        locked.current = false;
-      }, 100);
+      history.replaceState(null, "", `#${SECTION_IDS[idx]}`);
+      setTimeout(() => { locked.current = false; }, 100);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    requestAnimationFrame(() => setAnimated(true));
   }, []);
 
   // Wheel — only change slide when the active slide has hit its scroll boundary
@@ -135,7 +141,7 @@ export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
               overflowY: i === current ? "auto" : "hidden",
               transform: `translateY(${(i - current) * 100}%)`,
               opacity: i === current ? 1 : 0,
-              transition: `transform ${TRANSITION_MS}ms cubic-bezier(0.25, 1, 0.5, 1), opacity ${OPACITY_MS}ms cubic-bezier(0.25, 1, 0.5, 1)`,
+              transition: animated ? `transform ${TRANSITION_MS}ms cubic-bezier(0.25, 1, 0.5, 1), opacity ${OPACITY_MS}ms cubic-bezier(0.25, 1, 0.5, 1)` : "none",
               willChange: "transform, opacity",
             }}
           >

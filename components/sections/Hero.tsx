@@ -4,6 +4,7 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import ParallaxLayer from "@/components/ui/ParallaxLayer";
 import Socials from "@/data/socials";
 import ResearchConstellation from "@/components/ui/ResearchConstellation";
+import { SECTION_IDS } from "@/components/ui/FullpageScroll";
 
 export default function Hero() {
   return (
@@ -202,6 +203,14 @@ export default function Hero() {
             </a>
             <a
               href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(
+                  new CustomEvent("fullpage:goto", {
+                    detail: { index: SECTION_IDS.indexOf("projects") },
+                  })
+                );
+              }}
               data-accent="blue"
               style={{
                 display: "inline-block",

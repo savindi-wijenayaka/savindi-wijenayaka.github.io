@@ -108,6 +108,7 @@ export default function AchievementsSection() {
           {filtered.map((ach, idx) => {
             const isEngineering = ach.category === "Engineering";
             const accent = isEngineering ? "var(--emerald)" : "var(--lavender)";
+            const overlayAccent = isEngineering ? "var(--overlay-emerald)" : "var(--overlay-lavender)";
             const borderAccent = isEngineering
               ? "var(--border-emerald)"
               : "var(--border-lavender)";
@@ -268,7 +269,7 @@ export default function AchievementsSection() {
                     style={{
                       position: "absolute",
                       inset: 0,
-                      background: "rgba(7, 12, 24, 0.92)",
+                      background: "var(--overlay-bg)",
                       backdropFilter: "blur(10px)",
                       opacity: 0,
                       transform: "translateY(8px)",
@@ -279,31 +280,10 @@ export default function AchievementsSection() {
                       padding: "1.5rem",
                     }}
                   >
-                    {/* Title echo at top */}
-                    <div
-                      style={{
-                        fontFamily: "var(--font-mono), monospace",
-                        fontSize: 10,
-                        color: accent,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        marginBottom: "0.5rem",
-                      }}
-                    >
-                      {ach.title} — {ach.year}
-                    </div>
-                    <div
-                      style={{
-                        height: 1,
-                        background: accent,
-                        opacity: 0.5,
-                        marginBottom: "0.75rem",
-                      }}
-                    />
                     <p
                       style={{
                         fontSize: 13,
-                        color: "var(--text-secondary)",
+                        color: "var(--overlay-text)",
                         lineHeight: 1.7,
                         margin: 0,
                       }}
@@ -318,7 +298,7 @@ export default function AchievementsSection() {
                         style={{
                           fontFamily: "var(--font-mono), monospace",
                           fontSize: 11,
-                          color: accent,
+                          color: overlayAccent,
                           textDecoration: "none",
                           marginTop: "0.75rem",
                           letterSpacing: "0.06em",
