@@ -16,7 +16,7 @@ const LERP_TORCH = 0.10;
 const TORCH_R_DEF = 70;
 const TORCH_R_HOV = 90;
 
-type AccentKey = "default" | "emerald" | "blue" | "lavender";
+type AccentKey = "default" | "emerald" | "blue" | "lavender" | "contrast";
 
 // Display colors — populated at mount from actual CSS variables
 type RGBA = [number, number, number, number];
@@ -25,6 +25,7 @@ const DISPLAY: Record<AccentKey, RGBA> = {
   emerald:  [99,  196, 173, 1.0],
   blue:     [79,  160, 216, 1.0],
   lavender: [168, 128, 200, 1.0],
+  contrast: [228, 236, 255, 0.90], // inverse-theme default; set in buildSigs()
 };
 
 // Known accent RGB signatures — rebuilt at mount from CSS variables
@@ -51,17 +52,39 @@ function parseHexOrRGB(s: string): [number, number, number] | null {
   return null;
 }
 
-function buildSigs() {
+function buildSigs(): [number, number, number] {
   const root = getComputedStyle(document.documentElement);
   SIGS = [];
+
+  // Detect light mode by --bg-void luminance (light bg = light mode)
+  const bgVoid = parseHexOrRGB(root.getPropertyValue("--bg-void"));
+  const isLight = bgVoid
+    ? bgVoid[0] * 0.299 + bgVoid[1] * 0.587 + bgVoid[2] * 0.114 > 128
+    : false;
+
   for (const key of ["emerald", "blue", "lavender"] as const) {
     const rgb = parseHexOrRGB(root.getPropertyValue(`--${key}`));
     if (rgb) {
       SIGS.push({ r: rgb[0], g: rgb[1], b: rgb[2], key });
-      // Update display palette to match actual theme colors
-      DISPLAY[key] = [rgb[0], rgb[1], rgb[2], 1.0];
+      // In light mode, theme accents are dark (designed for text on light bg).
+      // Brighten them +80 so the cursor crosshair is visible on dark-filled buttons too.
+      DISPLAY[key] = isLight
+        ? [Math.min(255, rgb[0] + 80), Math.min(255, rgb[1] + 80), Math.min(255, rgb[2] + 80), 1.0]
+        : [rgb[0], rgb[1], rgb[2], 1.0];
     }
   }
+
+  const primary = parseHexOrRGB(root.getPropertyValue("--text-primary"));
+  if (primary) DISPLAY.default = [primary[0], primary[1], primary[2], 0.85];
+
+  // contrast = inverse-theme default for on-filled-button visibility
+  // Light mode default is dark → contrast should be off-white (dark mode's default)
+  // Dark mode default is light → contrast should be dark navy (light mode's default)
+  DISPLAY.contrast = isLight
+    ? [228, 236, 255, 0.90]
+    : [12,  17,  48,  0.90];
+
+  return (primary ?? [228, 236, 255]) as [number, number, number];
 }
 
 function matchColor(r: number, g: number, b: number): AccentKey | null {
@@ -81,7 +104,13 @@ function detectAccent(el: Element): AccentKey {
   let node: Element | null = el;
   for (let d = 0; d < 10 && node && node !== document.body; d++) {
     const a = node.getAttribute("data-accent");
-    if (a === "emerald" || a === "blue" || a === "lavender") return a;
+    if (a === "emerald" || a === "blue" || a === "lavender") {
+        // If the element's background IS the accent fill, cursor would blend in.
+        // Fall back to "default" (--text-primary) which always contrasts filled surfaces.
+        const bg = parseHexOrRGB(getComputedStyle(node).backgroundColor);
+        if (bg && matchColor(bg[0], bg[1], bg[2]) === a) return "contrast";
+        return a;
+      }
     node = node.parentElement;
   }
 
@@ -128,6 +157,7 @@ function findClickable(el: Element | null): Element | null {
   const ROLES = new Set(["button","link","tab","menuitem","option","checkbox","radio","switch"]);
   let node = el;
   for (let i = 0; i < 8 && node && node !== document.body; i++) {
+    if (node.getAttribute("data-cursor") === "none") return null;
     const tag = node.tagName.toLowerCase();
     if (TAGS.has(tag)) return node;
     const role = node.getAttribute("role");
@@ -163,7 +193,16 @@ export default function CustomCursor() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Read actual theme colors at mount (works for dark + light mode)
-    buildSigs();
+    const initRGB = buildSigs();
+    curRGBA.current = [initRGB[0], initRGB[1], initRGB[2], 0.85];
+
+    // Re-read on theme toggle (data-theme attribute change)
+    const themeObserver = new MutationObserver(() => {
+      const rgb = buildSigs();
+      curRGBA.current = [rgb[0], rgb[1], rgb[2], 0.85];
+      targetKey.current = "default";
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     document.body.classList.add("custom-cursor");
     setMounted(true);
@@ -259,6 +298,7 @@ export default function CustomCursor() {
 
     return () => {
       cancelAnimationFrame(rafId);
+      themeObserver.disconnect();
       document.removeEventListener("mousemove",  onMove);
       document.removeEventListener("mousedown",  onDown);
       document.removeEventListener("mouseup",    onUp);

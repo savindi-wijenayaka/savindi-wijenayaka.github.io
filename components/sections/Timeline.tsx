@@ -179,6 +179,7 @@ export default function Timeline() {
                     >
                       {/* Row 1 — industry tile sits here, academic row is empty */}
                       <div
+                        data-cursor={!isIndustry ? "none" : undefined}
                         style={{
                           display: "flex",
                           alignItems: "flex-end",
@@ -219,6 +220,7 @@ export default function Timeline() {
 
                       {/* Row 3 — academic tile sits here, industry row is empty */}
                       <div
+                        data-cursor={isIndustry ? "none" : undefined}
                         style={{
                           display: "flex",
                           alignItems: "flex-start",
