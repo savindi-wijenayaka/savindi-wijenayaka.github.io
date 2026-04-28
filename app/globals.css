@@ -13,6 +13,8 @@
   --bg-base:        #080F1E;
   --bg-elevated:    #0D1828;
   --bg-overlay:     #122033;
+  --bg-void-t:      rgba(5, 11, 24, 0.80);
+  --bg-base-t:      rgba(8, 15, 30, 0.80);
 
   /* Text */
   --text-primary:   #E4ECFF;
@@ -77,6 +79,8 @@
   --bg-base:        #EFF2FF;  /* page canvas — slightly lighter                */
   --bg-elevated:    #F6F8FF;  /* cards / panels — off-white with blue cast      */
   --bg-overlay:     #E0E8FF;  /* hover states / overlays — deeper periwinkle   */
+  --bg-void-t:      rgba(232, 238, 255, 0.80);
+  --bg-base-t:      rgba(239, 242, 255, 0.80);
 
   /* Text — deep navy family, no pure black */
   --text-primary:   #0C1130;  /* midnight navy, 16.4:1 on bg-void              */

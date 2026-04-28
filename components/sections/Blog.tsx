@@ -322,7 +322,7 @@ export default function BlogSection({ posts }: { posts: BlogLink[] }) {
   const [featured, ...rest] = posts;
 
   return (
-    <SectionShell id="blog" bg="var(--bg-base)">
+    <SectionShell id="blog" bg="var(--bg-base-t)">
         <RevealOnScroll>
           <SectionHeader
             label="Writing"

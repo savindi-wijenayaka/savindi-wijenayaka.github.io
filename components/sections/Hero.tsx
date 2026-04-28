@@ -159,7 +159,7 @@ export default function Hero() {
             }}
           >
             Building intelligent systems that learn, adapt, and make sense of
-            complex data — from research to production.
+            complex data - from research to production.
           </p>
         </RevealOnScroll>
 
@@ -167,7 +167,9 @@ export default function Hero() {
         <RevealOnScroll delay={320}>
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "3rem" }}>
             <a
-              href="#projects"
+              href="/CV_SavindiWijenayaka_ML.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               data-accent="emerald"
               style={{
                 display: "inline-block",
@@ -182,27 +184,24 @@ export default function Hero() {
                 background: "var(--emerald)",
                 color: "var(--bg-void)",
                 border: "1.5px solid var(--emerald)",
-                transition: "background 200ms, color 200ms, transform 200ms",
+                boxShadow: "none",
+                transition: "transform 200ms, box-shadow 200ms",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = "transparent";
-                el.style.color = "var(--emerald)";
+                el.style.boxShadow = "0 0 12px rgba(99,196,173,0.30)";
                 el.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = "var(--emerald)";
-                el.style.color = "var(--bg-void)";
+                el.style.boxShadow = "none";
                 el.style.transform = "translateY(0)";
               }}
             >
-              View My Work
+              Download CV
             </a>
             <a
-              href="/CV_SavindiWijenayaka_ML.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#projects"
               data-accent="blue"
               style={{
                 display: "inline-block",
@@ -232,7 +231,7 @@ export default function Hero() {
                 el.style.transform = "translateY(0)";
               }}
             >
-              Download CV
+              View My Work
             </a>
           </div>
         </RevealOnScroll>
@@ -253,15 +252,19 @@ export default function Hero() {
                   style={{
                     color: "var(--text-muted)",
                     fontSize: 18,
-                    transition: "color 150ms",
+                    transition: "color 150ms, transform 150ms ease-out",
                     display: "flex",
                   }}
-                  onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color = "var(--emerald)")
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-muted)")
-                  }
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.color = "var(--emerald)";
+                    el.style.transform = "scale(1.2)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.color = "var(--text-muted)";
+                    el.style.transform = "scale(1)";
+                  }}
                 >
                   <Icon />
                 </a>

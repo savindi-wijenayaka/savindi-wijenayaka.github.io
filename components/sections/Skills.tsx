@@ -7,7 +7,7 @@ import Skills, { SkillCategories } from "@/data/skills";
 
 export default function SkillsSection() {
   return (
-    <SectionShell id="skills" bg="var(--bg-base)">
+    <SectionShell id="skills" bg="var(--bg-base-t)">
         <RevealOnScroll>
           <SectionHeader
             label="Technical Skills"

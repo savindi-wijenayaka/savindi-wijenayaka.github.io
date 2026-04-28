@@ -111,7 +111,7 @@ export default function Timeline() {
       : "rgba(168,128,200,0.55)";
 
   return (
-    <SectionShell id="timeline" bg="var(--bg-void)">
+    <SectionShell id="timeline" bg="var(--bg-void-t)">
         <RevealOnScroll>
           <SectionHeader
             label="Experience & Education"

@@ -17,7 +17,7 @@ export default function AchievementsSection() {
       : Achievements.filter((a) => a.category === activeCategory);
 
   return (
-    <SectionShell id="achievements" bg="var(--bg-void)">
+    <SectionShell id="achievements" bg="var(--bg-void-t)">
         <RevealOnScroll>
           <SectionHeader
             label="Achievements"

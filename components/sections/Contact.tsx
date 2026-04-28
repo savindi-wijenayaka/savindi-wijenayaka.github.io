@@ -9,7 +9,7 @@ export default function Contact() {
     <section
       id="contact"
       style={{
-        background: "var(--bg-base)",
+        background: "var(--bg-base-t)",
         borderTop: "1px solid var(--border)",
         minHeight: "100vh",
         display: "flex",
