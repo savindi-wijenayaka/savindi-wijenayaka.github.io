@@ -32,7 +32,7 @@ export default function ProjectsSection() {
   const featured = Projects.filter((p) => p.featured);
 
   return (
-    <SectionShell id="projects" bg="var(--bg-base)">
+    <SectionShell id="projects" bg="var(--bg-base-t)">
         <RevealOnScroll>
           <SectionHeader
             label="Projects"
