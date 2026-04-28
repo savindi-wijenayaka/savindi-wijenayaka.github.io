@@ -46,7 +46,7 @@ export default function Navbar() {
         justifyContent: "space-between",
         padding: "0 clamp(1.25rem, 5vw, 3rem)",
         borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-        background: scrolled ? "rgba(7, 12, 24, 0.88)" : "transparent",
+        background: scrolled ? "var(--bg-nav)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         transition: "background 0.4s, border-color 0.4s, backdrop-filter 0.4s",
       }}
@@ -150,7 +150,7 @@ export default function Navbar() {
             top: 62,
             left: 0,
             right: 0,
-            background: "rgba(7, 12, 24, 0.96)",
+            background: "var(--bg-nav-mobile)",
             backdropFilter: "blur(16px)",
             borderBottom: "1px solid var(--border)",
             padding: "1rem clamp(1.25rem, 5vw, 3rem)",
