@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import { SECTION_IDS } from "@/components/ui/FullpageScroll";
 
 const navLinks = [
   { label: "skills",       index: 1 },
   { label: "experience",   index: 2 },
   { label: "projects",     index: 3 },
   { label: "achievements", index: 4 },
-  { label: "blog",         index: 5 },
+  { label: "blog",         index: 5, href: "/blog" },
   { label: "contact",      index: 6 },
 ];
 
@@ -21,6 +23,16 @@ function goToSlide(index: number) {
 export default function Navbar() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  function handleLogoClick() {
+    if (pathname === "/") {
+      goToSlide(0);
+    } else {
+      router.push("/");
+    }
+  }
 
   useEffect(() => {
     const handle = (e: Event) => {
@@ -53,7 +65,7 @@ export default function Navbar() {
     >
       {/* Logo — click returns to hero */}
       <button
-        onClick={() => goToSlide(0)}
+        onClick={handleLogoClick}
         style={{
           fontFamily: "var(--font-mono), monospace",
           fontSize: 13,
@@ -92,7 +104,11 @@ export default function Navbar() {
           return (
             <li key={link.label}>
               <button
-                onClick={() => goToSlide(link.index)}
+                onClick={() => {
+                  if (link.href) { router.push(link.href); return; }
+                  if (pathname !== "/") { sessionStorage.setItem("goto-section", SECTION_IDS[link.index]); router.push("/"); return; }
+                  goToSlide(link.index);
+                }}
                 style={{
                   fontFamily: "var(--font-mono), monospace",
                   fontSize: "11.5px",
@@ -164,6 +180,8 @@ export default function Navbar() {
               key={link.label}
               onClick={() => {
                 setMenuOpen(false);
+                if (link.href) { router.push(link.href); return; }
+                if (pathname !== "/") { sessionStorage.setItem("goto-section", SECTION_IDS[link.index]); router.push("/"); return; }
                 goToSlide(link.index);
               }}
               style={{
