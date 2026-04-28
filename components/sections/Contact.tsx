@@ -45,31 +45,6 @@ export default function Contact() {
           </p>
         </RevealOnScroll>
 
-        <RevealOnScroll delay={160}>
-          <a
-            href="mailto:savindi.wijenayaka@gmail.com"
-            style={{
-              fontFamily: "var(--font-mono), monospace",
-              fontSize: 18,
-              color: "var(--lavender)",
-              textDecoration: "none",
-              display: "inline-block",
-              marginBottom: "2.5rem",
-              letterSpacing: "0.04em",
-              borderBottom: "1px solid var(--border-lavender)",
-              paddingBottom: 3,
-              transition: "color 200ms",
-            }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-primary)")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLAnchorElement).style.color = "var(--lavender)")
-            }
-          >
-            savindi.wijenayaka@gmail.com
-          </a>
-        </RevealOnScroll>
 
         <RevealOnScroll delay={240}>
           <div
