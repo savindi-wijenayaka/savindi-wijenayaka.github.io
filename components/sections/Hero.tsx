@@ -2,7 +2,6 @@
 
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import ParallaxLayer from "@/components/ui/ParallaxLayer";
-import Socials from "@/data/socials";
 import ResearchConstellation from "@/components/ui/ResearchConstellation";
 import { SECTION_IDS } from "@/components/ui/FullpageScroll";
 
@@ -109,9 +108,22 @@ export default function Hero() {
               Wijenayaka
               <span
                 style={{
+                  fontSize: "0.32em",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  letterSpacing: "0.02em",
+                  marginLeft: "0.3em",
+                  verticalAlign: "baseline",
+                  color: "#fff",
+                }}
+              >
+                Ph.D.
+              </span>
+              <span
+                style={{
                   display: "inline-block",
-                  width: "0.55em",
-                  height: 3,
+                  width: "0.4em",
+                  height: 2,
                   background: "var(--emerald)",
                   marginLeft: 4,
                   verticalAlign: "-0.08em",
@@ -312,43 +324,6 @@ export default function Hero() {
             >
               View My Work
             </a>
-          </div>
-        </RevealOnScroll>
-
-        {/* Social links */}
-        <RevealOnScroll delay={380}>
-          <div style={{ display: "flex", gap: "1.25rem", alignItems: "center" }}>
-            {Socials.map((s) => {
-              const Icon = s.icon;
-              return (
-                <a
-                  key={s.label}
-                  href={s.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  data-accent="emerald"
-                  style={{
-                    color: "var(--text-muted)",
-                    fontSize: 18,
-                    transition: "color 150ms, transform 150ms ease-out",
-                    display: "flex",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.color = "var(--emerald)";
-                    el.style.transform = "scale(1.2)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.color = "var(--text-muted)";
-                    el.style.transform = "scale(1)";
-                  }}
-                >
-                  <Icon />
-                </a>
-              );
-            })}
           </div>
         </RevealOnScroll>
 
