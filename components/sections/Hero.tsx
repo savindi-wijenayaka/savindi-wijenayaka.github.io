@@ -155,13 +155,83 @@ export default function Hero() {
               color: "var(--text-secondary)",
               fontWeight: 400,
               maxWidth: 520,
-              marginBottom: "2.8rem",
+              marginBottom: "2.2rem",
               lineHeight: 1.9,
             }}
           >
             Building intelligent systems that learn, adapt, and make sense of
             complex data - from research to production.
           </p>
+        </RevealOnScroll>
+
+        {/* Impact stats */}
+        <RevealOnScroll delay={280}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1.75rem",
+              marginBottom: "2.4rem",
+              flexWrap: "wrap",
+            }}
+          >
+            {[
+              { value: "4", color: "var(--blue)", label: "Domains" },
+              null,
+              {
+                split: ["3+", "3+"],
+                colors: ["var(--emerald)", "var(--lavender-soft)"],
+                label: "Yrs Industry / Academia",
+              },
+              null,
+              { value: "8", color: "var(--emerald)", label: "Projects" },
+            ].map((item, i) =>
+              item === null ? (
+                <span
+                  key={i}
+                  aria-hidden
+                  style={{
+                    display: "inline-block",
+                    width: 1,
+                    height: 30,
+                    background: "var(--border-emerald)",
+                  }}
+                />
+              ) : (
+                <div key={i} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-mono), monospace",
+                      fontSize: "clamp(1.3rem, 2.4vw, 1.7rem)",
+                      fontWeight: 700,
+                      lineHeight: 1,
+                    }}
+                  >
+                    {item.split ? (
+                      <>
+                        <span style={{ color: item.colors![0] }}>{item.split[0]}</span>
+                        <span style={{ color: "var(--text-muted)", fontSize: "0.7em" }}> / </span>
+                        <span style={{ color: item.colors![1] }}>{item.split[1]}</span>
+                      </>
+                    ) : (
+                      <span style={{ color: item.color }}>{item.value}</span>
+                    )}
+                  </div>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono), monospace",
+                      fontSize: 10,
+                      color: "var(--text-muted)",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              )
+            )}
+          </div>
         </RevealOnScroll>
 
         {/* CTA buttons */}
