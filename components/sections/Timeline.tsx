@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SectionShell from "@/components/ui/SectionShell";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
@@ -98,6 +98,17 @@ export default function Timeline() {
   const selected = entries.find((e) => e.id === selectedId)!;
   const selectedIndex = entries.findIndex((e) => e.id === selectedId);
 
+  // Defaults false to match server render; flipped after mount (same guard
+  // pattern as FullpageScroll's isMobile) to avoid a hydration mismatch.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handle = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handle);
+    return () => mq.removeEventListener("change", handle);
+  }, []);
+
   // Spine runs from center of first tile to center of last tile
   const tileHalf = 100 / (2 * entries.length);
 
@@ -125,6 +136,77 @@ export default function Timeline() {
           />
         </RevealOnScroll>
 
+        {/* ── Mobile — vertical tile list, no river/panel ─────────── */}
+        {isMobile && (
+          <RevealOnScroll>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {entries.map((entry) => {
+                const isIndustry = entry.type === "industry";
+                const accent = isIndustry ? "var(--emerald)" : "var(--lavender)";
+                const borderAccent = isIndustry
+                  ? "var(--border-emerald)"
+                  : "var(--border-lavender)";
+                return (
+                  <div
+                    key={entry.id}
+                    data-accent={isIndustry ? "emerald" : "lavender"}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: "0.75rem",
+                      background: "var(--bg-base)",
+                      border: `1px solid ${borderAccent}`,
+                      borderRadius: "var(--radius-md)",
+                      padding: "0.75rem 1rem",
+                    }}
+                  >
+                    <div>
+                      <div
+                        style={{
+                          fontFamily: "var(--font-mono), monospace",
+                          fontSize: 13,
+                          fontWeight: 500,
+                          color: "var(--text-primary)",
+                          lineHeight: 1.45,
+                        }}
+                      >
+                        {entry.role}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "var(--font-mono), monospace",
+                          fontSize: 12,
+                          color: accent,
+                          letterSpacing: "0.03em",
+                          marginTop: 3,
+                        }}
+                      >
+                        {entry.company}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-mono), monospace",
+                        fontSize: 11,
+                        color: "var(--text-muted)",
+                        letterSpacing: "0.06em",
+                        opacity: 0.7,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {entry.dateRange}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </RevealOnScroll>
+        )}
+
+        {/* ── Desktop — zigzag river + tap-to-select panel ────────── */}
+        {!isMobile && (
+        <>
         {/* ── Timeline Rail ─────────────────────────────────────── */}
         <RevealOnScroll>
           <div className="timeline-scroll" style={{ overflowX: "auto" }}>
@@ -430,6 +512,8 @@ export default function Timeline() {
           </div>
           </div>{/* end paddingTop wrapper */}
         </RevealOnScroll>
+        </>
+        )}
     </SectionShell>
   );
 }

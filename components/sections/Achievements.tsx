@@ -5,11 +5,18 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import SectionShell from "@/components/ui/SectionShell";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import Achievements, { AchievementCategories } from "@/data/achievements";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AchievementsSection() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const openCardRef = useRef<HTMLDivElement | null>(null);
   const categories = ["All", ...AchievementCategories];
+
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      setActiveCategory("Engineering");
+    }
+  }, []);
 
   const filtered =
     activeCategory === "All"
@@ -56,6 +63,7 @@ export default function AchievementsSection() {
                 <button
                   key={cat}
                   data-accent={tabAccentKey}
+                  className={cat === "All" ? "achv-tab-all" : undefined}
                   onClick={() => setActiveCategory(cat)}
                   style={{
                     fontFamily: "var(--font-mono), monospace",
@@ -102,13 +110,7 @@ export default function AchievementsSection() {
           </div>
         </RevealOnScroll>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "1.25rem",
-          }}
-        >
+        <div className="achv-grid">
           {filtered.map((ach, idx) => {
             const isEngineering = ach.category === "Engineering";
             const accent = isEngineering ? "var(--emerald)" : "var(--lavender)";
@@ -152,6 +154,38 @@ export default function AchievementsSection() {
                     const overlay = el.querySelector(".ach-overlay") as HTMLElement;
                     if (overlay) overlay.style.opacity = "0";
                     if (overlay) overlay.style.transform = "translateY(8px)";
+                  }}
+                  onClick={(e) => {
+                    // Touch devices have no hover — tap toggles the overlay instead.
+                    if (!window.matchMedia("(pointer: coarse)").matches) return;
+                    const el = e.currentTarget as HTMLDivElement;
+                    const isOpen = el.dataset.open === "true";
+
+                    const close = (card: HTMLDivElement) => {
+                      const overlay = card.querySelector(".ach-overlay") as HTMLElement;
+                      if (overlay) { overlay.style.opacity = "0"; overlay.style.transform = "translateY(8px)"; }
+                      card.style.transform = "translateY(0)";
+                      card.style.borderColor = "var(--border)";
+                      card.style.boxShadow = "none";
+                      card.dataset.open = "false";
+                    };
+
+                    if (openCardRef.current && openCardRef.current !== el) {
+                      close(openCardRef.current);
+                    }
+
+                    if (isOpen) {
+                      close(el);
+                      openCardRef.current = null;
+                    } else {
+                      const overlay = el.querySelector(".ach-overlay") as HTMLElement;
+                      if (overlay) { overlay.style.opacity = "1"; overlay.style.transform = "translateY(0)"; }
+                      el.style.transform = "translateY(-4px)";
+                      el.style.borderColor = borderAccent;
+                      el.style.boxShadow = "0 8px 32px rgba(0,0,0,0.35)";
+                      el.dataset.open = "true";
+                      openCardRef.current = el;
+                    }
                   }}
                 >
                   {/* Photo */}

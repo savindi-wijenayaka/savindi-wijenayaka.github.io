@@ -8,13 +8,15 @@ export default function Contact() {
   return (
     <section
       id="contact"
+      className="rail-safe-x"
       style={{
         background: "var(--bg-base-t)",
         borderTop: "1px solid var(--border)",
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        padding: "clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem)",
+        paddingTop: "clamp(2rem, 4vw, 3rem)",
+        paddingBottom: "clamp(2rem, 4vw, 3rem)",
         textAlign: "center",
       }}
     >
