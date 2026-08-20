@@ -332,17 +332,29 @@ export default function BlogSection({ posts }: { posts: BlogLink[] }) {
           />
         </RevealOnScroll>
 
-        {/* Featured post */}
-        <RevealOnScroll>
-          <div style={{ borderTop: "1px solid var(--border)", paddingTop: "1.25rem", paddingBottom: "1.25rem" }}>
-            <FeaturedPost post={featured} />
-          </div>
-        </RevealOnScroll>
+        {/* Desktop: featured post + secondary list */}
+        <div className="blog-desktop-list">
+          <RevealOnScroll>
+            <div style={{ borderTop: "1px solid var(--border)", paddingTop: "1.25rem", paddingBottom: "1.25rem" }}>
+              <FeaturedPost post={featured} />
+            </div>
+          </RevealOnScroll>
 
-        {/* Secondary posts */}
-        {rest.map((post, i) => (
-          <SecondaryPost key={post.url + i} post={post} delay={i * 60} />
-        ))}
+          {rest.map((post, i) => (
+            <SecondaryPost key={post.url + i} post={post} delay={i * 60} />
+          ))}
+        </div>
+
+        {/* Mobile: 3 posts, all using the featured template */}
+        <div className="blog-mobile-list">
+          {posts.slice(0, 3).map((post, i) => (
+            <RevealOnScroll key={post.url + i} delay={i * 60}>
+              <div style={{ borderTop: "1px solid var(--border)", paddingTop: "1.25rem", paddingBottom: "1.25rem" }}>
+                <FeaturedPost post={post} />
+              </div>
+            </RevealOnScroll>
+          ))}
+        </div>
 
         {/* View all */}
         <RevealOnScroll>

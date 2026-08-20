@@ -21,13 +21,15 @@ export default function SectionShell({
   return (
     <section
       id={id}
+      className="section-shell"
       style={{
         background: bg,
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem)",
+        paddingTop: "clamp(2rem, 4vw, 3rem)",
+        paddingBottom: "clamp(2rem, 4vw, 3rem)",
         ...style,
       }}
     >

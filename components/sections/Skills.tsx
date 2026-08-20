@@ -18,9 +18,9 @@ export default function SkillsSection() {
         </RevealOnScroll>
 
         <div
+          className="skills-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
             gap: "1.5rem",
             alignItems: "stretch",
           }}

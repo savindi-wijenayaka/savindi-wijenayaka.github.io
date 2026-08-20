@@ -4,6 +4,7 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import ParallaxLayer from "@/components/ui/ParallaxLayer";
 import ResearchConstellation from "@/components/ui/ResearchConstellation";
 import { SECTION_IDS } from "@/components/ui/FullpageScroll";
+import Socials from "@/data/socials";
 
 export default function Hero() {
   return (
@@ -41,10 +42,12 @@ export default function Hero() {
 
       <ParallaxLayer speed={0.12} style={{ position: "relative", zIndex: 1, width: "100%" }}>
       <div
+        className="rail-safe-x"
         style={{
           maxWidth: 1200,
           margin: "0 auto",
-          padding: "clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 4rem)",
+          paddingTop: "clamp(3rem, 8vw, 5rem)",
+          paddingBottom: "clamp(3rem, 8vw, 5rem)",
         }}
       >
 
@@ -176,76 +179,6 @@ export default function Hero() {
           </p>
         </RevealOnScroll>
 
-        {/* Impact stats */}
-        <RevealOnScroll delay={280}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1.75rem",
-              marginBottom: "2.4rem",
-              flexWrap: "wrap",
-            }}
-          >
-            {[
-              { value: "4", color: "var(--blue)", label: "Domains" },
-              null,
-              {
-                split: ["3+", "3+"],
-                colors: ["var(--emerald)", "var(--lavender-soft)"],
-                label: "Yrs Industry / Academia",
-              },
-              null,
-              { value: "8", color: "var(--emerald)", label: "Projects" },
-            ].map((item, i) =>
-              item === null ? (
-                <span
-                  key={i}
-                  aria-hidden
-                  style={{
-                    display: "inline-block",
-                    width: 1,
-                    height: 30,
-                    background: "var(--border-emerald)",
-                  }}
-                />
-              ) : (
-                <div key={i} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-mono), monospace",
-                      fontSize: "clamp(1.3rem, 2.4vw, 1.7rem)",
-                      fontWeight: 700,
-                      lineHeight: 1,
-                    }}
-                  >
-                    {item.split ? (
-                      <>
-                        <span style={{ color: item.colors![0] }}>{item.split[0]}</span>
-                        <span style={{ color: "var(--text-muted)", fontSize: "0.7em" }}> / </span>
-                        <span style={{ color: item.colors![1] }}>{item.split[1]}</span>
-                      </>
-                    ) : (
-                      <span style={{ color: item.color }}>{item.value}</span>
-                    )}
-                  </div>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono), monospace",
-                      fontSize: 10,
-                      color: "var(--text-muted)",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {item.label}
-                  </span>
-                </div>
-              )
-            )}
-          </div>
-        </RevealOnScroll>
-
         {/* CTA buttons */}
         <RevealOnScroll delay={320}>
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "3rem" }}>
@@ -324,6 +257,39 @@ export default function Hero() {
             >
               View My Work
             </a>
+          </div>
+        </RevealOnScroll>
+
+        {/* Socials — mobile only; desktop keeps the fixed side rail */}
+        <RevealOnScroll delay={360}>
+          <div className="hero-socials-mobile" style={{ gap: "0.75rem" }}>
+            {Socials.map((s) => {
+              const Icon = s.icon;
+              return (
+                <a
+                  key={s.label}
+                  href={s.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  data-accent="emerald"
+                  style={{
+                    width: 44,
+                    height: 44,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: "50%",
+                    background: "var(--bg-elevated)",
+                    border: "1px solid var(--border-emerald)",
+                    color: "var(--text-muted)",
+                    fontSize: 17,
+                  }}
+                >
+                  <Icon />
+                </a>
+              );
+            })}
           </div>
         </RevealOnScroll>
 

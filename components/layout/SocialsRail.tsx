@@ -5,12 +5,12 @@ import Socials from "@/data/socials";
 export default function SocialsRail() {
   return (
     <div
+      className="hidden md:flex"
       style={{
         position: "fixed",
         left: "clamp(1.25rem, 3vw, 2rem)",
         bottom: 0,
         zIndex: 90,
-        display: "flex",
         flexDirection: "column",
         alignItems: "center",
         paddingBottom: "3.5rem",

@@ -5,9 +5,11 @@ import Socials from "@/data/socials";
 export default function Footer() {
   return (
     <footer
+      className="rail-safe-x"
       style={{
         borderTop: "1px solid var(--border)",
-        padding: "1.75rem clamp(1.25rem, 5vw, 3rem)",
+        paddingTop: "1.75rem",
+        paddingBottom: "1.75rem",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",

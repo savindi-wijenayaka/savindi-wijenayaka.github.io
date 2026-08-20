@@ -17,12 +17,25 @@ export const SECTION_IDS = [
   "contact",
 ] as const;
 
+const MOBILE_QUERY = "(max-width: 767px)";
+
 export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
   const [current, setCurrent] = useState(0);
   const [animated, setAnimated] = useState(false);
+  // Defaults false to match server render; flipped in an effect after mount
+  // (same pattern as CustomCursor's `mounted` gate) to avoid hydration mismatch.
+  const [isMobile, setIsMobile] = useState(false);
   const locked = useRef(false);
   const touchStartY = useRef(0);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_QUERY);
+    setIsMobile(mq.matches);
+    const handle = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handle);
+    return () => mq.removeEventListener("change", handle);
+  }, []);
 
   const goTo = useCallback(
     (next: number) => {
@@ -49,6 +62,15 @@ export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
     const target = stored ?? hash;
     sessionStorage.removeItem("goto-section");
 
+    if (window.matchMedia(MOBILE_QUERY).matches) {
+      if (target) {
+        requestAnimationFrame(() => {
+          document.getElementById(target)?.scrollIntoView({ behavior: "auto" });
+        });
+      }
+      return;
+    }
+
     const idx = (SECTION_IDS as readonly string[]).indexOf(target);
     if (idx > 0) {
       locked.current = true;
@@ -61,6 +83,7 @@ export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
 
   // Wheel — only change slide when the active slide has hit its scroll boundary
   useEffect(() => {
+    if (isMobile) return;
     const handle = (e: WheelEvent) => {
       if (locked.current) {
         e.preventDefault();
@@ -81,10 +104,11 @@ export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
     };
     window.addEventListener("wheel", handle, { passive: false });
     return () => window.removeEventListener("wheel", handle);
-  }, [current, goTo]);
+  }, [current, goTo, isMobile]);
 
   // Keyboard — arrow keys / page up / page down
   useEffect(() => {
+    if (isMobile) return;
     const handle = (e: KeyboardEvent) => {
       if (e.key === "ArrowDown" || e.key === "PageDown") {
         e.preventDefault();
@@ -96,10 +120,11 @@ export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
     };
     window.addEventListener("keydown", handle);
     return () => window.removeEventListener("keydown", handle);
-  }, [current, goTo]);
+  }, [current, goTo, isMobile]);
 
   // Touch swipe
   useEffect(() => {
+    if (isMobile) return;
     const onStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY;
     };
@@ -114,16 +139,23 @@ export default function FullpageScroll({ slides }: { slides: ReactNode[] }) {
       window.removeEventListener("touchstart", onStart);
       window.removeEventListener("touchend", onEnd);
     };
-  }, [current, goTo]);
+  }, [current, goTo, isMobile]);
 
   // External navigation (navbar, dot clicks, etc.)
   useEffect(() => {
+    if (isMobile) return;
     const handle = (e: Event) => {
       goTo((e as CustomEvent<{ index: number }>).detail.index);
     };
     window.addEventListener("fullpage:goto", handle);
     return () => window.removeEventListener("fullpage:goto", handle);
-  }, [goTo]);
+  }, [goTo, isMobile]);
+
+  // Mobile — bypass the slide-stack entirely, sections render in normal
+  // document flow (each already carries its own id from SectionShell).
+  if (isMobile) {
+    return <>{slides}</>;
+  }
 
   return (
     <>

@@ -414,6 +414,98 @@ body {
   }
 }
 
+.blog-mobile-list {
+  display: none;
+}
+@media (max-width: 767px) {
+  .blog-desktop-list {
+    display: none;
+  }
+  .blog-mobile-list {
+    display: block;
+  }
+}
+
+/* ── Achievements grid ─────────────────────────────────────────── */
+.achv-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 1024px) {
+  .achv-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* ── Hero impact stats — keep on one row on mobile ────────────────── */
+@media (max-width: 767px) {
+  .hero-stats-row {
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.9rem !important;
+  }
+  .hero-stat-col {
+    align-self: flex-start;
+  }
+  .hero-stat-divider {
+    align-self: center;
+  }
+  .hero-stat-label {
+    font-size: 8.5px !important;
+    letter-spacing: 0.04em !important;
+    white-space: normal !important;
+    max-width: 72px;
+    display: inline-block;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 767px) {
+  .achv-grid {
+    grid-template-columns: 1fr;
+  }
+  .achv-tab-all {
+    display: none;
+  }
+}
+
+/* ── Horizontal section padding — left side reserves clearance for the
+   fixed SocialsRail (visible at ≥768px, icons span ~23px-73px from the
+   left edge). Below 768 the rail is hidden so symmetric padding is fine.
+   Used by SectionShell and Hero, both of which set their own vertical
+   padding inline. ── */
+.section-shell,
+.rail-safe-x {
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+}
+@media (min-width: 768px) {
+  .section-shell,
+  .rail-safe-x {
+    padding-left: max(clamp(1.5rem, 5vw, 4rem), 6.5rem);
+  }
+}
+
+/* ── Hero socials — mobile only, desktop uses the fixed SocialsRail ─ */
+.hero-socials-mobile {
+  display: flex;
+}
+@media (min-width: 768px) {
+  .hero-socials-mobile {
+    display: none;
+  }
+}
+
+/* ── Skills grid ───────────────────────────────────────────────── */
+.skills-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 767px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Custom cursor — hides native cursor site-wide when active ──── */
 body.custom-cursor,
 body.custom-cursor * {
