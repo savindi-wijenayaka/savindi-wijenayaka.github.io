@@ -60,8 +60,8 @@ const Achievements: Achievement[] = [
   // Extra Curriculum
   {
     id: "hackadev-2017",
-    title: "1st Runners-Up",
-    award: "HackaDev",
+    title: "1st Runner-Up",
+    award: "National Youth Software Competition",
     issuer: "UNDP Sri Lanka",
     year: "2017",
     level: "National",
@@ -76,7 +76,7 @@ const Achievements: Achievement[] = [
     award: "Women's Karate Team",
     issuer: "University of Kelaniya",
     year: "2018",
-    description: "Captained the women's karate team, leading the squad to podium finishes across multiple championships, while maintaining individual form and earning national colours in the same year.",
+    description: "Captained the women's karate team to national 3rd place, earning National and University Colours alongside multiple national and inter-university medals (2016-2018).",
     photo: "/assets/achievements/karate-2018.jpg",
     category: "Extra Curriculum",
   },
