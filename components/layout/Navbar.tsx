@@ -111,7 +111,7 @@ export default function Navbar() {
                 }}
                 style={{
                   fontFamily: "var(--font-mono), monospace",
-                  fontSize: "11.5px",
+                  fontSize: "13.5px",
                   color: isActive ? "var(--blue)" : "var(--text-secondary)",
                   letterSpacing: "0.07em",
                   transition: "color 200ms",

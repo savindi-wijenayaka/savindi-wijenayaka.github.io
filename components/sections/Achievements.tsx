@@ -17,7 +17,11 @@ export default function AchievementsSection() {
       : Achievements.filter((a) => a.category === activeCategory);
 
   return (
-    <SectionShell id="achievements" bg="var(--bg-void-t)">
+    <SectionShell
+      id="achievements"
+      bg="var(--bg-void-t)"
+      style={{ justifyContent: "flex-start", paddingTop: "calc(62px + clamp(1rem, 2vw, 1.5rem))" }}
+    >
         <RevealOnScroll>
           <SectionHeader
             label="Achievements"
