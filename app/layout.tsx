@@ -80,6 +80,20 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Savindi Wijenayaka",
+  url: "https://savindi.com",
+  jobTitle: "Machine Learning Engineer",
+  honorificSuffix: "PhD",
+  sameAs: [
+    "https://www.linkedin.com/in/savindi",
+    "https://github.com/savindi-wijenayaka",
+    "https://savindi-wijenayaka.medium.com",
+  ],
+};
+
 // Inline script prevents flash of unstyled theme (FOUC)
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',d?'dark':'light');}}catch(e){}})();`;
 
@@ -98,6 +112,12 @@ export default function RootLayout({
       <head>
         {/* eslint-disable-next-line react/no-danger */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <CustomCursor />

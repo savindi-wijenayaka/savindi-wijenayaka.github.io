@@ -1,4 +1,4 @@
-export type AchievementCategory = "Engineering" | "Extra Curriculum";
+export type AchievementCategory = "Engineering" | "Extracurricular";
 export type AchievementLevel = "International" | "National";
 
 export interface Achievement {
@@ -51,13 +51,13 @@ const Achievements: Achievement[] = [
     year: "2020",
     level: "National",
     representing: "University of Kelaniya",
-    description: "In a Kaggle-style Data Science hackathon, built and compared a models for customer churn prediction, tackling imbalanced data to identify customers at risk of leaving.",
+    description: "In a Kaggle-style Data Science hackathon, built and compared models for customer churn prediction, tackling imbalanced data to identify customers at risk of leaving.",
     projectUrl: "https://github.com/savindi-wijenayaka/DataStormV1",
     photo: "/assets/achievements/datastorm-2020.jpg",
     category: "Engineering",
   },
 
-  // Extra Curriculum
+  // Extracurricular
   {
     id: "hackadev-2017",
     title: "1st Runner-Up",
@@ -78,7 +78,7 @@ const Achievements: Achievement[] = [
     year: "2018",
     description: "Captained the women's karate team to national 3rd place, earning National and University Colours alongside multiple national and inter-university medals (2016-2018).",
     photo: "/assets/achievements/karate-2018.jpg",
-    category: "Extra Curriculum",
+    category: "Extracurricular",
   },
   {
     id: "aiesec-2018",
@@ -88,9 +88,9 @@ const Achievements: Achievement[] = [
     year: "2018",
     // level: "National",
     // representing: "University of Kelaniya",
-    description: "Led Marketting & Communication of the local chapter. At National Leadership Development Summit 2018, our chapter claimed 6 out of 9 awards, including the night's most prestigious title, \"Most Outstanding Local Committee\". A team win that meant more than any individual medal.",
+    description: "Led Marketing & Communication of the local chapter. At National Leadership Development Summit 2018, our chapter claimed 6 out of 9 awards, including the night's most prestigious title, \"Most Outstanding Local Committee\". A team win that meant more than any individual medal.",
     photo: "/assets/achievements/aiesec-2018.jpg",
-    category: "Extra Curriculum",
+    category: "Extracurricular",
   },
 ];
 
@@ -98,5 +98,5 @@ export default Achievements;
 
 export const AchievementCategories: AchievementCategory[] = [
   "Engineering",
-  "Extra Curriculum",
+  "Extracurricular",
 ];
