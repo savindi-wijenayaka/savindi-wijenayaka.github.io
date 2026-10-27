@@ -43,20 +43,20 @@ export default function AchievementsSection() {
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "2.5rem" }}>
             {categories.map((cat) => {
               const isActive = activeCategory === cat;
-              const tabAccentKey = cat === "Engineering" ? "emerald" : cat === "Extra Curriculum" ? "lavender" : "blue";
+              const tabAccentKey = cat === "Engineering" ? "emerald" : cat === "Extracurricular" ? "lavender" : "blue";
               const tabColor = cat === "Engineering"
                 ? "var(--emerald)"
-                : cat === "Extra Curriculum"
+                : cat === "Extracurricular"
                 ? "var(--lavender)"
                 : "var(--blue)";
               const tabBorder = cat === "Engineering"
                 ? "var(--border-emerald)"
-                : cat === "Extra Curriculum"
+                : cat === "Extracurricular"
                 ? "var(--border-lavender)"
                 : "var(--border-blue)";
               const tabGlow = cat === "Engineering"
                 ? "var(--emerald-glow)"
-                : cat === "Extra Curriculum"
+                : cat === "Extracurricular"
                 ? "var(--lavender-glow)"
                 : "var(--blue-glow)";
               return (
