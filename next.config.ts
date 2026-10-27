@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
+  output: "export",
+  images: { unoptimized: true },
   reactCompiler: true,
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 };
