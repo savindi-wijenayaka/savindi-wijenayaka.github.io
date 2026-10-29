@@ -129,7 +129,7 @@ export default function Timeline() {
     >
         <RevealOnScroll>
           <SectionHeader
-            label="Experience & Education"
+            label={isMobile ? "Experience" : "Experience & Education"}
             accent="emerald"
             plain="The journey "
             italic="so far"
@@ -140,7 +140,7 @@ export default function Timeline() {
         {isMobile && (
           <RevealOnScroll>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              {entries.map((entry) => {
+              {entries.filter((e) => e.type === "industry").map((entry) => {
                 const isIndustry = entry.type === "industry";
                 const accent = isIndustry ? "var(--emerald)" : "var(--lavender)";
                 const borderAccent = isIndustry
