@@ -140,7 +140,7 @@ export default function Timeline() {
         {isMobile && (
           <RevealOnScroll>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              {entries.filter((e) => e.type === "industry").map((entry) => {
+              {entries.filter((e) => e.type === "industry").reverse().map((entry) => {
                 const isIndustry = entry.type === "industry";
                 const accent = isIndustry ? "var(--emerald)" : "var(--lavender)";
                 const borderAccent = isIndustry
