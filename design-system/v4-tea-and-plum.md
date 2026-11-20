@@ -1,6 +1,6 @@
 # Redesign v4: Tea and Plum
 
-Supersedes the "Cyberpunk Lofi" direction in `MASTER.md` (kept for history). Agreed with Savindi in a design conversation on 2026-11-20; mockups were reviewed in the browser before implementation.
+Supersedes the earlier "Cyberpunk Lofi" direction (its `MASTER.md` has been removed; see git history). Agreed with Savindi in a design conversation on 2026-11-20; mockups were reviewed in the browser before implementation.
 
 ## Intent
 
