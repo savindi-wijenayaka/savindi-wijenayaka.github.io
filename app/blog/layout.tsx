@@ -5,18 +5,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <Navbar />
-      <main
-        className="rail-safe-x"
-        style={{
-          width: "100%",
-          maxWidth: 800,
-          margin: "0 auto",
-          paddingTop: "clamp(2.5rem, 6vw, 4.5rem)",
-          paddingBottom: "clamp(3rem, 6vw, 5rem)",
-        }}
-      >
-        {children}
-      </main>
+      <main className="wrap bl-main">{children}</main>
       <Footer />
     </>
   );

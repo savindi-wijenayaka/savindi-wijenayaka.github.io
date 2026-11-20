@@ -99,7 +99,7 @@ export default async function BlogPostPage({
   const { default: PostContent } = await import(`@/content/blog/${slug}.md`);
 
   return (
-    <article>
+    <article className="bl-article">
       <PostHero meta={meta} />
       <div className="blog-body">
         <PostContent />

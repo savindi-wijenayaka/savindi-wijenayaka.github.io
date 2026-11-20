@@ -835,6 +835,9 @@ body {
 .blog-pre { scrollbar-width: thin; scrollbar-color: var(--line-strong) var(--paper); }
 
 /* ── Blog index and post header ─────────────────────────────────── */
+/* Same width as the homepage sections; a post keeps a narrower reading column inside it. */
+.bl-main { padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
+.bl-article { max-width: 820px; margin: 0 auto; }
 .bl-head { margin-bottom: 3rem; }
 .bl-title {
   font-family: var(--font-serif), Georgia, serif;
@@ -869,7 +872,8 @@ body {
   transition: color 200ms ease;
 }
 .bl-excerpt {
-  font-size: 14px;
+  max-width: 70ch;
+  font-size: 15px;
   line-height: 1.65;
   color: var(--ink-2);
   margin: 0 0 0.75rem;
@@ -880,8 +884,9 @@ body {
 }
 .bl-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; align-items: center; font-size: 13px; color: var(--muted); }
 .bl-meta a { color: var(--plum); text-underline-offset: 3px; }
-.bl-thumb { position: relative; width: 100px; height: 70px; border-radius: var(--radius-sm); overflow: hidden; background: var(--card); }
+.bl-thumb { position: relative; width: 168px; height: 112px; border-radius: var(--radius-sm); overflow: hidden; background: var(--card); }
 .bl-thumb img { object-fit: cover; transition: transform 400ms var(--ease-out); }
+@media (max-width: 600px) { .bl-thumb { width: 100px; height: 70px; } }
 @media (hover: hover) and (pointer: fine) {
   .bl-item:hover h2 { color: var(--plum); }
   .bl-item:hover .bl-thumb img { transform: scale(1.05); }
