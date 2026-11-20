@@ -2,9 +2,25 @@ import { getAllPostMetas } from "@/lib/blog";
 import BlogListClient from "@/components/blog/BlogListClient";
 import type { Metadata } from "next";
 
+const description = "Articles on machine learning, open science, and building things that matter.";
+
 export const metadata: Metadata = {
   title: "Writing",
-  description: "Articles on machine learning, open science, and building things that matter.",
+  description,
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Writing | Savindi Wijenayaka",
+    description,
+    url: "/blog",
+    type: "website",
+    images: [{ url: "/assets/brand/og_image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Writing | Savindi Wijenayaka",
+    description,
+    images: ["/assets/brand/og_image.png"],
+  },
 };
 
 export default function BlogPage() {

@@ -24,6 +24,8 @@ export async function generateMetadata({
     meta.excerpt && meta.excerpt.length >= 60
       ? meta.excerpt
       : `${meta.title}. ${meta.readingTime ? `A ${meta.readingTime}-minute read` : "An article"} by Savindi Wijenayaka.`;
+  // A page-level openGraph replaces the root one, so always supply an image.
+  const image = meta.coverImage ?? "/assets/brand/og_image.png";
   return {
     title: meta.title,
     description,
@@ -34,7 +36,13 @@ export async function generateMetadata({
       type: "article",
       publishedTime: meta.date,
       tags: meta.tags,
-      images: meta.coverImage ? [{ url: meta.coverImage }] : [],
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description,
+      images: [image],
     },
   };
 }
