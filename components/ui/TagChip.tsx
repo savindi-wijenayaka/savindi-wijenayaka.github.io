@@ -1,8 +1,8 @@
 /**
- * Uppercase monospace tag chip for blog post tags.
+ * Tag chip for blog posts. Uses the site's .tag pill.
  *
- * variant="bordered" — lavender border + color (featured post tags, publication badge)
- * variant="plain"    — muted color only, no border (secondary post tags)
+ * variant="bordered": outlined (publication badge on featured posts)
+ * variant="plain":    tinted plum (post tags)
  */
 export default function TagChip({
   label,
@@ -11,36 +11,5 @@ export default function TagChip({
   label: string;
   variant?: "bordered" | "plain";
 }) {
-  if (variant === "bordered") {
-    return (
-      <span
-        style={{
-          fontFamily: "var(--font-mono), monospace",
-          fontSize: 10,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          color: "var(--lavender)",
-          border: "1px solid var(--border-lavender)",
-          borderRadius: "var(--radius-sm)",
-          padding: "2px 8px",
-        }}
-      >
-        {label}
-      </span>
-    );
-  }
-
-  return (
-    <span
-      style={{
-        fontFamily: "var(--font-mono), monospace",
-        fontSize: 10,
-        letterSpacing: "0.08em",
-        textTransform: "uppercase",
-        color: "var(--text-muted)",
-      }}
-    >
-      {label}
-    </span>
-  );
+  return <span className={`tag ${variant === "bordered" ? "tag-pub" : "tag-ind"}`}>{label}</span>;
 }

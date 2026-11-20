@@ -20,30 +20,31 @@ export default function AchievementsSection() {
         <div className="ac">
           {Achievements.map((a, i) => {
             const open = openId === a.id;
-            const toggle = () => setOpenId(open ? null : a.id);
+            const storyId = `acd-story-${a.id}`;
             return (
               <RevealOnScroll key={a.id} delay={(i % 3) * 60}>
                 <div
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded={open}
                   className={`acd${open ? " open" : ""}`}
-                  onClick={toggle}
                   onKeyDown={(e) => {
-                    if (e.target !== e.currentTarget) return;
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      toggle();
-                    } else if (e.key === "Escape") {
-                      setOpenId(null);
-                    }
+                    if (e.key === "Escape") setOpenId(null);
                   }}
                 >
                   <div className="acd-photo">
                     <Image src={a.photo} alt="" fill sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 340px" />
                   </div>
                   <div className="acd-body">
-                    <h3>{a.title}</h3>
+                    <h3>
+                      {/* The button's hit area stretches over the whole card (see .acd-toggle::after). */}
+                      <button
+                        type="button"
+                        className="acd-toggle"
+                        aria-expanded={open}
+                        aria-controls={storyId}
+                        onClick={() => setOpenId(open ? null : a.id)}
+                      >
+                        {a.title}
+                      </button>
+                    </h3>
                     <p className="acd-award">{a.award}</p>
                     <p className="acd-meta">
                       <b>{a.year}</b>
@@ -52,15 +53,10 @@ export default function AchievementsSection() {
                     {a.representing && <p className="acd-rep">{a.representing}</p>}
                   </div>
 
-                  <div className="acd-over">
+                  <div className="acd-over" id={storyId}>
                     <p>{a.description}</p>
                     {a.projectUrl && (
-                      <a
-                        href={a.projectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
+                      <a href={a.projectUrl} target="_blank" rel="noopener noreferrer">
                         View project ↗
                       </a>
                     )}
