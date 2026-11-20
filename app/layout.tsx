@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SocialsRail from "@/components/layout/SocialsRail";
@@ -25,10 +25,17 @@ const jetbrainsMono = JetBrains_Mono({
   preload: false, // only used for code in blog posts; keep it off the home page's critical path
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F7F0EA" },
+    { media: "(prefers-color-scheme: dark)", color: "#221A25" },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://savindi.com"),
   title: {
-    default: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
+    default: "Savindi Wijenayaka, PhD | Machine Learning Engineer & Researcher",
     template: "%s | Savindi Wijenayaka",
   },
   description:
@@ -50,7 +57,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Savindi Wijenayaka" }],
   openGraph: {
-    title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
+    title: "Savindi Wijenayaka, PhD | Machine Learning Engineer & Researcher",
     description:
       "Machine Learning Engineer (PhD) specialising in production-grade AI systems, deep learning, and computer vision.",
     url: "https://savindi.com",
@@ -62,13 +69,13 @@ export const metadata: Metadata = {
         url: "/assets/brand/og_image.png",
         width: 1200,
         height: 630,
-        alt: "Savindi Wijenayaka Portfolio",
+        alt: "Savindi Wijenayaka, PhD, Machine Learning Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Savindi Wijenayaka | Machine Learning Engineer & Researcher",
+    title: "Savindi Wijenayaka, PhD | Machine Learning Engineer & Researcher",
     description:
       "Machine Learning Engineer (PhD) specialising in production-grade AI systems, deep learning, and computer vision.",
     images: ["/assets/brand/og_image.png"],
