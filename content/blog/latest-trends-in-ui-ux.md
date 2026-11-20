@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/new-trends-in-user-interfaces
 featured: false
 readingTime: 12
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/latest-trends-in-ui-ux.png"
+coverImage: "/assets/blog/latest-trends-in-ui-ux.webp"
 ---
 
 Have you seen Iron Man? Or the Minority Report (2002)? Weren’t you fascinated by how Stark models the suits or How John Anderton being super cool while showing others details of the mission? I watched these back in my school days which made me think like “wow! that will be something from far future than I live on” But now, after like 2010, the advancement of science and technology have become tremendous that we can’t even predict the future of our world.

@@ -193,14 +193,20 @@ body {
 }
 
 /* ── Scroll reveal (transform/opacity only) ─────────────────────── */
-.reveal {
+/* Hidden only when the inline script has added .js, so the page is never blank without JavaScript. */
+.js .reveal {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
 }
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: none;
+}
+/* First-screen entrance runs in CSS, so it does not wait for hydration. */
+.enter { animation: enter 450ms var(--ease-out) both; }
+@keyframes enter {
+  from { opacity: 0; transform: translateY(10px); }
 }
 
 /* ── Tags & chips ───────────────────────────────────────────────── */
@@ -269,8 +275,8 @@ body {
 }
 .nav-tools { display: flex; gap: 8px; align-items: center; }
 .icon-btn {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--line);
   background: transparent;
@@ -344,7 +350,7 @@ body {
   display: grid;
   place-items: center;
   font-size: 23px;
-  color: color-mix(in srgb, var(--plum) 78%, var(--paper));
+  color: color-mix(in srgb, var(--plum) 90%, var(--paper));
   border-radius: 14px;
   transition: color 200ms ease, background 200ms ease, transform var(--duration-micro) var(--ease-out);
 }
@@ -590,7 +596,9 @@ body {
 .rbig { background: var(--card); border-radius: 22px; padding: 32px; display: flex; flex-direction: column; }
 .rbig h3 { font: 600 26px / 1.2 var(--font-serif), Georgia, serif; margin: 10px 0; }
 .rbig p { color: var(--muted); margin: 0 0 14px; max-width: 52ch; }
-.rbig .stack { margin-top: 4px; }
+.rbig .metrics { margin-top: auto; padding-top: 6px; }
+.rbig .m { background: var(--card2); }
+.rbig .stack { margin-top: 14px; padding-top: 0; }
 .rside { display: grid; gap: 16px; align-content: stretch; }
 .rcard {
   background: var(--card2);
@@ -842,5 +850,5 @@ body {
     transition-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
 }

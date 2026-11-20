@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/sorting-algorithms-using-pyth
 featured: false
 readingTime: 9
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/sorting-algorithms-using-python.png"
+coverImage: "/assets/blog/sorting-algorithms-using-python.webp"
 ---
 
 Hola Readers, welcome back to another post. This one is a quick note on main sorting algorithms and their implementations using Python. The aspects like time complexity, space complexity, stability, recursiveness will also be discussed with respect to each algorithm. The main 5 algorithms discussed in here is:

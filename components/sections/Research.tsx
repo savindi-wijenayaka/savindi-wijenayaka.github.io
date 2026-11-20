@@ -31,6 +31,14 @@ export default function ResearchSection() {
                   images, then turned the results into 3D measurements researchers can use. The automated
                   pipeline saves 40+ hours of manual processing per dataset.
                 </p>
+                <div className="metrics">
+                  {phd.metrics.map((m) => (
+                    <span className="m" key={m.label}>
+                      <b>{m.value}</b>
+                      {m.label}
+                    </span>
+                  ))}
+                </div>
                 <div className="stack">
                   {phd.techStack.map((t) => (
                     <span key={t}>{t}</span>

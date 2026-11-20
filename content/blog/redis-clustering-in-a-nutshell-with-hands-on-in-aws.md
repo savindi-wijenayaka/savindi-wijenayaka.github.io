@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/redis-clustering-in-a-nutshel
 featured: false
 readingTime: 14
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/redis-clustering-in-a-nutshell-with-hands-on-in-aws.png"
+coverImage: "/assets/blog/redis-clustering-in-a-nutshell-with-hands-on-in-aws.webp"
 ---
 
 Hola once again! Today we are going to mingle with a different topic, Redis! Since it is an industry buzz word, I am sure you have heard of it, but maybe you didn’t try it out. If that is the case, today’s post is just for you 😊

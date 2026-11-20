@@ -1,4 +1,3 @@
-import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import HeroNetwork from "@/components/ui/HeroNetwork";
 
 const CV_URL = "/CV_SavindiWijenayaka_ML.pdf";
@@ -18,20 +17,20 @@ export default function Hero() {
         <HeroNetwork />
         <div className="hero-inner">
           <div className="hero-copy">
-            <RevealOnScroll>
+            <div className="enter">
               <div className="hero-role">Machine Learning Engineer</div>
-            </RevealOnScroll>
-            <RevealOnScroll delay={60}>
+            </div>
+            <div className="enter" style={{ animationDelay: "60ms" }}>
               <h1>
                 Savindi <em>Wijenayaka</em>
               </h1>
-            </RevealOnScroll>
-            <RevealOnScroll delay={120}>
+            </div>
+            <div className="enter" style={{ animationDelay: "120ms" }}>
               <p className="hero-intro">
                 I build machine learning systems, from medical imaging research to production services.
               </p>
-            </RevealOnScroll>
-            <RevealOnScroll delay={180}>
+            </div>
+            <div className="enter" style={{ animationDelay: "180ms" }}>
               <div className="hero-cta">
                 <a className="btn btn-honey" href="#work">
                   View my work
@@ -40,13 +39,13 @@ export default function Hero() {
                   Download CV
                 </a>
               </div>
-            </RevealOnScroll>
+            </div>
           </div>
         </div>
       </section>
 
       <div className="glance">
-        <RevealOnScroll delay={240}>
+        <div className="enter" style={{ animationDelay: "240ms" }}>
           <div className="glance-card">
             {GLANCE.map((g) => (
               <div className="glance-item" key={g.big}>
@@ -55,7 +54,7 @@ export default function Hero() {
               </div>
             ))}
           </div>
-        </RevealOnScroll>
+        </div>
       </div>
     </div>
   );

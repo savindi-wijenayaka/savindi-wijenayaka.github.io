@@ -19,12 +19,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const meta = getPostMeta(slug);
   if (!meta) return { title: "Post Not Found" };
+  // Some excerpts are just a greeting; fall back to a real description for search results.
+  const description =
+    meta.excerpt && meta.excerpt.length >= 60
+      ? meta.excerpt
+      : `${meta.title}. ${meta.readingTime ? `A ${meta.readingTime}-minute read` : "An article"} by Savindi Wijenayaka.`;
   return {
     title: meta.title,
-    description: meta.excerpt,
+    description,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: meta.title,
-      description: meta.excerpt,
+      description,
       type: "article",
       publishedTime: meta.date,
       tags: meta.tags,
