@@ -1,6 +1,6 @@
 import Socials from "@/data/socials";
 
-/** Fixed left rail of social icons. Desktop (>= 1240px) only; see .rail in globals.css. */
+/** Fixed left rail of social icons. Desktop (>= 1360px, where the 48px tiles clear the hero text) only; see .rail in globals.css. */
 export default function SocialsRail() {
   return (
     <aside className="rail" aria-label="Social links">
