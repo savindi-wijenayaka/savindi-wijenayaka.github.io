@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/tensorflow-101-basics-of-tens
 featured: false
 readingTime: 5
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/tensorflow-101-basics-of-tensorflow.png"
+coverImage: "/assets/blog/tensorflow-101-basics-of-tensorflow.webp"
 ---
 
 Hola Ambitious ML lovers!

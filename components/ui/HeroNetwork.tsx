@@ -176,7 +176,12 @@ export default function HeroNetwork() {
       if (!reduced && inView && !document.hidden) loop();
     }
 
+    let lastW = canvas.getBoundingClientRect().width;
     function onResize() {
+      // Mobile browsers fire resize as the address bar moves; only rebuild when the width changes.
+      const w = canvas!.getBoundingClientRect().width;
+      if (Math.abs(w - lastW) < 1) return;
+      lastW = w;
       build();
       readColors();
       if (reduced) draw();

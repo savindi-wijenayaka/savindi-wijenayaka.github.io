@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/jvm-101-introduction-classloa
 featured: false
 readingTime: 11
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/jvm-101-introduction-classloader-sub-system-jit-compiler-1.png"
+coverImage: "/assets/blog/jvm-101-introduction-classloader-sub-system-jit-compiler-1.webp"
 ---
 
 Hola Readers! Today I brings you a small but yet fresh articles series related to the Java memory model. This is one of the topics I really love and thought of writing for a long time. Hope you will enjoy! 🤗

@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/print-to-pre-printed-set-of-f
 featured: false
 readingTime: 9
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/print-to-pre-printed-set-of-forms-using-jasper-reports-a-in.png"
+coverImage: "/assets/blog/print-to-pre-printed-set-of-forms-using-jasper-reports-a-in.webp"
 ---
 
 Hola Readers!

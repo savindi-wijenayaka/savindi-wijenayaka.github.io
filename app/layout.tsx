@@ -100,7 +100,7 @@ const jsonLd = {
 };
 
 // Inline script prevents flash of unstyled theme (FOUC). Paper (light) is the default.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}document.documentElement.classList.add('js');})();`;
 
 export default function RootLayout({
   children,

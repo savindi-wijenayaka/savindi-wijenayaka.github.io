@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/ml-101-part-2-linear-regressi
 featured: false
 readingTime: 11
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/ml-101-part-2-linear-regression-gradient-descend-cost.png"
+coverImage: "/assets/blog/ml-101-part-2-linear-regression-gradient-descend-cost.webp"
 ---
 
 Hola Again!

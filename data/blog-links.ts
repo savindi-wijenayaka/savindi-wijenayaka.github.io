@@ -29,7 +29,7 @@ const BlogLinks: BlogLink[] = [
     date: "2022-08-10",
     tags: ["Open Science", "Python", "Biomedical"],
     source: "medium",
-    coverImage: "/assets/achievements/sparc-2022.png",
+    coverImage: "/assets/achievements/sparc-2022.webp",
   },
   {
     title: "3D Anatomy on the Cloud: Building SPARC-SPy",
@@ -38,7 +38,7 @@ const BlogLinks: BlogLink[] = [
     date: "2024-08-20",
     tags: ["Python", "3D Visualisation", "SPARC"],
     source: "medium",
-    coverImage: "/assets/achievements/sparc-2024.jpeg",
+    coverImage: "/assets/achievements/sparc-2024.webp",
   },
   {
     title: "Tackling Class Imbalance in Customer Churn Prediction",
@@ -47,7 +47,7 @@ const BlogLinks: BlogLink[] = [
     date: "2020-10-05",
     tags: ["Machine Learning", "Data Science", "Python"],
     source: "medium",
-    coverImage: "/assets/achievements/datastorm-2020.jpg",
+    coverImage: "/assets/achievements/datastorm-2020.webp",
   },
 ];
 

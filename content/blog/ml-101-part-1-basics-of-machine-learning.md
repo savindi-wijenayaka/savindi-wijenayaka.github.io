@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/ml-101-part-1-basics-of-machi
 featured: false
 readingTime: 8
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/ml-101-part-1-basics-of-machine-learning.png"
+coverImage: "/assets/blog/ml-101-part-1-basics-of-machine-learning.webp"
 ---
 
 Hola Ambitious ML lovers!

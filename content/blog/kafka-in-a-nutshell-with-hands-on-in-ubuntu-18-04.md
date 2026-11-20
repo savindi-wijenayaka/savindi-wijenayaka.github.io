@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/kafka-in-a-nutshell-with-hand
 featured: false
 readingTime: 11
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/kafka-in-a-nutshell-with-hands-on-in-ubuntu-18-04.png"
+coverImage: "/assets/blog/kafka-in-a-nutshell-with-hands-on-in-ubuntu-18-04.webp"
 ---
 
 Hola Readers!

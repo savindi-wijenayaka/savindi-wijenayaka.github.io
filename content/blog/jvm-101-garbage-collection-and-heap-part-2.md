@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/jvm-101-garbage-collection-an
 featured: false
 readingTime: 13
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/jvm-101-garbage-collection-and-heap-part-2.png"
+coverImage: "/assets/blog/jvm-101-garbage-collection-and-heap-part-2.webp"
 ---
 
 Hola Readers! Welcome back.

@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/java-platform-independency-2d
 featured: false
 readingTime: 6
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/how-java-achieve-platform-independency.png"
+coverImage: "/assets/blog/how-java-achieve-platform-independency.webp"
 ---
 
 Hola Readers! Welcome back after a lengthy break. Hope you missed my writing. 🤗

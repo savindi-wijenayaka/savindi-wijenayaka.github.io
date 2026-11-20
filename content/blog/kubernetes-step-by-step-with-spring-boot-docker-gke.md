@@ -9,7 +9,7 @@ mediumUrl: "https://medium.com/@savindi-wijenayaka/kubernetes-step-by-step-with-
 featured: true
 readingTime: 15
 convertedAt: "2026-04-27T02:49:59Z"
-coverImage: "/assets/blog/kubernetes-step-by-step-with-spring-boot-docker-gke.png"
+coverImage: "/assets/blog/kubernetes-step-by-step-with-spring-boot-docker-gke.webp"
 ---
 
 Hola again! Welcome back. 🤗
