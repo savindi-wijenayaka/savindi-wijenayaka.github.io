@@ -3,10 +3,10 @@ import HeroNetwork from "@/components/ui/HeroNetwork";
 const CV_URL = "/CV_SavindiWijenayaka_ML.pdf";
 
 const GLANCE = [
-  { big: "Auror", small: "ML Engineer, now" },
-  { big: "Ph.D.", small: "Bioengineering, Auckland" },
-  { big: "3 ML roles", small: "Auror · WSO2 · Pearson" },
-  { big: "NLP · CV · MLOps", small: "plus research, end to end" },
+  { big: "3.5 years", small: "Industry ML, plus a PhD" },
+  { big: "1D → 3D", small: "Time series, images, 3D" },
+  { big: "End to end", small: "Research to production" },
+  { big: "CV · NLP · MLOps", small: "plus LLMs, RAG" },
 ];
 
 /** First screen: hero + floating "at a glance" card. Fills one viewport on desktop. */
@@ -18,24 +18,25 @@ export default function Hero() {
         <div className="hero-inner">
           <div className="hero-copy">
             <div className="enter">
-              <div className="hero-role">Machine Learning Engineer</div>
+              <div className="hero-role">Senior Machine Learning Engineer</div>
             </div>
             <div className="enter" style={{ animationDelay: "60ms" }}>
               <h1>
                 Savindi <em>Wijenayaka</em>
+                <span className="hero-degree">, PhD</span>
               </h1>
             </div>
             <div className="enter" style={{ animationDelay: "120ms" }}>
               <p className="hero-intro">
-                I build machine learning systems, from medical imaging research to production services.
+                Great AI models need great systems. I build both.
               </p>
             </div>
             <div className="enter" style={{ animationDelay: "180ms" }}>
               <div className="hero-cta">
-                <a className="btn btn-honey" href="#work">
+                <a className="btn btn-ghost" href="#work">
                   View my work
                 </a>
-                <a className="btn btn-ghost" href={CV_URL} target="_blank" rel="noopener noreferrer">
+                <a className="btn btn-honey" href={CV_URL} target="_blank" rel="noopener noreferrer">
                   Download CV
                 </a>
               </div>
