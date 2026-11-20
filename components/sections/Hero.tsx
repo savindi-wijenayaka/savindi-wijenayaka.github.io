@@ -18,26 +18,24 @@ export default function Hero() {
         <div className="hero-inner">
           <div className="hero-copy">
             <div className="enter">
-              <div className="hero-role">Senior Machine Learning Engineer</div>
-            </div>
-            <div className="enter" style={{ animationDelay: "60ms" }}>
               <h1>
                 Savindi <em>Wijenayaka</em>
                 <span className="hero-degree">, PhD</span>
               </h1>
             </div>
-            <div className="enter" style={{ animationDelay: "120ms" }}>
+            <div className="enter" style={{ animationDelay: "60ms" }}>
+              <p className="hero-title">Senior Machine Learning Engineer</p>
               <p className="hero-intro">
                 Great AI models need great systems. I build both.
               </p>
             </div>
-            <div className="enter" style={{ animationDelay: "180ms" }}>
+            <div className="enter" style={{ animationDelay: "120ms" }}>
               <div className="hero-cta">
-                <a className="btn btn-ghost" href="#work">
-                  View my work
-                </a>
                 <a className="btn btn-honey" href={CV_URL} target="_blank" rel="noopener noreferrer">
                   Download CV
+                </a>
+                <a className="btn btn-ghost" href="#work">
+                  View my work
                 </a>
               </div>
             </div>
