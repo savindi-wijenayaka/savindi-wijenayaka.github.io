@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   output: "export",
   images: { unoptimized: true },
   reactCompiler: true,
+  experimental: { agentUpgrade: "security" },
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 };
 
