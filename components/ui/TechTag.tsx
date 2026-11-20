@@ -1,6 +1,6 @@
 /**
  * Small monospace chip for tech stack labels.
- * Used in Timeline (experience panel) and Projects (project cards).
+ * Used in project cards.
  */
 export default function TechTag({ label }: { label: string }) {
   return (

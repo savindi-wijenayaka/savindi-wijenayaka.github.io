@@ -11,6 +11,10 @@ export interface ExperienceEntry {
   description: string[];
   techStack: string[];
   companyUrl?: string;
+  /** Small label shown on the experience row. */
+  tagLabel: "Industry" | "Research" | "Study";
+  /** Headline numbers/keywords shown even when the row is collapsed. */
+  metrics: { value: string; label: string }[];
 }
 
 const Experience: ExperienceEntry[] = [
@@ -32,6 +36,12 @@ const Experience: ExperienceEntry[] = [
     ],
     techStack: ["Python", "GCP", "RAG", "Postgres", "CI/CD", "ML Evaluation"],
     companyUrl: "https://www.auror.co",
+    tagLabel: "Industry",
+    metrics: [
+      { value: "+15–23pp", label: "suggestion acceptance" },
+      { value: "10×", label: "fewer training calls" },
+      { value: "32s → 10s", label: "training time" },
+    ],
   },
   {
     id: "wso2",
@@ -49,6 +59,11 @@ const Experience: ExperienceEntry[] = [
     ],
     techStack: ["Python", "Azure", "Kubernetes", "GPT", "Flask", "Ballerina"],
     companyUrl: "https://wso2.com",
+    tagLabel: "Industry",
+    metrics: [
+      { value: "LLM", label: "API test generation" },
+      { value: "Real-time", label: "anomaly detection" },
+    ],
   },
   {
     id: "pearson",
@@ -65,6 +80,11 @@ const Experience: ExperienceEntry[] = [
     ],
     techStack: ["Python", "Keras", "BERT", "GPT-2", "Flask", "Django"],
     companyUrl: "https://www.pearson.com",
+    tagLabel: "Industry",
+    metrics: [
+      { value: "BERT · GPT-2", label: "Q&A chatbot" },
+      { value: "Speech", label: "emotion detection" },
+    ],
   },
 
   // ── Academic ────────────────────────────────────────────────────────────
@@ -83,6 +103,11 @@ const Experience: ExperienceEntry[] = [
     ],
     techStack: ["Python", "PyTorch", "MONAI", "Medical Imaging", "NumPy"],
     companyUrl: "https://www.auckland.ac.nz",
+    tagLabel: "Research",
+    metrics: [
+      { value: "40+ hrs", label: "saved per dataset" },
+      { value: "2022", label: "SPARC winner" },
+    ],
   },
   {
     id: "uok-bsc",
@@ -99,6 +124,11 @@ const Experience: ExperienceEntry[] = [
     ],
     techStack: ["Java", "Python", "Machine Learning", "Data Science"],
     companyUrl: "https://www.kln.ac.lk",
+    tagLabel: "Study",
+    metrics: [
+      { value: "3.96 / 4.00", label: "First Class Honours" },
+      { value: "4 / 4", label: "Dean's List years" },
+    ],
   },
 ];
 

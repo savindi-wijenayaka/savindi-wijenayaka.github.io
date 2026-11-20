@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/ui/CustomCursor";
 import SocialsRail from "@/components/layout/SocialsRail";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
   display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  style: ["normal", "italic"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -94,8 +99,8 @@ const jsonLd = {
   ],
 };
 
-// Inline script prevents flash of unstyled theme (FOUC)
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',d?'dark':'light');}}catch(e){}})();`;
+// Inline script prevents flash of unstyled theme (FOUC). Paper (light) is the default.
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -105,9 +110,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       data-scroll-behavior="smooth"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         {/* eslint-disable-next-line react/no-danger */}
@@ -120,7 +125,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
-        <CustomCursor />
         <SocialsRail />
         {children}
       </body>
