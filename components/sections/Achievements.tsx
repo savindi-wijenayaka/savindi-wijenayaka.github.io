@@ -6,6 +6,7 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import Achievements from "@/data/achievements";
 
 export default function AchievementsSection() {
+  // Touch devices have no hover: tap toggles the story overlay (one open at a time).
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
@@ -14,7 +15,7 @@ export default function AchievementsSection() {
         <RevealOnScroll>
           <p className="eyebrow">Recognition</p>
           <h2 className="sec-title">Wins and leadership</h2>
-          <p className="lede">Hover (or tap) a photo for the story.</p>
+          <p className="lede">Hover (or tap) a card for the story behind it.</p>
         </RevealOnScroll>
         <div className="ac">
           {Achievements.map((a, i) => {
@@ -24,42 +25,45 @@ export default function AchievementsSection() {
               <RevealOnScroll key={a.id} delay={(i % 3) * 60}>
                 <div
                   role="button"
-                  className={`acd${open ? " open" : ""}`}
                   tabIndex={0}
                   aria-expanded={open}
+                  className={`acd${open ? " open" : ""}`}
                   onClick={toggle}
                   onKeyDown={(e) => {
+                    if (e.target !== e.currentTarget) return;
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
                       toggle();
+                    } else if (e.key === "Escape") {
+                      setOpenId(null);
                     }
                   }}
                 >
-                  <Image src={a.photo} alt="" fill sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 340px" />
-                  <span className="acd-badge">{a.category === "Engineering" ? "Engineering" : "Leadership"}</span>
-                  <div className="acd-cap">
-                    <span className="acd-y">
-                      {a.year}
-                      {a.level ? ` · ${a.level}` : ""}
-                    </span>
-                    <h3>
-                      {a.title}, {a.award}
-                    </h3>
-                    <span className="acd-sub">
-                      {[a.issuer, a.representing].filter(Boolean).join(" · ")}
-                    </span>
-                    <div className="acd-more">
-                      <div>
-                        <p>{a.description}</p>
-                        {a.projectUrl && (
-                          <p>
-                            <a href={a.projectUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                              View project →
-                            </a>
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                  <div className="acd-photo">
+                    <Image src={a.photo} alt="" fill sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 340px" />
+                  </div>
+                  <div className="acd-body">
+                    <h3>{a.title}</h3>
+                    <p className="acd-award">{a.award}</p>
+                    <p className="acd-meta">
+                      <b>{a.year}</b>
+                      {a.level ? <span>{a.level}</span> : null}
+                    </p>
+                    {a.representing && <p className="acd-rep">{a.representing}</p>}
+                  </div>
+
+                  <div className="acd-over">
+                    <p>{a.description}</p>
+                    {a.projectUrl && (
+                      <a
+                        href={a.projectUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        View project ↗
+                      </a>
+                    )}
                   </div>
                 </div>
               </RevealOnScroll>
