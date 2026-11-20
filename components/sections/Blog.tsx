@@ -7,18 +7,19 @@ import type { BlogLink } from "@/data/blog-links";
 function PostCard({ post }: { post: BlogLink }) {
   const inner = (
     <>
-      <div className="post-cover">
+      <time dateTime={post.date}>
+        {formatDate(post.date)}
+        {post.readingTime ? <span>{post.readingTime} min read</span> : null}
+      </time>
+      <h3>{post.title}</h3>
+      <div className="post-thumb">
         {post.coverImage && (
-          <Image src={post.coverImage} alt="" fill sizes="(max-width: 900px) 100vw, 340px" />
+          <Image src={post.coverImage} alt="" fill sizes="132px" />
         )}
       </div>
-      <div className="post-body">
-        <time dateTime={post.date}>
-          {formatDate(post.date)}
-          {post.readingTime ? ` · ${post.readingTime} min read` : ""}
-        </time>
-        <h3>{post.title}</h3>
-      </div>
+      <span className="post-arrow" aria-hidden>
+        →
+      </span>
     </>
   );
 
