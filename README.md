@@ -60,6 +60,18 @@ Most changes are a data edit, no component work:
 
 Pushing to `main` deploys to GitHub Pages through `.github/workflows/deploy.yaml`, and the custom domain comes from `CNAME`. Work on a branch and open a pull request; the PR template lists what to check first.
 
+### Releases
+
+Every successful deploy creates a GitHub release, tagged `vMAJOR.MINOR.PATCH`. The `release` job in the workflow reads the latest release tag, bumps it, and publishes the new release against the deployed commit with auto-generated notes.
+
+- **Push to `main`:** bumps the minor version and resets patch, e.g. `v1.0.0` → `v1.1.0`.
+- **Manual run** (Actions → Deploy site → Run workflow): choose `major`, `minor` (default) or `patch`.
+  - `major`: `v1.1.0` → `v2.0.0`
+  - `minor`: `v1.1.0` → `v1.2.0`
+  - `patch`: `v1.1.0` → `v1.1.1`
+
+The job needs an existing release to bump from (`v1.0.0` is the baseline). If all releases are deleted, create one by hand before the next deploy.
+
 ## Design notes
 
 The current design is described in [`design-system/v4-tea-and-plum.md`](design-system/v4-tea-and-plum.md): palette, type, layout, hero network, and motion rules (transform and opacity only, `prefers-reduced-motion` respected, hover effects only on fine pointers).
