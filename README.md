@@ -71,3 +71,7 @@ The current design is described in [`design-system/v4-tea-and-plum.md`](design-s
 - **Interactive Demo** — an embedded live ML model or visualisation, in the spirit of the hero network
 - **Testimonials** — short quotes from supervisors, collaborators, and colleagues
 - **Reading List** — curated papers, books, and links that signal intellectual range
+
+## Licence
+
+Copyright (c) 2026 Savindi Wijenayaka. All rights reserved. No permission is granted to use, copy, modify or distribute anything in this repository; see [LICENSE](LICENSE).
