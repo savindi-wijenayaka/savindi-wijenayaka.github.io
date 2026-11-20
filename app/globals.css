@@ -327,12 +327,15 @@ body {
   align-items: center;
   gap: 4px;
 }
+/* Pilot light: a honey bead that tops the fading line under the icons */
 .rail::after {
   content: "";
-  width: 1px;
-  height: 84px;
+  width: 7px;
+  height: 92px;
   margin-top: 10px;
-  background: linear-gradient(color-mix(in srgb, var(--plum) 45%, transparent), transparent);
+  background:
+    radial-gradient(circle at 50% 3.5px, var(--honey-fill) 0 3.5px, transparent 4px) top / 100% 7px no-repeat,
+    linear-gradient(color-mix(in srgb, var(--plum) 45%, transparent), transparent) 50% 7px / 1px calc(100% - 7px) no-repeat;
 }
 .rail a {
   position: relative;
@@ -346,6 +349,7 @@ body {
   transition: color 200ms ease, background 200ms ease, transform var(--duration-micro) var(--ease-out);
 }
 .rail a:active { transform: scale(0.92); }
+.rail a:focus-visible { color: var(--on-honey); background: var(--honey-fill); outline: none; }
 .rail a span {
   position: absolute;
   left: calc(100% + 6px);
@@ -362,7 +366,7 @@ body {
   transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .rail a:hover { color: var(--plum); background: var(--plum-bg); }
+  .rail a:hover { color: var(--on-honey); background: var(--honey-fill); }
   .rail a:hover span { opacity: 1; transform: translate(0, -50%); }
 }
 .rail a:focus-visible span { opacity: 1; transform: translate(0, -50%); }
@@ -764,7 +768,7 @@ body {
 }
 .site-footer .foot-soc { display: flex; gap: 14px; font-size: 16px; }
 .site-footer a { color: var(--muted); display: flex; transition: color 200ms ease; }
-@media (hover: hover) and (pointer: fine) { .site-footer a:hover { color: var(--plum); } }
+@media (hover: hover) and (pointer: fine) { .site-footer a:hover { color: var(--honey-text); } }
 
 /* ── Blog post list styles (MDX) ────────────────────────────────── */
 .blog-ul {
