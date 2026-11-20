@@ -153,6 +153,7 @@ export default async function BlogPostPage({
     <article>
       <PostHero meta={meta} />
       <div
+        className="blog-body"
         style={{
           fontSize: "1rem",
           lineHeight: 1.8,
