@@ -852,3 +852,9 @@ body {
   }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* ── Blog post body: keep long URLs/code from widening the page on mobile ── */
+.blog-body { min-width: 0; overflow-wrap: anywhere; }
+.blog-body pre { max-width: 100%; overflow-wrap: normal; }
+.blog-body img, .blog-body video, .blog-body iframe { max-width: 100%; height: auto; }
+.blog-body table { display: block; max-width: 100%; overflow-x: auto; }
