@@ -22,6 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
+  preload: false, // only used for code in blog posts; keep it off the home page's critical path
 });
 
 export const metadata: Metadata = {

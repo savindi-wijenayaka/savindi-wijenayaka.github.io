@@ -44,7 +44,7 @@ content/blog/   Blog posts (Markdown) and the generated manifest
 data/           Site content as typed data: experience, projects, achievements, skills, socials, publications
 public/         Images, achievement photos, CV PDF
 scripts/        sync-manifest.mjs, and a Medium scraper (scripts/scrape-medium) used to import posts
-design-system/  Design docs. v4-tea-and-plum.md is the current one
+design-system/  Design doc: v4-tea-and-plum.md
 ```
 
 ## Updating content
@@ -62,7 +62,7 @@ Pushing to `main` deploys to GitHub Pages through `.github/workflows/deploy.yaml
 
 ## Design notes
 
-The current design is described in [`design-system/v4-tea-and-plum.md`](design-system/v4-tea-and-plum.md): palette, type, layout, hero network, and motion rules (transform and opacity only, `prefers-reduced-motion` respected, hover effects only on fine pointers). `design-system/MASTER.md` and `pages/` describe the earlier design and are kept for history.
+The current design is described in [`design-system/v4-tea-and-plum.md`](design-system/v4-tea-and-plum.md): palette, type, layout, hero network, and motion rules (transform and opacity only, `prefers-reduced-motion` respected, hover effects only on fine pointers).
 
 ## Things to work on next
 
