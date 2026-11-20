@@ -27,7 +27,7 @@ function PostCard({ post }: { post: PostMeta }) {
 
       {post.coverImage && (
         <div className="bl-thumb">
-          <Image src={post.coverImage} alt="" fill sizes="100px" />
+          <Image src={post.coverImage} alt="" fill sizes="(max-width: 600px) 100px, 168px" />
         </div>
       )}
     </Link>
