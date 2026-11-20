@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import NeuralCanvas from "@/components/ui/NeuralCanvas";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-import SkillsSection from "@/components/sections/Skills";
-import Timeline from "@/components/sections/Timeline";
 import ProjectsSection from "@/components/sections/Projects";
+import ExperienceSection from "@/components/sections/Experience";
+import ResearchSection from "@/components/sections/Research";
+import SkillsSection from "@/components/sections/Skills";
 import AchievementsSection from "@/components/sections/Achievements";
 import BlogWrapper from "@/components/sections/BlogWrapper";
 import Contact from "@/components/sections/Contact";
-import FullpageScroll from "@/components/ui/FullpageScroll";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -17,19 +17,18 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <NeuralCanvas />
       <Navbar />
-      <FullpageScroll
-        slides={[
-          <Hero key="hero" />,
-          <SkillsSection key="skills" />,
-          <Timeline key="timeline" />,
-          <ProjectsSection key="projects" />,
-          <AchievementsSection key="achievements" />,
-          <BlogWrapper key="blog" />,
-          <Contact key="contact" />,
-        ]}
-      />
+      <main>
+        <Hero />
+        <ProjectsSection />
+        <ExperienceSection />
+        <ResearchSection />
+        <SkillsSection />
+        <AchievementsSection />
+        <BlogWrapper />
+        <Contact />
+      </main>
+      <Footer />
     </>
   );
 }

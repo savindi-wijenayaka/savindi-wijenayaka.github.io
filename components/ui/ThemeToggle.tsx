@@ -1,54 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+type Theme = "light" | "dark";
+
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return () => observer.disconnect();
+}
+
+// The inline script in the root layout sets data-theme before first paint.
+const getSnapshot = (): Theme =>
+  document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+const getServerSnapshot = (): Theme => "light";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  useEffect(() => {
-    const stored = localStorage.getItem("theme") as "dark" | "light" | null;
-    const initial =
-      stored ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    setTheme(initial);
-  }, []);
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   function toggle() {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
+    const next: Theme = theme === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* storage may be blocked; theme still applies for this visit */
+    }
   }
 
+  const label = theme === "dark" ? "Switch to paper theme" : "Switch to lamplit theme";
+
   return (
-    <button
-      onClick={toggle}
-      title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      style={{
-        width: 36,
-        height: 36,
-        borderRadius: "50%",
-        border: "1.5px solid var(--border-lavender)",
-        background: "var(--bg-elevated)",
-        color: "var(--lavender)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        fontSize: 16,
-        transition: "border-color 150ms, color 150ms, transform 150ms",
-        flexShrink: 0,
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.1)";
-        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--lavender)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
-        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--border-lavender)";
-      }}
-    >
-      {theme === "dark" ? "☀" : "◐"}
+    <button type="button" className="icon-btn" onClick={toggle} title={label} aria-label={label}>
+      {theme === "dark" ? "☀" : "☾"}
     </button>
   );
 }

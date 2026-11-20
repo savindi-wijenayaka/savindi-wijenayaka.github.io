@@ -1,357 +1,72 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import SectionHeader from "@/components/ui/SectionHeader";
-import SectionShell from "@/components/ui/SectionShell";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
-import Achievements, { AchievementCategories } from "@/data/achievements";
-import { useEffect, useRef, useState } from "react";
+import Achievements from "@/data/achievements";
 
 export default function AchievementsSection() {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
-  const openCardRef = useRef<HTMLDivElement | null>(null);
-  const categories = ["All", ...AchievementCategories];
-
-  useEffect(() => {
-    if (window.matchMedia("(max-width: 767px)").matches) {
-      setActiveCategory("Engineering");
-    }
-  }, []);
-
-  const filtered =
-    activeCategory === "All"
-      ? Achievements
-      : Achievements.filter((a) => a.category === activeCategory);
+  const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <SectionShell
-      id="achievements"
-      bg="var(--bg-void-t)"
-      style={{ justifyContent: "flex-start", paddingTop: "calc(62px + clamp(1rem, 2vw, 1.5rem))" }}
-    >
+    <section className="sec" id="achievements">
+      <div className="wrap">
         <RevealOnScroll>
-          <SectionHeader
-            label="Achievements"
-            accent="lavender"
-            plain="Highlights & "
-            italic="honours"
-          />
+          <p className="eyebrow">Recognition</p>
+          <h2 className="sec-title">Wins and leadership</h2>
+          <p className="lede">Hover (or tap) a photo for the story.</p>
         </RevealOnScroll>
-
-        {/* Category filter */}
-        <RevealOnScroll>
-          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "2.5rem" }}>
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat;
-              const tabAccentKey = cat === "Engineering" ? "emerald" : cat === "Extracurricular" ? "lavender" : "blue";
-              const tabColor = cat === "Engineering"
-                ? "var(--emerald)"
-                : cat === "Extracurricular"
-                ? "var(--lavender)"
-                : "var(--blue)";
-              const tabBorder = cat === "Engineering"
-                ? "var(--border-emerald)"
-                : cat === "Extracurricular"
-                ? "var(--border-lavender)"
-                : "var(--border-blue)";
-              const tabGlow = cat === "Engineering"
-                ? "var(--emerald-glow)"
-                : cat === "Extracurricular"
-                ? "var(--lavender-glow)"
-                : "var(--blue-glow)";
-              return (
-                <button
-                  key={cat}
-                  data-accent={tabAccentKey}
-                  className={cat === "All" ? "achv-tab-all" : undefined}
-                  onClick={() => setActiveCategory(cat)}
-                  style={{
-                    fontFamily: "var(--font-mono), monospace",
-                    fontSize: 11,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    padding: "5px 14px",
-                    borderRadius: "var(--radius-sm)",
-                    border: `1px solid ${isActive ? tabBorder : "var(--border)"}`,
-                    background: isActive ? tabGlow : "transparent",
-                    color: isActive ? tabColor : "var(--text-muted)",
-                    cursor: "pointer",
-                    transition: "all 150ms",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (isActive) return;
-                    const el = e.currentTarget;
-                    el.style.borderColor = tabBorder;
-                    el.style.color = tabColor;
-                    el.style.background = tabGlow;
-                  }}
-                  onMouseLeave={(e) => {
-                    if (isActive) return;
-                    const el = e.currentTarget;
-                    el.style.borderColor = "var(--border)";
-                    el.style.color = "var(--text-muted)";
-                    el.style.background = "transparent";
-                  }}
-                  onMouseDown={(e) => {
-                    const el = e.currentTarget;
-                    el.style.opacity = "0.7";
-                    el.style.transform = "scale(0.97)";
-                  }}
-                  onMouseUp={(e) => {
-                    const el = e.currentTarget;
-                    el.style.opacity = "1";
-                    el.style.transform = "scale(1)";
-                  }}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
-        </RevealOnScroll>
-
-        <div className="achv-grid">
-          {filtered.map((ach, idx) => {
-            const isEngineering = ach.category === "Engineering";
-            const accent = isEngineering ? "var(--emerald)" : "var(--lavender)";
-            const overlayAccent = isEngineering ? "var(--overlay-emerald)" : "var(--overlay-lavender)";
-            const borderAccent = isEngineering
-              ? "var(--border-emerald)"
-              : "var(--border-lavender)";
-
+        <div className="ac">
+          {Achievements.map((a, i) => {
+            const open = openId === a.id;
+            const toggle = () => setOpenId(open ? null : a.id);
             return (
-              <RevealOnScroll key={ach.id} delay={idx * 60} style={{ height: "100%" }}>
+              <RevealOnScroll key={a.id} delay={(i % 3) * 60}>
                 <div
-                  style={{
-                    background: "var(--bg-elevated)",
-                    border: "1px solid var(--border)",
-                    borderBottom: `2px solid ${accent}`,
-                    borderRadius: "var(--radius-md)",
-                    overflow: "hidden",
-                    position: "relative",
-                    transition: "transform 220ms, border-color 220ms, box-shadow 220ms",
-                    cursor: "default",
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLDivElement;
-                    el.style.transform = "translateY(-4px)";
-                    el.style.borderColor = borderAccent;
-                    el.style.borderBottomColor = accent;
-                    el.style.boxShadow = `0 8px 32px rgba(0,0,0,0.35)`;
-                    const overlay = el.querySelector(".ach-overlay") as HTMLElement;
-                    if (overlay) overlay.style.opacity = "1";
-                    if (overlay) overlay.style.transform = "translateY(0)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLDivElement;
-                    el.style.transform = "translateY(0)";
-                    el.style.borderColor = "var(--border)";
-                    el.style.borderBottomColor = accent;
-                    el.style.boxShadow = "none";
-                    const overlay = el.querySelector(".ach-overlay") as HTMLElement;
-                    if (overlay) overlay.style.opacity = "0";
-                    if (overlay) overlay.style.transform = "translateY(8px)";
-                  }}
-                  onClick={(e) => {
-                    // Touch devices have no hover — tap toggles the overlay instead.
-                    if (!window.matchMedia("(pointer: coarse)").matches) return;
-                    const el = e.currentTarget as HTMLDivElement;
-                    const isOpen = el.dataset.open === "true";
-
-                    const close = (card: HTMLDivElement) => {
-                      const overlay = card.querySelector(".ach-overlay") as HTMLElement;
-                      if (overlay) { overlay.style.opacity = "0"; overlay.style.transform = "translateY(8px)"; }
-                      card.style.transform = "translateY(0)";
-                      card.style.borderColor = "var(--border)";
-                      card.style.boxShadow = "none";
-                      card.dataset.open = "false";
-                    };
-
-                    if (openCardRef.current && openCardRef.current !== el) {
-                      close(openCardRef.current);
-                    }
-
-                    if (isOpen) {
-                      close(el);
-                      openCardRef.current = null;
-                    } else {
-                      const overlay = el.querySelector(".ach-overlay") as HTMLElement;
-                      if (overlay) { overlay.style.opacity = "1"; overlay.style.transform = "translateY(0)"; }
-                      el.style.transform = "translateY(-4px)";
-                      el.style.borderColor = borderAccent;
-                      el.style.boxShadow = "0 8px 32px rgba(0,0,0,0.35)";
-                      el.dataset.open = "true";
-                      openCardRef.current = el;
+                  role="button"
+                  className={`acd${open ? " open" : ""}`}
+                  tabIndex={0}
+                  aria-expanded={open}
+                  onClick={toggle}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      toggle();
                     }
                   }}
                 >
-                  {/* Photo */}
-                  <div
-                    style={{
-                      width: "100%",
-                      height: 140,
-                      position: "relative",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Image
-                      src={ach.photo}
-                      alt={ach.award}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 340px"
-                      style={{ objectFit: "cover" }}
-                    />
-                    {/* Gradient fade into card body */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: 48,
-                        background: "linear-gradient(to bottom, transparent, var(--bg-elevated))",
-                        pointerEvents: "none",
-                      }}
-                    />
-                  </div>
-
-                  {/* Meta info below photo */}
-                  <div
-                    style={{
-                      padding: "1rem 1.25rem 1.25rem",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "0.35rem",
-                      flex: 1,
-                    }}
-                  >
-                    {/* Position / title — minHeight locks all cards to the same title height */}
-                    <div
-                      style={{
-                        fontFamily: "var(--font-sans), system-ui, sans-serif",
-                        fontSize: 15,
-                        fontWeight: 600,
-                        color: "var(--text-primary)",
-                        lineHeight: 1.3,
-                        minHeight: "2.6rem",
-                      }}
-                    >
-                      {ach.title}
-                    </div>
-
-                    {/* Competition / award */}
-                    <div
-                      style={{
-                        fontSize: 13,
-                        color: "var(--text-secondary)",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {ach.award}
-                    </div>
-
-                    {/* Year + level */}
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "0.6rem",
-                        flexWrap: "wrap",
-                        alignItems: "center",
-                        marginTop: "0.2rem",
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono), monospace",
-                          fontSize: 11,
-                          color: accent,
-                          letterSpacing: "0.04em",
-                        }}
-                      >
-                        {ach.year}
-                      </span>
-                      {ach.level && (
-                        <span
-                          style={{
-                            fontFamily: "var(--font-mono), monospace",
-                            fontSize: 10,
-                            color: "var(--text-muted)",
-                            letterSpacing: "0.06em",
-                          }}
-                        >
-                          {ach.level}
-                        </span>
-                      )}
-                    </div>
-
-                    {ach.representing && (
-                      <div
-                        style={{
-                          fontFamily: "var(--font-mono), monospace",
-                          fontSize: 10,
-                          color: "var(--text-muted)",
-                          letterSpacing: "0.04em",
-                        }}
-                      >
-                        {ach.representing}
+                  <Image src={a.photo} alt="" fill sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 340px" />
+                  <span className="acd-badge">{a.category === "Engineering" ? "Engineering" : "Leadership"}</span>
+                  <div className="acd-cap">
+                    <span className="acd-y">
+                      {a.year}
+                      {a.level ? ` · ${a.level}` : ""}
+                    </span>
+                    <h3>
+                      {a.title}, {a.award}
+                    </h3>
+                    <span className="acd-sub">
+                      {[a.issuer, a.representing].filter(Boolean).join(" · ")}
+                    </span>
+                    <div className="acd-more">
+                      <div>
+                        <p>{a.description}</p>
+                        {a.projectUrl && (
+                          <p>
+                            <a href={a.projectUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                              View project →
+                            </a>
+                          </p>
+                        )}
                       </div>
-                    )}
-                  </div>
-
-                  {/* Hover overlay with description */}
-                  <div
-                    className="ach-overlay"
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "var(--overlay-bg)",
-                      backdropFilter: "blur(10px)",
-                      opacity: 0,
-                      transform: "translateY(8px)",
-                      transition: "opacity 250ms var(--ease-out), transform 250ms var(--ease-out)",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "flex-end",
-                      padding: "1.5rem",
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: 13,
-                        color: "var(--overlay-text)",
-                        lineHeight: 1.7,
-                        margin: 0,
-                      }}
-                    >
-                      {ach.description}
-                    </p>
-                    {ach.projectUrl && (
-                      <a
-                        href={ach.projectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          fontFamily: "var(--font-mono), monospace",
-                          fontSize: 11,
-                          color: overlayAccent,
-                          textDecoration: "none",
-                          marginTop: "0.75rem",
-                          letterSpacing: "0.06em",
-                          display: "inline-block",
-                        }}
-                      >
-                        View Project ↗
-                      </a>
-                    )}
+                    </div>
                   </div>
                 </div>
               </RevealOnScroll>
             );
           })}
         </div>
-    </SectionShell>
+      </div>
+    </section>
   );
 }

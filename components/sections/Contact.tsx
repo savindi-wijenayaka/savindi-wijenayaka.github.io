@@ -1,103 +1,37 @@
-"use client";
-
-import SectionHeader from "@/components/ui/SectionHeader";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import Socials from "@/data/socials";
 
+const CV_URL = "/CV_SavindiWijenayaka_ML.pdf";
+
 export default function Contact() {
+  const linkedin = Socials.find((s) => s.label === "LinkedIn");
+
   return (
-    <section
-      id="contact"
-      className="rail-safe-x"
-      style={{
-        background: "var(--bg-base-t)",
-        borderTop: "1px solid var(--border)",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        paddingTop: "clamp(2rem, 4vw, 3rem)",
-        paddingBottom: "clamp(2rem, 4vw, 3rem)",
-        textAlign: "center",
-      }}
-    >
-      <div style={{ maxWidth: 640, margin: "0 auto" }}>
+    <section className="sec contact" id="contact">
+      <div className="wrap">
         <RevealOnScroll>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <SectionHeader
-              label="Contact"
-              accent="lavender"
-              plain="Let's "
-              italic="connect"
-            />
-          </div>
-        </RevealOnScroll>
-
-        <RevealOnScroll delay={80}>
-          <p
-            style={{
-              fontSize: 17,
-              color: "var(--text-secondary)",
-              lineHeight: 1.9,
-              marginBottom: "2rem",
-              fontWeight: 300,
-            }}
-          >
-            Open to interesting problems, research collaborations, and
-            conversations about AI systems.
+          <p className="eyebrow">Contact</p>
+          <h2 className="sec-title">Let&apos;s build something thoughtful</h2>
+          <p className="lede">
+            Open to machine learning engineering roles and research collaborations. The fastest way to reach me is
+            LinkedIn.
           </p>
-        </RevealOnScroll>
-
-
-        <RevealOnScroll delay={240}>
-          <div
-            style={{
-              display: "flex",
-              gap: "0.85rem",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            {Socials.map((s) => {
-              const Icon = s.icon;
-              return (
-                <a
-                  key={s.label}
-                  href={s.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 7,
-                    padding: "9px 20px",
-                    borderRadius: "var(--radius-sm)",
-                    fontFamily: "var(--font-mono), monospace",
-                    fontSize: "11.5px",
-                    textDecoration: "none",
-                    border: "1px solid var(--border-lavender)",
-                    color: "var(--text-secondary)",
-                    transition: "all 200ms",
-                    letterSpacing: "0.05em",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.borderColor = "var(--lavender)";
-                    el.style.color = "var(--lavender)";
-                    el.style.transform = "translateY(-1px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.borderColor = "var(--border-lavender)";
-                    el.style.color = "var(--text-secondary)";
-                    el.style.transform = "translateY(0)";
-                  }}
-                >
-                  <Icon size={14} />
-                  {s.label}
-                </a>
-              );
-            })}
+          <div className="contact-cta">
+            {linkedin && (
+              <a className="btn btn-honey" href={linkedin.link} target="_blank" rel="noopener noreferrer">
+                Say hello
+              </a>
+            )}
+            <a className="btn btn-ghost" href={CV_URL} target="_blank" rel="noopener noreferrer">
+              Download CV
+            </a>
+          </div>
+          <div className="contact-soc">
+            {Socials.map((s) => (
+              <a key={s.label} className="btn btn-ghost" href={s.link} target="_blank" rel="noopener noreferrer">
+                {s.label}
+              </a>
+            ))}
           </div>
         </RevealOnScroll>
       </div>
