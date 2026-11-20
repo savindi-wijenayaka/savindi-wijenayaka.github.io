@@ -164,7 +164,7 @@ body {
 .btn:active { transform: scale(0.97); }
 .btn-plum  { background: var(--plum); color: var(--btn-fg); }
 .btn-honey { background: var(--honey-fill); color: var(--on-honey); }
-.btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+.btn-ghost { border-color: var(--line-strong); color: var(--ink); background: transparent; }
 @media (hover: hover) and (pointer: fine) {
   .btn-plum:hover, .btn-honey:hover { filter: brightness(1.07); }
   .btn-ghost:hover { background: var(--plum-bg); }
@@ -371,36 +371,45 @@ body {
   z-index: 1;
   max-width: 1320px;
   margin: 0 auto;
-  padding: clamp(32px, 6svh, 72px) var(--pad) clamp(36px, 6svh, 64px);
+  /* Bottom-heavy padding lifts the centred block to its optical centre: less dead air above the name, more room above the banner. */
+  padding: clamp(24px, 3svh, 36px) var(--pad) clamp(48px, 12svh, 112px);
   display: flex;
   align-items: center;
 }
 .hero-copy { max-width: min(600px, 50%); }
-.hero-role {
-  font: 600 clamp(12px, 0.95vw, 14px) var(--font-sans), system-ui, sans-serif;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
 .hero h1 {
   font: 600 clamp(48px, 7vw, 112px) / 1 var(--font-serif), Georgia, serif;
   letter-spacing: -0.03em;
-  margin: clamp(16px, 2.4svh, 24px) 0 clamp(28px, 4.4svh, 44px);
+  /* Rhythm: name, then title + caption as one tight block (the j/y descenders overhang
+     the 1em line box by ~0.11em), then the buttons furthest away. */
+  margin: 0 0 clamp(12px, 0.165em, 18px);
+}
+/* Job title: a real subtitle (sentence case, full ink), not a tracked-caps label */
+.hero-title {
+  font: 500 clamp(18px, 1.5vw, 22px) / 1.3 var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.005em;
+  color: var(--ink); /* full ink: the seniority signal outranks the tagline below */
+  margin: 0 0 clamp(48px, 5.8svh, 66px); /* the big break: name + title | caption + buttons */
 }
 .hero h1 em { font-style: italic; color: var(--plum); font-weight: 500; }
 .hero h1 .hero-degree { font-size: 0.28em; font-weight: 500; letter-spacing: -0.01em; color: var(--honey-fill); white-space: nowrap; }
 .hero-intro {
-  font-size: clamp(17px, 1.4vw, 21px);
-  line-height: 1.6;
+  /* Serif italic: same voice as the surname, so it reads as a tagline, not another label */
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.45;
   color: var(--ink);
-  opacity: 0.8;
+  opacity: 0.85; /* a step under the title; italic serif already sets it apart */
   text-wrap: balance;
-  margin: 0 0 clamp(28px, 4.4svh, 44px);
+  margin: 0 0 clamp(28px, 3.2svh, 36px); /* caption belongs with the buttons: smaller than the break above it */
 }
 .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+/* Hero buttons: sized up so the primary action holds its own beside a 112px name */
 .hero .btn {
-  font-size: clamp(14px, 1vw, 15px);
-  padding: clamp(12px, 1.7svh, 15px) clamp(22px, 1.8vw, 28px);
+  font-size: clamp(15px, 1.1vw, 16px);
+  padding: clamp(13px, 1.9svh, 17px) clamp(20px, 2vw, 30px);
 }
 #hero-network {
   position: absolute;
@@ -447,7 +456,7 @@ body {
 .glance-item b {
   display: block;
   font: 600 clamp(18px, 1.6vw, 24px) var(--font-serif), Georgia, serif;
-  color: var(--honey-text);
+  color: color-mix(in srgb, var(--honey-text) 80%, var(--muted)); /* still yellow, a step quieter than the CTA */
   letter-spacing: -0.01em;
   white-space: nowrap;
 }
